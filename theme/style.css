@@ -1,0 +1,22 @@
+/* The documentation theme. A man page for every page but the landing
+   page, which is airier. It styles every class tilder writes (tilder
+   docs/theme.md; tools/check-theme.py checks it at every build), and the
+   theme's own: the page frame, the home and doc layouts, the search, the
+   copy button.
+
+   Contents: fonts - tokens - base - frame (header, footer) - sections and
+   blocks - entries and cards - code - collection navigation - home - doc
+   layout - search - copy button - motion. */
+
+/* --- fonts: self-hosted, OFL (fonts/OFL-*.txt) ---------------------------- */
+
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap;
+	src: url("fonts/inter-regular.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: italic; font-weight: 400; font-display: swap;
+	src: url("fonts/inter-italic.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap;
+	src: url("fonts/inter-bold.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap;
+	src: url("fonts/jetbrains-mono-regular.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 700; font-display: swap;
+	src: url("fonts/jetbrains-mono-bold.woff2") format("woff2"); }
