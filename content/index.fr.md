@@ -43,7 +43,7 @@ One **Markdown** file, two outputs.
 ```
 
 ```console
-$ curl tilder.thosted.fr/hello
+$ curl example.org/hello
 NAME
      hello - a page
 
@@ -57,7 +57,7 @@ DESCRIPTION
 
   Chaque page a son double en texte brut, sur 75 colonnes, en noir et
   blanc ou en couleurs pour le terminal. `curl` le reçoit à la place du
-  HTML, et une plage braille le lit tout aussi bien.
+  HTML.
 
 ### Types de contenu
 
@@ -92,24 +92,27 @@ DESCRIPTION
 
 ### Aucune dépendance
 
-  La bibliothèque standard de Python, rien à installer. Un seul outil
-  facultatif, `rsvg-convert`, dessine les icônes et l'aperçu des liens ;
-  l'image Docker le contient. Aucune page ne charge quoi que ce soit
-  depuis un autre site.
+  La bibliothèque standard de Python, rien à installer. Les outils
+  extérieurs ne servent qu'à dessiner les icônes et l'aperçu des liens,
+  et sont facultatifs : `rsvg-convert`, avec `woff2_decompress`, sinon
+  ImageMagick ; sans l'un ni l'autre, ces images sont omises avec un
+  avertissement. L'image Docker contient `rsvg-convert` et
+  `woff2_decompress`. Aucune page ne charge quoi que ce soit depuis un
+  autre site.
 
 ## Démarrage rapide
 
 Copiez le site de départ du dépôt, le dossier `starter/`, un petit site
 avec son thème, puis générez-le avec l'image Docker,
-`ghcr.io/thosted/tilder` :
+`ghcr.io/thosted/tilder:1.2.0` :
 
 ```sh
-git clone https://github.com/THOSTED/tilder
+git clone --branch v1.2.0 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site && cd my-site
 mkdir -p public
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder \
+  ghcr.io/thosted/tilder:1.2.0 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
