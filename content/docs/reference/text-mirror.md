@@ -217,12 +217,12 @@ A line cut at the 75th column keeps its colours on the next line.
 
 | Token | Colour |
 |---|---|
-| keyword; in `sh` and `console`, the command word | bold, in the accent |
-| builtin or type; in `sh` and `console`, an option (`-s`, `--out`) | the accent |
-| string, a `diff` `+` line | green |
-| comment, a `console` prompt (`$ `, `# `) | dim |
-| number, variable | magenta |
-| tag, key, section, a `diff` hunk header (`@@`) | bold |
+| keyword; in `sh` and `console`, the command word; in `markdown`, `[!INFO]` and the like, `[TOC]` | bold, in the accent |
+| builtin or type; in `sh` and `console`, an option (`-s`, `--out`); in `markdown`, a list marker, a task box, emphasis | the accent |
+| string, a `diff` `+` line; in `markdown`, inline `code`, a link's title | green |
+| comment, a `console` prompt (`$ `, `# `); in `markdown`, a fence line, a rule, a table's pipes, the `>` of an inset, the front matter's `---` | dim |
+| number, variable; in `markdown`, a link's target, the `{markers}` ending a line | magenta |
+| tag, key, section, a `diff` hunk header (`@@`); in `markdown`, a heading, a front matter key | bold |
 | a `diff` `-` line | red |
 
 The command word is the first word of a command: at the start of a
@@ -231,9 +231,10 @@ line (after a `$ ` prompt in `console`), after `|`, `||`, `&&`, `;`,
 variable assignment.
 
 The languages highlighted are `sh`, `python`, `js`, `c`, `go`, `rust`,
-`sql`, `json`, `yaml`, `ini`, `conf`, `dockerfile`, `html`, `css` and
-`make`, each by its own token rules, plus `console` and `diff`, coloured
-line by line; the full list of names and their aliases is in [code
+`sql`, `json`, `jsonc`, `yaml`, `kyaml`, `ini`, `conf`, `dockerfile`,
+`html`, `css` and `make`, each by its own token rules, plus `console`,
+`diff` and `markdown`, coloured line by line; the full list of names
+and their aliases is in [code
 blocks](docs/reference/markdown/blocks). A block with no language, in
 `text`, or in a language tilder does not know is not highlighted: only
 its command lines (`text.commands`) are in the accent, and `txt/` stays
@@ -246,7 +247,7 @@ in `ansi/`. The starter's 404 page does it: a terminal gets a short
 message from the server instead ([writing pages](docs/guide/writing),
 [deployment](docs/guide/deployment)).
 
-```text
+```markdown
 ---
 title: 404
 description: Page not found.

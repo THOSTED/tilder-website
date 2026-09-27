@@ -29,7 +29,7 @@ Each site is one entry file, `showcase/<slug>/index.md`, with its
 screenshot next to it. The slug is a short name for the site, in lower
 case. A pull request adds that folder; an issue gives what goes in it:
 
-```text
+```markdown
 ---
 title: Example site
 url: https://example.org/

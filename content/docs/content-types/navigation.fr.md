@@ -30,7 +30,7 @@ La documentation de ce site utilise le type `doc` de son thème, dont
 l'ordre est la clé d'en-tête `order`, un nombre entier, puis
 l'identifiant :
 
-```text
+```markdown
 ---
 title: Getting started
 description: Install tilder, build the starter site, look around.
@@ -52,7 +52,7 @@ rassemble alors les éléments de chaque groupe sous le libellé du groupe :
 d'abord les éléments sans groupe, puis chaque groupe dans l'ordre de son
 premier élément, les éléments d'un groupe dans l'ordre de la collection.
 
-```text
+```markdown
 ---
 title: Deployment
 description: Put a site online: Docker, compose, Caddy, others.

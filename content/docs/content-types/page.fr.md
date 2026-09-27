@@ -23,7 +23,7 @@ Une page dit tout elle-même : `man`, `title`, `description`, `tagline` et
 fournit. Toutes les clés d'[écrire des pages](docs/guide/writing)
 s'appliquent.
 
-```text
+```markdown
 ---
 man: MYSITE-ABOUT(7)
 title: About

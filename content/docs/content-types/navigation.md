@@ -28,7 +28,7 @@ order.
 This site's documentation uses the `doc` type of its theme, whose order
 is the `order` front-matter key, a whole number, then the slug:
 
-```text
+```markdown
 ---
 title: Getting started
 description: Install tilder, build the starter site, look around.
@@ -50,7 +50,7 @@ items of each group under the group's label: the items without a group
 first, then each group in the order of its first item, the items of a
 group in the collection's order.
 
-```text
+```markdown
 ---
 title: Deployment
 description: Put a site online: Docker, compose, Caddy, others.

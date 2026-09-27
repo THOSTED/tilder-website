@@ -348,7 +348,7 @@ def json_ld(item, conf):
 The collection's page, `content/recipes/index.md`, and a recipe,
 `content/recipes/leek-soup.md`:
 
-```text
+```markdown
 ---
 man: SITE-RECIPES(7)
 title: Recipes
@@ -364,7 +364,7 @@ recipes - what we cook
 ## Recipes {recipes}
 ```
 
-```text
+```markdown
 ---
 title: Leek soup
 description: A leek and potato soup, for a cold winter evening.

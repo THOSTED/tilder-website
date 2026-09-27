@@ -67,7 +67,7 @@ dans `end` quand il dure plus d'une journée.
 
 ## En-tête
 
-```text
+```markdown
 ---
 title: Spring meetup
 description: Talks and a workshop on documentation, then dinner.
@@ -124,7 +124,7 @@ de construction :
 | `{past}` | les événements qui ont commencé avant aujourd'hui, du plus récent au plus ancien |
 | `{next-event}` | le prochain événement seulement, marqué de la même façon |
 
-```text
+```markdown
 ## Upcoming {upcoming}
 
 ## Past {past}

@@ -159,7 +159,7 @@ python3 ../tilder/build.py --check --markdown > contrast.md
 The table begins with the light scheme, then the dark one, each pair in
 the order of `[check] contrast`. The first rows for the starter's theme:
 
-```text
+```markdown
 | scheme | foreground | background | ratio | minimum |
 |---|---|---|---:|---:|
 | light | `--fg` | `--bg` | 17.40 | 4.5 |

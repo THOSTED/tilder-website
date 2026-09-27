@@ -52,7 +52,7 @@ The front matter opens the file, between two `---` lines: one `key: value`
 per line. Values are plain text, never quoted: `nav: ""` would be two
 quote marks, so the landing page writes `nav:` with nothing after it.
 
-```text
+```markdown
 ---
 man: MYSITE-ABOUT(7)
 title: About
@@ -105,7 +105,7 @@ Pages open with `## Name`, as a man page does: the page's name, a dash
 and one line that says what it is, then a paragraph that sums the page
 up. The other sections follow in the order a reader needs them.
 
-```text
+```markdown
 ## Name
 
 about - who writes this site
@@ -177,7 +177,7 @@ one prints its address in parentheses after it.
 An image stands alone on its line, as in Markdown; the quoted text after
 the path, optional, is its caption:
 
-```text
+```markdown
 ![A page's two outputs](flow.svg "One source, two renderings.")
 ```
 

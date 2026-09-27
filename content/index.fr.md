@@ -18,7 +18,7 @@ JavaScript et ne chargent rien depuis un site tiers.
 
 ## Un fichier, deux rendus {grid}
 
-```text
+```markdown
 ---
 title: hello
 man: HELLO(7)

@@ -20,7 +20,7 @@ un cadre, comme elle s'affiche dans n'importe quelle phrase du site.
 Deux astérisques de chaque côté mettent le texte en gras. Un astérisque
 ou un tiret bas de chaque côté le mettent en italique.
 
-```text
+```markdown
 Un mot en **gras**, un en *italique*, et _un autre_ encore.
 ```
 
@@ -33,7 +33,7 @@ Les deux s'écrivent de façon à laisser le texte ordinaire tranquille :
 - `_italique_` ne fonctionne qu'autour de mots entiers, si bien que
   `snake_case` reste tel quel.
 
-```text
+```markdown
 2 * 3 * 4 font 24, et snake_case n'est pas en italique.
 ```
 
@@ -51,7 +51,7 @@ Deux tildes de chaque côté barrent le texte ; deux signes plus de chaque
 côté le soulignent, d'un trait pointillé, car un soulignement plein se
 lit comme un lien sur le web.
 
-```text
+```markdown
 La rencontre a lieu ~~vendredi~~ samedi, ++à midi++.
 ```
 
@@ -69,7 +69,7 @@ est imprimé tel quel.
 Un mot ou une expression entre accents graves est du code : en police à
 chasse fixe, et jamais lu pour un autre balisage.
 
-```text
+```markdown
 Lancez `python3 builder/build.py`, et gardez **`--watch` actif** pendant que vous écrivez.
 ```
 
@@ -86,7 +86,7 @@ texte, le code est imprimé tel quel, et coloré dans le miroir ANSI.
 site, sans barre oblique au début et sans `.html` ; la construction la
 rend relative à la page.
 
-```text
+```markdown
 Lisez [le guide](docs/guide), ou l'[exemple ↗](https://example.org/).
 ```
 
@@ -104,7 +104,7 @@ d'échappement : une barre oblique inverse est imprimée, et n'arrête pas
 le balisage qui la suit. Tout le reste, HTML compris, est imprimé tel
 qu'il est écrit.
 
-```text
+```markdown
 **[un lien](docs/)** est en gras, et <b>ceci</b> ne l'est pas.
 Un \*antislash\* n'échappe rien.
 ```

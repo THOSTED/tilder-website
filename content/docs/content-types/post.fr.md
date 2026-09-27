@@ -72,7 +72,7 @@ pas de clé `date:`.
 
 ## En-tête
 
-```text
+```markdown
 ---
 title: Hello
 description: The first post, in a file named by its date: all a post needs.
@@ -116,7 +116,7 @@ texte :
 Une section marquée `{posts}` liste tous les articles de la collection, du
 plus récent au plus ancien. La page du blog se résume souvent à cela :
 
-```text
+```markdown
 ---
 man: MYSITE-BLOG(7)
 title: blog

@@ -17,7 +17,7 @@ its pages need no JavaScript and load nothing from a third party.
 
 ## One file, two outputs {grid}
 
-```text
+```markdown
 ---
 title: hello
 man: HELLO(7)

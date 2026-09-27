@@ -19,17 +19,19 @@ ALLOWED = re.compile(r"^https?://(tilder\.thosted\.fr|github\.com/THOSTED/tilder
 # while a period inside the URL itself (a path, a `.git` suffix) is kept.
 URL = re.compile(r"https?://[^\s)`\"'>]+?(?=[.,;!?](?:\s|$)|[)`\"'>\s]|$)")
 FENCE = re.compile(r"^[ \t]*(`{3,})([^`\n]*)$", re.M)
-# Every name src/highlight.py accepts at v1.2.0 (unchanged since v1.1.0):
+# Every name src/highlight.py accepts at v1.4.0 (unchanged since v1.1.0,
+# plus jsonc, kyaml and markdown, added at v1.4.0):
 # its LANGS keys, ALIASES keys (aliases resolving to a LANGS entry),
-# SPECIAL (handled line by line: console, diff, text, plain, txt) and
-# SPECIAL_ALIASES keys; plus "" for a bare/closing fence, which is not a
-# language at all.
+# SPECIAL (handled line by line: console, diff, markdown, text, plain,
+# txt) and SPECIAL_ALIASES keys; plus "" for a bare/closing fence, which
+# is not a language at all.
 LANGS = {"", "sh", "bash", "shell", "zsh", "console", "shell-session", "terminal", "python",
-         "py", "toml", "ini", "cfg", "systemd", "yaml", "yml", "json", "html", "xml", "svg",
+         "py", "toml", "ini", "cfg", "systemd", "yaml", "yml", "kyaml", "kyml", "json", "jsonc",
+         "json-with-comments", "html", "xml", "svg",
          "css", "js", "javascript", "ts", "typescript", "node", "make", "makefile", "caddy",
          "caddyfile", "conf", "nginx", "dockerfile", "docker", "containerfile", "diff", "patch",
-         "text", "plain", "txt", "sql", "c", "h", "cpp", "c++", "go", "golang", "rust", "rs",
-         "postgres", "postgresql"}
+         "markdown", "md", "mdown", "text", "plain", "txt", "sql", "c", "h", "cpp", "c++", "go",
+         "golang", "rust", "rs", "postgres", "postgresql"}
 
 
 def pages():

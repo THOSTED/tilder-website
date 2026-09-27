@@ -151,7 +151,7 @@ Un titre de section qui se termine par le marqueur d'un type est rempli
 des cartes de la collection, une par élément ; la carte d'un article ou
 d'un événement est cliquable en entier :
 
-```text
+```markdown
 ## Posts {posts}
 
 ## Coming up {upcoming:talks}

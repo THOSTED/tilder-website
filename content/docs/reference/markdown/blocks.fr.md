@@ -23,7 +23,7 @@ espaces ; une ligne vide le termine. Des mots entre accolades à la fin
 d'un paragraphe sont des classes, appliquées sur la page web seulement :
 le miroir en texte imprime le paragraphe tel quel.
 
-```text
+```markdown
 La construction joint ces deux lignes
 en un seul paragraphe.
 
@@ -61,7 +61,7 @@ Un paragraphe entièrement entouré d'astérisques simples est un état
 vide : la ligne atténuée, en chasse fixe, qui dit que quelque chose
 n'existe pas encore. Une liste sans rien dedans affiche la même ligne.
 
-```text
+```markdown
 *Aucune conférence annoncée pour l'instant.*
 ```
 
@@ -84,7 +84,7 @@ premier numéro : `7.` puis `8.` compte à partir de 7. Mettez un élément
 plus en retrait que celui du dessus pour imbriquer une liste dedans. Une
 ligne en retrait qui n'est pas un élément prolonge l'élément du dessus.
 
-```text
+```markdown
 1. Copier le site de départ
 2. Le construire, puis le laisser se reconstruire
    pendant que vous écrivez
@@ -119,7 +119,7 @@ liste.
 case vide, ou cochée. Les lecteurs d'écran entendent `labels.task_todo`
 ou `labels.task_done` pour la case (« à faire », « fait »).
 
-```text
+```markdown
 - [x] passer le blog en dossiers
 - [ ] écrire le premier compte rendu
 ```
@@ -143,7 +143,7 @@ le miroir en texte, c'est une liste numérotée des noms de sections.
 Chaque sortie ne liste que les sections qu'elle montre
 ([sections](docs/reference/markdown/sections)).
 
-```text
+```markdown
 [TOC]
 ```
 
@@ -163,7 +163,7 @@ documentation dans la colonne de droite.
 un filet : `<hr>` sur la page web, une ligne de tirets dans le miroir en
 texte. Tout en haut d'un fichier, `---` ouvre plutôt l'en-tête.
 
-```text
+```markdown
 Au-dessus du filet.
 
 ---
@@ -187,7 +187,7 @@ réduite à `>` sépare deux paragraphes. Un encadré contient des
 paragraphes, avec leur balisage en ligne : une liste ou un bloc de code à
 l'intérieur est lu comme du texte.
 
-```text
+```markdown
 > **Note :** les [archives ↗](https://archive.example.org/) gardent les anciens articles.
 >
 > Un second paragraphe.
@@ -209,7 +209,7 @@ Un encadré dont la première ligne est `[!INFO]`, `[!WARNING]` ou
 suivre le marqueur sur la même ligne. Les autres noms de GitHub sont
 acceptés, en majuscules comme en minuscules.
 
-```text
+```markdown
 > [!INFO]
 > La construction repasse à minuit.
 
@@ -260,7 +260,7 @@ active la coloration syntaxique, faite par la construction (sans script),
 et affiche le langage dans le coin du bloc. Le bloc garde ses espaces
 exactement, et une ligne longue défile de côté au lieu d'élargir la page.
 
-````text
+````markdown
 ```python
 def plier(texte, largeur=75):
     return textwrap.wrap(texte, largeur)
@@ -289,18 +289,24 @@ clôture de quatre ne se ferme que sur une ligne de quatre ou plus.
 | `rust` | `rs` |
 | `sql` | `postgres`, `postgresql` |
 | `json` | |
+| `jsonc` | `json-with-comments` |
 | `yaml` | `yml` |
+| `kyaml` | `kyml` |
 | `ini` | `toml`, `cfg`, `systemd` |
 | `conf` | `caddy`, `caddyfile`, `nginx` |
 | `dockerfile` | `docker`, `containerfile` |
 | `html` | `xml`, `svg` |
 | `css` | |
 | `make` | `makefile` |
+| `markdown` | `md`, `mdown` |
 | `diff` | `patch` |
 | `text` | `plain`, `txt` |
 
 Le nom peut s'écrire en majuscules ou en minuscules ; l'étiquette
-l'affiche en minuscules, tel qu'il est écrit : `caddy`, pas `conf`. Trois
+l'affiche en minuscules, tel qu'il est écrit : `caddy`, pas `conf`.
+`jsonc` est du JSON avec des commentaires `//` et `/* */`, comme les
+réglages de VS Code ; `kyaml` est le sous-ensemble YAML strict de
+Kubernetes, en style de flux et valeurs entre guillemets. Cinq
 langages se lisent ligne par ligne plutôt que mot par mot :
 
 - `console` : une ligne qui commence par une invite, `$ ` ou `# `,
@@ -309,10 +315,16 @@ langages se lisent ligne par ligne plutôt que mot par mot :
   laissée brute.
 - `diff` : les lignes ajoutées et retirées sont colorées différemment,
   les en-têtes de bloc atténués.
-- `text` : aucune coloration, mais l'étiquette s'affiche. Chaque source
-  Markdown de ce manuel est un bloc `text`.
+- `markdown` : ce dialecte - les clés du front matter, les titres et
+  leurs `{marqueurs}`, les clôtures (le code d'un bloc clôturé reste
+  brut), les commentaires, les règles, les citations et les encarts
+  `[!GENRE]`, `[TOC]`, les puces de liste et les cases à cocher, les
+  tableaux, et le balisage en ligne - le `code`, l'emphase, la cible
+  d'un lien ou d'une image - dans chaque ligne. La plupart des blocs
+  source de cette référence sont des blocs `markdown`.
+- `text` : aucune coloration, mais l'étiquette s'affiche.
 
-````text
+````markdown
 ```console
 $ python3 builder/build.py
 built public/
@@ -371,7 +383,7 @@ règlent l'alignement de chaque colonne : `:---` à gauche, par défaut,
 cellules, et `\|` y écrit une barre verticale. Chaque ligne du tableau
 commence par `|` : une ligne sans elle fait du bloc un paragraphe.
 
-```text
+```markdown
 | Sortie | Format | Largeur |
 |:-------|:------:|--------:|
 | page   | HTML   | libre   |
@@ -402,7 +414,7 @@ où le navigateur ne l'affiche pas, et omis du miroir en texte.
 Servez-vous-en pour des notes aux personnes qui modifient la page, comme
 un fait encore à trouver :
 
-```text
+```markdown
 <!-- À COMPLÉTER : l'adresse du lieu. -->
 
 *Lieu à annoncer.*

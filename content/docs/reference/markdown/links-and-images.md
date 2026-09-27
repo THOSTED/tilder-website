@@ -32,7 +32,7 @@ root, without a leading slash and without `.html`:
 | `logo.svg`, `blog/feed.xml` | a file: any last segment with an extension |
 | `https://example.org/` | another site, left as written |
 
-```text
+```markdown
 The [guide](docs/guide), the [blog](blog/), [home](./), the
 [links section of writing pages](docs/guide/writing#links),
 [this section](#link-targets) and the [logo](logo.svg).
@@ -58,7 +58,7 @@ the page it is on: `docs/guide` from a French page leads to
 `/fr/docs/guide`. A target starting with `/` is taken from the site
 root as it is, and leaves the language:
 
-```text
+```markdown
 Read this page [in English](/docs/reference/markdown/links-and-images)
 or [in French](/fr/docs/reference/markdown/links-and-images).
 ```
@@ -78,7 +78,7 @@ A target starting with `http` is a link to another site. End its label
 with the north-east arrow, U+2197, the sign that the link leaves the
 site: screen readers skip the arrow and hear `labels.external` instead.
 
-```text
+```markdown
 The [example site ↗](https://example.org/) is not part of this one.
 ```
 
@@ -102,7 +102,7 @@ An image is a block of its own: a single line, with blank lines around.
 The alternative text goes in the brackets, the path in the parentheses,
 and an optional caption in double quotes after the path.
 
-```text
+```markdown
 ![One Markdown file, two outputs: HTML and text](flow.svg)
 
 ![One Markdown file, two outputs: HTML and text](flow.svg "One source, two renderings.")

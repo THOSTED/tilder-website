@@ -57,7 +57,7 @@ L'en-tête ouvre le fichier, entre deux lignes `---` : une ligne
 guillemets : `nav: ""` donnerait deux guillemets, alors la page d'accueil
 écrit `nav:` sans rien derrière.
 
-```text
+```markdown
 ---
 man: MYSITE-ABOUT(7)
 title: À propos
@@ -112,7 +112,7 @@ manuel : le nom de la page, un tiret et une ligne qui dit ce qu'elle est,
 puis un paragraphe qui la résume. Les autres sections suivent dans l'ordre
 où le lecteur en a besoin.
 
-```text
+```markdown
 ## Nom
 
 about - qui écrit ce site
@@ -190,7 +190,7 @@ parenthèses après lui.
 Une image est seule sur sa ligne, comme en Markdown ; le texte entre
 guillemets après le chemin, facultatif, devient sa légende :
 
-```text
+```markdown
 ![Les deux sorties d'une page](flow.svg "Une source, deux rendus.")
 ```
 

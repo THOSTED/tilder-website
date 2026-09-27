@@ -170,7 +170,7 @@ Le tableau donne d'abord le mode clair, puis le sombre, chaque paire
 dans l'ordre de `[check] contrast`. Ses premières lignes pour le thème du
 site de départ :
 
-```text
+```markdown
 | scheme | foreground | background | ratio | minimum |
 |---|---|---|---:|---:|
 | light | `--fg` | `--bg` | 17.40 | 4.5 |

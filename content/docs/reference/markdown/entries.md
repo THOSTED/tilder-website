@@ -22,7 +22,7 @@ A `###` heading starts an entry in the current section. The blocks of
 its body are indented two spaces; the first block that is not indented
 ends the entry, and the page goes back to the section.
 
-```text
+```markdown
 ### Spring meetup
 
   Three talks and a workshop, open to everyone.
@@ -57,7 +57,7 @@ meta line rather than a list. Each item is one of three kinds:
 | `YYYY-MM-DD \| human date` | `<time datetime="YYYY-MM-DD">`, showing the human date | the human date |
 | anything else | a plain item | a line of its own |
 
-```text
+```markdown
 ### Autumn meetup
 
   - 2026-10-17 | Saturday 17 October 2026
@@ -98,7 +98,7 @@ something to tilder and to every theme.
 | `{link}` | `.entry--link` | a card whose title link covers the whole card |
 | any other word | `.entry--<word>` | a class for the theme |
 
-```text
+```markdown
 ### Winter meetup {next}
 
   - `next`
@@ -139,7 +139,7 @@ This site's theme styles one more marker, `{example}`, as the dashed
 frame labelled `Rendered` around every live example of the
 [blocks](docs/reference/markdown/blocks) page.
 
-```text
+```markdown
 ### Rendered {example}
 
   | a live | example |
@@ -153,7 +153,7 @@ Every block may go into an entry's body: paragraphs, lists, boxes, code,
 tables, images. Each is indented two spaces, including its continuation
 lines, and blank lines separate them as anywhere else.
 
-```text
+```markdown
 ### Version 2.0
 
   - `release`

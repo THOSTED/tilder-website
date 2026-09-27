@@ -32,7 +32,7 @@ racine du site, sans barre oblique au début et sans `.html` :
 | `logo.svg`, `blog/feed.xml` | un fichier : tout dernier segment qui a une extension |
 | `https://example.org/` | un autre site, laissé tel quel |
 
-```text
+```markdown
 Le [guide](docs/guide), le [blog](blog/), l'[accueil](./), la
 [section des liens d'écrire des pages](docs/guide/writing#liens),
 [cette section](#cibles-des-liens) et le [logo](logo.svg).
@@ -61,7 +61,7 @@ de la page où elle se trouve : `docs/guide` depuis une page française
 mène à `/fr/docs/guide`. Une cible qui commence par `/` se lit telle
 quelle depuis la racine du site, et quitte la langue :
 
-```text
+```markdown
 Lisez cette page [en anglais](/docs/reference/markdown/links-and-images)
 ou [en français](/fr/docs/reference/markdown/links-and-images).
 ```
@@ -82,7 +82,7 @@ Terminez son libellé par la flèche nord-est, U+2197, le signe que le lien
 quitte le site : les lecteurs d'écran sautent la flèche et entendent
 `labels.external` à la place.
 
-```text
+```markdown
 Le [site d'exemple ↗](https://example.org/) ne fait pas partie de celui-ci.
 ```
 
@@ -108,7 +108,7 @@ vides. Le texte de remplacement va entre les crochets, le chemin entre
 les parenthèses, et une légende facultative entre guillemets droits
 après le chemin.
 
-```text
+```markdown
 ![Un fichier Markdown, deux sorties : HTML et texte](flow.svg)
 
 ![Un fichier Markdown, deux sorties : HTML et texte](flow.svg "Une source, deux rendus.")
