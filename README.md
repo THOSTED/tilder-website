@@ -11,7 +11,7 @@ You need GNU make, Docker (or Podman, `make DOCKER=podman`) and
 Python 3.11+ for the tests. Nothing else: tilder comes from its image.
 
 ```sh
-git clone git@github.com:ttrova/tilder-website.git
+git clone git@github.com:THOSTED/tilder-website.git
 cd tilder-website
 make serve
 ```

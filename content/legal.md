@@ -32,7 +32,7 @@ The site offers no form: it receives nothing from you. Three scripts run where t
 
 ## Licences
 
-tilder is free software under the MIT licence: [github.com/THOSTED/tilder](https://github.com/THOSTED/tilder). The site's theme is under the MIT licence too, its fonts, Inter and JetBrains Mono, under the SIL Open Font License 1.1. The site's source is public: [github.com/ttrova/tilder-website](https://github.com/ttrova/tilder-website).
+tilder is free software under the MIT licence: [github.com/THOSTED/tilder](https://github.com/THOSTED/tilder). The site's theme is under the MIT licence too, its fonts, Inter and JetBrains Mono, under the SIL Open Font License 1.1. The site's source is public: [github.com/THOSTED/tilder-website](https://github.com/THOSTED/tilder-website).
 
 ## See also
 
