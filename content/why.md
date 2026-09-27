@@ -73,6 +73,14 @@ why, what that costs, and when another tool will serve you better.
   alone. Contrast and focus are the theme's: the starter theme and this
   site's theme meet WCAG AA.
 
+### Free software
+
+  tilder is MIT-licensed: you may use it, study its source, change it and
+  share it, changed or not. Its source, and this site's, are both public
+  on GitHub. Nothing is stored anywhere else: your content is plain
+  Markdown files you keep, there is no service to depend on, no account
+  to create, and no tracking.
+
 ## What tilder does not do
 
 Hugo, Jekyll and Eleventy are mature, general-purpose static site

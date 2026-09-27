@@ -55,6 +55,14 @@ DESCRIPTION
 
 ## Fonctionnalités {grid}
 
+### Logiciel libre
+
+  Licence MIT, code source sur GitHub : tilder lui-même, et ce site.
+  Aucune dépendance en dehors de la bibliothèque standard de Python, rien
+  qui vous enferme : votre contenu reste de simples fichiers Markdown, à
+  vous. Les contributions sont bienvenues, par des tickets et des pull
+  requests.
+
 ### Miroir en texte
 
   Chaque page a son double en texte brut, sur 75 colonnes, en noir et

@@ -81,6 +81,14 @@ quand un autre outil vous conviendra mieux.
   seule couleur. Le contraste et le focus relèvent du thème : le thème de
   départ et celui de ce site respectent le niveau AA des WCAG.
 
+### Logiciel libre
+
+  tilder est sous licence MIT : vous pouvez l'utiliser, étudier son code
+  source, le modifier et le partager, changé ou non. Son code, et celui de
+  ce site, sont publics sur GitHub. Rien n'est stocké ailleurs : votre
+  contenu reste de simples fichiers Markdown que vous gardez, il n'y a
+  aucun service dont dépendre, aucun compte à créer, et aucun pistage.
+
 ## Ce que tilder ne fait pas
 
 Hugo, Jekyll et Eleventy sont des générateurs de sites statiques mûrs et
