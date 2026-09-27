@@ -100,22 +100,24 @@ l'autre, les fichiers et les autres sites.
 
 Les six constructions ne s'imbriquent pas : la première trouvée
 l'emporte, et garde son contenu en texte brut. Il n'y a pas de caractère
-d'échappement : une barre oblique inverse est imprimée, et n'arrête pas
-le balisage qui la suit. Tout le reste, HTML compris, est imprimé tel
-qu'il est écrit.
+d'échappement : une barre oblique inverse est un caractère ordinaire,
+elle s'imprime, et n'arrête pas le balisage qui la suit. Tout le reste,
+HTML compris, est imprimé tel qu'il est écrit.
 
 ```markdown
 **[un lien](docs/)** est en gras, et <b>ceci</b> ne l'est pas.
-Un \*antislash\* n'échappe rien.
+a \*b* c
 ```
 
 > **[un lien](docs/)** est en gras, et <b>ceci</b> ne l'est pas.
-> Un \*antislash\* n'échappe rien.
+> a \*b* c
 
-Les deux lignes font un seul paragraphe : du gras qui contient la source
-d'un lien, du HTML affiché en texte, puis une barre oblique inverse
-imprimée devant de l'italique. Reformulez plutôt que d'échapper. Dans une
-cellule de tableau, `\|` est une barre verticale
+La première ligne fait un paragraphe : du gras qui contient la source
+d'un lien, du HTML affiché en texte. La seconde montre la barre oblique
+inverse : `a \*b* c` imprime `a \`, puis un `b` en italique, puis ` c` -
+la barre oblique n'a pas empêché l'astérisque qui la suit d'ouvrir
+l'italique. Reformulez plutôt que d'échapper. La seule exception : dans
+une cellule de tableau, `\|` est une barre verticale
 ([tableaux](docs/reference/markdown/blocks#tableau)).
 
 ## Dans le miroir en texte
