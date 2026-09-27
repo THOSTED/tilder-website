@@ -98,15 +98,15 @@ DESCRIPTION
 
 Copy the starter, a small site with its theme, from the repository's
 `starter/` folder, then build it with the Docker image,
-`ghcr.io/thosted/tilder:1.3.0`:
+`ghcr.io/thosted/tilder:1.4.0`:
 
 ```sh
-git clone --branch v1.3.0 https://github.com/THOSTED/tilder
+git clone --branch v1.4.0 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site && cd my-site
 mkdir -p public
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.3.0 \
+  ghcr.io/thosted/tilder:1.4.0 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 

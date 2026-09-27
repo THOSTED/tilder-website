@@ -30,7 +30,7 @@ python3 ../tilder/build.py --check --markdown   # et le tableau
 Avec Docker, le projet monté en lecture seule, puisque rien n'est écrit :
 
 ```sh
-docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.3.0 \
+docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.4.0 \
   python3 -B /tilder/build.py --root /site --check
 ```
 

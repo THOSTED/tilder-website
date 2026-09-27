@@ -61,7 +61,7 @@ volumes:
 
 Cet extrait laisse de côté les délais du contrôle de santé et
 l'environnement. Le tag d'image `1` suit la dernière version 1.x ; fixez
-une version complète, `1.3.0`, pour choisir le moment où le site change de
+une version complète, `1.4.0`, pour choisir le moment où le site change de
 générateur.
 
 Les hôtes viennent de l'environnement de `web`. En local, les valeurs par
