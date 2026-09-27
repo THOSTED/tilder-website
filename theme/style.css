@@ -26,9 +26,9 @@
    colours only. --------------------------------------------------------- */
 
 :root {
-	--bg: #f7f8f3; --surface: #eef0e7; --text: #151a14; --muted: #3e453a;
-	--faint: #4a5144; --rule: #d8dbce; --accent: #2e6b34;
-	--info: #2e6b34; --warning: #8a5900; --error: #b3261e;
+	--bg: #ffffff; --surface: #f2f2f2; --text: #111111; --muted: #4d4d4d;
+	--faint: #595959; --rule: #dcdcdc; --accent: #c2410c;
+	--info: #c2410c; --warning: #333333; --error: #1a1a1a;
 	--mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 	--sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 	--measure: 75ch;         /* the text column, like the text mirror */
@@ -37,9 +37,9 @@
 }
 @media (prefers-color-scheme: dark) {
 	:root {
-		--bg: #0d120d; --surface: #161d16; --text: #d6e3d2; --muted: #9fb09a;
-		--faint: #7f9079; --rule: #2a332a; --accent: #7fd48b;
-		--info: #7fd48b; --warning: #e5b85a; --error: #ff9a8a;
+		--bg: #0e0e0e; --surface: #1a1a1a; --text: #e6e6e6; --muted: #b3b3b3;
+		--faint: #999999; --rule: #333333; --accent: #f59e0b;
+		--info: #f59e0b; --warning: #cccccc; --error: #f2f2f2;
 	}
 }
 
@@ -103,14 +103,15 @@ img { max-width: 100%; height: auto; }
 .wordmark .cursor { display: inline-block; width: 0.55em; height: 1em; margin-left: 0.1em;
 	vertical-align: -0.12em; background: var(--accent); animation: blink 1.2s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+/* The accent is the theme's one colour: a link needs its underline to
+   read as a link even here; the current page still stands out by
+   weight. */
 .nav { font: 0.9rem var(--mono); flex: 1 1 auto; min-width: 0; }
-.nav a { text-decoration: none; }
-.nav a:hover { text-decoration: underline; }
-.nav a[aria-current="page"] { color: var(--text); font-weight: 700; }
+.nav a[aria-current="page"] { color: var(--text); font-weight: 700; text-decoration: none; }
 .nav .sep { color: var(--muted); padding: 0 0.6ch; }
 .languages { font: 0.85rem var(--mono); flex: 0 0 auto; }
-.languages a { margin-left: 1ch; text-decoration: none; }
-.languages a[aria-current="page"] { color: var(--text); font-weight: 700; }
+.languages a { margin-left: 1ch; }
+.languages a[aria-current="page"] { color: var(--text); font-weight: 700; text-decoration: none; }
 .tagline { font: 0.85rem var(--mono); color: var(--muted); margin: 0 0 2.5rem; }
 .tagline:empty, .home-tagline:empty { display: none; }
 .to-top { font: 0.8rem var(--mono); text-align: right; margin: 3rem 0 0; }
@@ -145,11 +146,13 @@ del { color: var(--muted); }
 /* Boxes. An inset frames a live example (the page writes its label). */
 .inset { border: 1px dashed var(--muted); padding: 1rem 1.2rem; margin: 0 0 1.1rem; }
 .inset > :last-child { margin-bottom: 0; }
+/* Info/warning/error are told apart by more than colour: each has its
+   own border style too (solid/dashed/double). */
 .callout { --kind: var(--info); border-left: 3px solid var(--kind); background: var(--surface);
 	padding: 0.8rem 1.1rem; margin: 0 0 1.1rem; }
 .callout--info { --kind: var(--info); }
-.callout--warning { --kind: var(--warning); }
-.callout--error { --kind: var(--error); }
+.callout--warning { --kind: var(--warning); border-left-style: dashed; }
+.callout--error { --kind: var(--error); border-left-style: double; border-left-width: 5px; }
 .callout > :last-child { margin-bottom: 0; }
 .callout-label { font: 700 0.75rem var(--mono); letter-spacing: 0.08em; color: var(--kind);
 	margin: 0 0 0.3rem; }
@@ -215,11 +218,14 @@ pre { background: var(--surface); padding: 0.9rem 1rem; margin: 0 0 1.1rem; over
 pre.code { position: relative; }
 pre.code[data-lang]::before { content: attr(data-lang); position: absolute; top: 0.35rem; right: 0.75rem;
 	font-size: 0.72rem; color: var(--muted); }
-.hl-k, .hl-t { font-weight: 700; }
-.hl-s, .hl-v, .hl-gi { color: var(--accent); }
-.hl-c, .hl-p, .hl-gh { color: var(--muted); }
-.hl-b, .hl-n { color: var(--warning); }
-.hl-gd { color: var(--error); }
+/* Mostly monochrome: weight, italics and the muted grey tell most of a
+   highlighted block apart; the accent still marks a keyword or a type,
+   where it helps most. */
+.hl-k, .hl-t { font-weight: 700; color: var(--accent); }
+.hl-b, .hl-n { font-weight: 700; }
+.hl-c { color: var(--muted); font-style: italic; }
+.hl-s, .hl-v, .hl-gi, .hl-p, .hl-gh { color: var(--muted); }
+.hl-gd { color: var(--muted); text-decoration: line-through; }
 
 /* The copy button (code.js): the block is wrapped in .code-box. */
 .code-box { position: relative; margin: 0 0 1.1rem; }
