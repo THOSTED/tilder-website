@@ -160,7 +160,7 @@ error: content/site.toml: collection "blog" has type "posts"; types are singular
 error: content/blog/2026-02-30-hello.md: "2026-02-30" is not a date. Name the file YYYY-MM-DD-slug.md with the post's date
 ```
 
-The errors of the configuration, in `content/site.toml`:
+The errors of the configuration and of the languages:
 
 | Message | Cause |
 |---|---|
