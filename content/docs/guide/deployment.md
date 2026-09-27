@@ -72,10 +72,13 @@ does the machine's address on the network. In production:
 | `WWW_HOST` | `www.example.org` | redirected to the site, never served |
 | `MAN_HOST` | `man.example.org` | the plain-text host |
 | `SITE_ORIGIN` | `https://example.org` | where the `www` host redirects to |
-| `AUTO_HTTPS` | `on` | Caddy obtains and renews the certificates |
+| `AUTO_HTTPS` | `ignore_loaded_certs` | Caddy obtains and renews the certificates |
 
-With `AUTO_HTTPS` on, publish Caddy's ports 80 and 443 rather than 8080
-and 8081, and point the three names at the machine.
+`AUTO_HTTPS` fills Caddy's `auto_https` option, which has no `on`: any
+value but `off` and `disable_certs` keeps automatic HTTPS, and
+`ignore_loaded_certs` changes nothing else. With it, publish Caddy's ports
+80 and 443 rather than 8080 and 8081, and point the three names at the
+machine.
 
 ## Clean URLs
 

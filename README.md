@@ -11,7 +11,7 @@ with tilder itself, from the version pinned in `TILDER_VERSION`.
 content/                  the site: pages, docs/, showcase/, blog/, site.toml, site.fr.toml
 theme/                    the documentation theme (its own README.md, MIT)
 assets/logo.svg           the logo, drawn to the icons and the link preview
-Makefile                  build, check, watch, serve, test, clean
+Makefile                  build, check, watch, serve, stop, test, clean
 compose.yaml              the build and Caddy, locally and in production
 Caddyfile                 from tilder's examples/Caddyfile, hosts from the environment
 .env.example              the hosts and ports, local defaults
@@ -63,12 +63,14 @@ needs it too:
 
 ```sh
 export TILDER_VERSION=$(cat TILDER_VERSION)
-docker compose run build     # rebuild into the running stack
+docker compose run --rm build   # rebuild into the running stack
 ```
 
 The hosts and ports come from `.env`: copy `.env.example`, whose defaults
-serve locally without TLS. In production, set the real hosts, the
-standard ports and `AUTO_HTTPS=on`: Caddy fetches the certificates.
+serve locally without TLS. In production, set the real hosts (both of
+them), the standard ports and `AUTO_HTTPS=ignore_loaded_certs`: Caddy
+fetches the certificates. Caddy has no `auto_https on`; `.env.example`
+says why this value, and what to do with `TEXT_PORT`.
 
 ## Keeping the docs true
 

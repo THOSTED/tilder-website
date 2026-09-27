@@ -2,7 +2,7 @@
 # tilder into the `site` volume and exits; `web` (Caddy) serves it.
 #
 #   make serve                 build, then serve: http://localhost:8080
-#   docker compose run build   rebuild into the running stack
+#   docker compose run --rm build   rebuild into the running stack
 #   make stop                  stop (docker compose down)
 #
 # TILDER_VERSION comes from the file of that name: the Makefile exports

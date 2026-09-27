@@ -77,10 +77,13 @@ réseau. En production :
 | `WWW_HOST` | `www.example.org` | redirigé vers le site, jamais servi |
 | `MAN_HOST` | `man.example.org` | l'hôte en texte brut |
 | `SITE_ORIGIN` | `https://example.org` | la destination de la redirection du `www` |
-| `AUTO_HTTPS` | `on` | Caddy obtient et renouvelle les certificats |
+| `AUTO_HTTPS` | `ignore_loaded_certs` | Caddy obtient et renouvelle les certificats |
 
-Avec `AUTO_HTTPS` activé, publiez les ports 80 et 443 de Caddy plutôt que
-8080 et 8081, et faites pointer les trois noms vers la machine.
+`AUTO_HTTPS` alimente l'option `auto_https` de Caddy, qui n'a pas de
+valeur `on` : toute valeur autre que `off` et `disable_certs` garde le
+HTTPS automatique, et `ignore_loaded_certs` ne change rien d'autre. Avec
+cette valeur, publiez les ports 80 et 443 de Caddy plutôt que 8080 et
+8081, et faites pointer les trois noms vers la machine.
 
 ## URL propres
 
