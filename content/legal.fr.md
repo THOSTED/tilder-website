@@ -32,7 +32,7 @@ Le site ne propose aucun formulaire : il ne reçoit rien de vous. Trois scripts 
 
 ## Licences
 
-tilder est un logiciel libre, sous licence MIT : [github.com/THOSTED/tilder](https://github.com/THOSTED/tilder). Le thème du site est lui aussi sous licence MIT, ses fontes, Inter et JetBrains Mono, sous SIL Open Font License 1.1. Le code source du site est public : [github.com/ttrova/tilder-website](https://github.com/ttrova/tilder-website).
+tilder est un logiciel libre, sous licence MIT : [github.com/THOSTED/tilder](https://github.com/THOSTED/tilder). Le thème du site est lui aussi sous licence MIT, ses fontes, Inter et JetBrains Mono, sous SIL Open Font License 1.1. Le code source du site est public : [github.com/THOSTED/tilder-website](https://github.com/THOSTED/tilder-website).
 
 ## Voir aussi
 
