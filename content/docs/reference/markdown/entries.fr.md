@@ -40,7 +40,8 @@ Voici le rendu de cette source.
 De retour dans la section, après l'entrée.
 
 Le titre peut contenir du balisage en ligne, un lien par exemple. Une
-entrée n'a pas d'identifiant à elle : pour y mener, liez sa section. Les
+entrée n'a pas d'identifiant à elle, et un `{#id}` sur son titre est
+ignoré : pour y mener, faites un lien vers sa section. Les
 entrées ne s'imbriquent pas : un titre `####` n'en est pas une.
 
 Dans le miroir en texte, le titre est imprimé au retrait de la section et
@@ -49,14 +50,14 @@ le corps quatre espaces plus loin.
 ## La ligne meta
 
 Une liste juste après le titre, en retrait comme le corps, est la ligne
-meta de l'entrée et non une liste. Chaque élément est de l'un de trois
-genres :
+meta de l'entrée et non une liste. Chaque élément est de l'une de ces trois
+sortes :
 
 | Élément | Sur la page web | Dans le miroir en texte |
 |---|---|---|
 | un mot entre accents graves | une étiquette, dans un petit cadre | la première étiquette, à droite de la ligne du titre |
 | `AAAA-MM-JJ \| date en toutes lettres` | `<time datetime="AAAA-MM-JJ">`, qui affiche la date en toutes lettres | la date en toutes lettres |
-| tout autre texte | un élément simple | une ligne à lui |
+| tout autre texte | un élément simple | une ligne à part |
 
 ```text
 ### Rencontre d'automne
@@ -133,7 +134,8 @@ Voici le rendu de cette source.
 `{next}` et `{full}` ne changent que l'étiquette ; la carte elle-même
 ressemble à toutes les autres. La construction les pose sur les cartes
 qu'elle écrit : `{next}` sur le premier événement d'une liste
-`{upcoming}`, `{full}` sur un membre dont l'en-tête dit `full: yes`. Elle
+`{upcoming}` et sur l'unique carte de `{next-event}`, `{full}` sur un
+membre dont l'en-tête dit `full: yes`. Elle
 pose `{link}` sur les cartes des articles et des événements d'une liste,
 dont le titre mène à la page de l'élément ; la dernière entrée ci-dessus
 est une telle carte, cliquable partout. Dans une section marquée

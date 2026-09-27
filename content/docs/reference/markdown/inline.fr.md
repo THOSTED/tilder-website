@@ -8,10 +8,10 @@ order: 40
 
 inline - gras, italique, barré, souligné, code et liens
 
-Dans un paragraphe, un élément de liste, une cellule de tableau ou un
-titre, tilder lit six constructions et rien d'autre. Chacune est montrée
-ci-dessous en source, puis rendue dans un cadre, comme elle se rend dans
-n'importe quelle phrase du site.
+Dans un paragraphe, un élément de liste, une cellule de tableau, une
+légende ou le titre `###` d'une entrée, tilder lit six constructions et
+rien d'autre. Chacune est montrée ci-dessous en source, puis rendue dans
+un cadre, comme elle s'affiche dans n'importe quelle phrase du site.
 
 [TOC]
 

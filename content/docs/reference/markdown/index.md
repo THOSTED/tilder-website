@@ -26,8 +26,9 @@ rendered on the page by the same build that renders the rest of the site.
   the [text mirror](docs/reference/text-mirror) a terminal receives.
   Each page of this reference says what both look like.
 - **Blocks are separated by a blank line.** A `##` or `###` heading
-  stands on its own, blank line or not; every other block ends at the
-  next blank line.
+  stands on its own, blank line or not; a code block runs to its
+  closing fence, blank lines included, and needs no blank line before
+  it; every other block ends at the next blank line.
 - **A page is a man page.** `##` headings are its sections, `###`
   headings the entries inside them, and it opens with `## Name`
   ([writing pages](docs/guide/writing)).

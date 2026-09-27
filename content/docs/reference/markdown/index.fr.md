@@ -9,11 +9,11 @@ order: 10
 markdown - le dialecte que lit tilder, construction par construction
 
 Chaque page d'un site tilder est un fichier Markdown, écrit dans un
-dialecte court et strict, avec quelques ajouts pour la mise en page de
+petit dialecte strict, avec quelques ajouts pour la mise en page de
 manuel. Cette page le résume ; les cinq pages suivantes reprennent
 chaque famille de constructions, et montrent chacune deux fois : sa
-source, puis la construction elle-même, rendue sur la page par la
-construction qui rend tout le reste du site.
+source, puis son rendu sur la page même, produit par le même passage
+qui produit tout le reste du site.
 
 [TOC]
 
@@ -28,8 +28,9 @@ construction qui rend tout le reste du site.
   reçoit un terminal. Chaque page de cette référence dit à quoi
   ressemblent les deux.
 - **Une ligne vide sépare les blocs.** Un titre `##` ou `###` tient
-  seul, ligne vide ou non ; tout autre bloc s'arrête à la ligne vide
-  suivante.
+  seul, ligne vide ou non ; un bloc de code court jusqu'à sa clôture,
+  lignes vides comprises, et n'a pas besoin d'une ligne vide avant lui ;
+  tout autre bloc s'arrête à la ligne vide suivante.
 - **Une page est une page de manuel.** Les titres `##` en sont les
   sections, les titres `###` les entrées qu'elles contiennent, et elle
   s'ouvre sur `## Nom` ([écrire des pages](docs/guide/writing)).
@@ -87,7 +88,7 @@ et leurs légendes.
 
 ## Ce qui n'est pas pris en charge
 
-Exprès : chaque construction coûte deux rendus, et chacune de celles que
+Volontairement : chaque construction coûte deux rendus, et chacune de celles que
 lit tilder doit être juste dans un navigateur comme dans un terminal.
 
 - Les titres autres que `##` et `###` : une ligne qui commence par `#`

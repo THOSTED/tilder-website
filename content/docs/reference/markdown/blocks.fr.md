@@ -11,7 +11,7 @@ blocks - paragraphes, listes, encadrés, code, tableaux et commentaires
 Un bloc est une suite de lignes entre deux lignes vides : un paragraphe,
 une liste, un encadré, un bloc de code, un tableau. Chaque construction
 ci-dessous est donnée en source, puis rendue dans un cadre pointillé
-marqué `Rendu`, exactement comme cette source se rend sur n'importe
+marqué `Rendu`, exactement comme cette source s'affiche sur n'importe
 quelle page du site.
 
 [TOC]
@@ -52,7 +52,8 @@ Une ligne dans la couleur d'avertissement. {warn}
 `small`, `muted`, `faint`, `mono` et `warn` sont les classes que tout
 thème doit mettre en forme ([classes](docs/themes/classes)). Tout autre
 mot entre les accolades devient aussi une classe, pour un thème qui la
-met en forme.
+met en forme. Un `{#id}` y est ignoré : un paragraphe n'a pas
+d'identifiant.
 
 ## État vide
 
@@ -150,7 +151,8 @@ Chaque sortie ne liste que les sections qu'elle montre
 
   [TOC]
 
-Placez-la là où le sommaire doit apparaître, en haut d'une longue page.
+`[toc]` fonctionne aussi, en majuscules comme en minuscules. Placez-la
+là où le sommaire doit apparaître, en haut d'une longue page.
 Cette page en a une sous son `## Nom` ; sur un écran large, le thème de
 ce site déplace la première table des matières d'une page de
 documentation dans la colonne de droite.
@@ -343,15 +345,17 @@ reçoit un bouton qui copie son code en texte brut, libellé par
 `labels.copy` et `labels.copied` ; le script n'est chargé que sur les
 pages qui ont du code ([scripts](docs/themes/scripts)). Dans le miroir en
 texte, le bloc est encadré de deux filets, le langage dans celui du
-haut, et ses lignes restent intactes ; une ligne plus longue que les 75
-colonnes du miroir est coupée et continuée sur la suivante, la coupure
-marquée par `\` :
+haut, et rien n'est ajouté à ses lignes, qui se copient proprement depuis
+un terminal : elles sont seulement ramenées à l'ASCII, les tabulations
+remplacées par quatre espaces. Une ligne plus longue que les 75 colonnes
+du miroir est coupée et continuée sur la suivante, la coupure marquée par
+`\` :
 
 ```text
-.-- python ---------------------------------------------------------------.
+.-- python --------------------------------------------------------.
   def plier(texte, largeur=75):
       return textwrap.wrap(texte, largeur)
-'-------------------------------------------------------------------------'
+'------------------------------------------------------------------'
 ```
 
 ## Tableau
@@ -360,7 +364,8 @@ Des barres verticales séparent les cellules ; la deuxième ligne, de
 tirets, sépare l'en-tête des rangées. Des deux-points dans cette ligne
 règlent l'alignement de chaque colonne : `:---` à gauche, par défaut,
 `:---:` centré, `---:` à droite. Le balisage en ligne fonctionne dans les
-cellules, et `\|` y écrit une barre verticale.
+cellules, et `\|` y écrit une barre verticale. Chaque ligne du tableau
+commence par `|` : une ligne sans elle fait du bloc un paragraphe.
 
 ```text
 | Sortie | Format | Largeur |

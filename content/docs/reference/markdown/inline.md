@@ -8,8 +8,8 @@ order: 40
 
 inline - bold, italic, struck, underlined, code and links
 
-Inside a paragraph, a list item, a table cell or a title, tilder reads
-six constructs and nothing else. Each is shown below as source, then
+Inside a paragraph, a list item, a table cell, a caption or an entry's
+`###` title, tilder reads six constructs and nothing else. Each is shown below as source, then
 rendered in a frame, as it renders in any sentence of the site.
 
 [TOC]
