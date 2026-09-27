@@ -15,7 +15,7 @@ It speaks English and French out of the box.
 |---|---|
 | `layout.html` | the base layout: a man page (header rule, wordmark, navigation, one text column, previous/next, footer rule) |
 | `layouts/` | `home.html`, the landing page (`layout: home`); `doc.html`, documentation pages (the `doc` type's layout, or `layout: doc`) |
-| `style.css` | tokens, fonts, every class tilder writes (checked by `tools/check-theme.py`), light and dark |
+| `style.css` | tokens, fonts, every class tilder writes (checked by `tools/check-theme.py`, in the theme's source repository), light and dark |
 | `fonts/` | Inter and JetBrains Mono, latin subsets, woff2, with their licences (OFL) |
 | `share.svg` | the link preview, drawn to `share.png` (1200x630) |
 | `code.js` | the copy button on code blocks |
@@ -108,8 +108,9 @@ The rest (copy, previous, next, the sidebar's name...) are tilder's
 ES5, same-origin files, no storage, no cookie, no words of their own
 (they arrive through `data-*`), progressive enhancement: without
 JavaScript the sidebar is open, the `[TOC]` stays in the text, and there
-is no search field. `tests/test_scripts.py` checks the rules, and runs
-`search.js` under node when it is installed.
+is no search field. In the theme's source repository (not part of a
+copied `theme/` folder), `tests/test_scripts.py` checks the rules, and
+runs `search.js` under node when it is installed.
 
 By hand, before a release, in a browser (the fixture built and served
 over HTTP, `python3 -m http.server` in its output):
@@ -129,9 +130,10 @@ over HTTP, `python3 -m http.server` in its output):
 
 ## Review by eye
 
-`tests/site/content/kitchen-sink.md` uses every construct; the fixture as
-a whole writes every class of tilder's contract but `.icon` (no network
-icons are shipped). Review it in light and dark, at 360px and 1440px.
+In the theme's source repository, `tests/site/content/kitchen-sink.md`
+uses every construct; the fixture as a whole writes every class of
+tilder's contract but `.icon` (no network icons are shipped). Review it
+in light and dark, at 360px and 1440px.
 
 ## Fonts
 
@@ -151,8 +153,8 @@ U+2190-21FF, U+2212, U+2215, U+2500-257F, U+25A0-25FF, U+FEFF, U+FFFD`.
 ## Contrast
 
 Every text colour on both backgrounds, in both schemes, WCAG AA (4.5:1).
-`tools/check-contrast.py theme/style.css --markdown` prints this table;
-a test keeps it in step.
+In the theme's source repository, `tools/check-contrast.py theme/style.css
+--markdown` prints this table; a test keeps it in step.
 
 | scheme | foreground | background | ratio | minimum |
 |---|---|---|---:|---:|
