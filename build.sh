@@ -5,7 +5,11 @@
 #   ./build.sh                          content/ -> public/
 #   ./build.sh --out DIR                somewhere else
 #   ./build.sh --root DIR --out DIR     another project laid out the same way
-#                                       (the theme's tests build tests/site)
+#                                       (DIR/theme/, DIR/content/): the
+#                                       theme's own tests/site ships no
+#                                       theme/ of its own, so the tests
+#                                       build a copy of it with theme/
+#                                       copied in, not tests/site itself
 #   ./build.sh --watch                  rebuild on every change (checks once)
 #
 # tilder comes from its Docker image, ghcr.io/thosted/tilder, at the tag in
@@ -29,6 +33,11 @@ while [ $# -gt 0 ]; do
 		*) echo "usage: build.sh [--root DIR] [--out DIR] [--watch]" >&2; exit 2 ;;
 	esac
 done
+
+if [ ! -f "$root/theme/layout.html" ]; then
+	echo "error: build.sh: $root/theme/layout.html not found (copy theme/ into $root first)" >&2
+	exit 2
+fi
 
 # The theme contract: with TILDER_BUILD, the checkout's own docs/theme.md;
 # otherwise the vendored copy of the pinned version's docs/theme.md (the

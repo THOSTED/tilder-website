@@ -1,9 +1,12 @@
 """build.sh and the base layout, end to end, on the fixture site."""
 
+import pathlib
 import re
+import subprocess
+import tempfile
 import unittest
 
-from tests.helpers import THEME, Build, builder_missing, fixture_build
+from tests.helpers import REPO, THEME, Build, builder_missing, fixture_build
 
 
 class Pipeline(unittest.TestCase):
@@ -47,6 +50,21 @@ class NotBuilt(unittest.TestCase):
         build = Build({"theme/style.css": css})
         self.assertEqual(build.returncode, 1)
         self.assertIn(".tag--full is written by tilder and not styled", build.stderr)
+
+
+class LayoutMissing(unittest.TestCase):
+    """No tilder needed: build.sh must refuse before it gets that far."""
+
+    def test_a_root_without_theme_layout_html_stops_with_a_readable_error(self):
+        with tempfile.TemporaryDirectory(prefix="theme-test-") as tmp:
+            root = pathlib.Path(tmp) / "site"
+            (root / "theme").mkdir(parents=True)
+            (root / "content").mkdir()
+            done = subprocess.run(
+                [str(REPO / "build.sh"), "--root", str(root), "--out", str(root / "out")],
+                capture_output=True, text=True)
+            self.assertEqual(done.returncode, 2, done.stderr)
+            self.assertIn(f"error: build.sh: {root}/theme/layout.html not found", done.stderr)
 
 
 class BaseLayout(unittest.TestCase):
