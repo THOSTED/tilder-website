@@ -140,8 +140,8 @@ warning: no rsvg-convert or magick: icons and share.png not made
 
 Les liens du gabarit vers les icônes ne mènent alors nulle part, et les
 aperçus pointent vers une image absente : installez un moteur de rendu
-avant de déployer. Sans le logo, la construction le dit aussi, et ne
-dessine rien :
+avant de déployer. Sans le logo, le fichier que nomme `share.logo_svg`,
+la construction le dit aussi, et ne dessine rien :
 
 ```text
 warning: no logo.svg in assets/: no icons, no share.png

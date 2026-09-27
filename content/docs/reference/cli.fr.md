@@ -84,8 +84,8 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
   doit avoir une règle dans le `style.css` servi (`assets/style.css`
   l'emporte sur `theme/style.css`), sauf celles que nomme le
   `[check] unstyled` du thème ; chaque paire de couleurs de
-  `[check] contrast` doit atteindre `contrast_min`, en thème clair comme
-  en thème sombre. Elle écrit une ligne `error:` par problème, puis une
+  `[check] contrast` doit atteindre `contrast_min`, en thème clair, et en
+  thème sombre quand la feuille de style en a un. Elle écrit une ligne `error:` par problème, puis une
   ligne de bilan par vérification, et sort avec 1 s'il y a un problème, 0
   sinon ([vérifier un thème](docs/themes/checking)).
 
@@ -174,7 +174,7 @@ Les erreurs de la configuration et des langues :
 | `[collection_defaults] is no longer read` | de même ; les mots d'un type vont sous chaque `[collections.<name>]` |
 | `collection "..." has type "...s"; types are singular` | un type écrit au pluriel, `posts` |
 | `collection "..." has type "...", which no type defines` | un type inconnu ; le message énumère ceux qui sont chargés |
-| `collections "..." and "..." share the folder content/...` | deux collections avec un même `dir` |
+| `collections "..." and "..." share the folder content/...` | deux collections avec un même `dir`, ou dont l'une a son `dir` dans celui de l'autre |
 | `[site] languages does not contain the default language "..."` | `site.lang` absent de `site.languages` |
 | `"..." is not a declared language` | un `site.<lang>.toml` ou une page `<name>.<lang>.md` pour une langue absente de `site.languages` |
 | `[site] lang is "...", not "..."` | un `site.<lang>.toml` qui règle une autre langue |
@@ -205,8 +205,10 @@ manquant à un marqueur que deux types revendiquent, décrites dans
 [vos propres types](docs/content-types/custom-types). Les erreurs de
 `--check` sont décrites dans [vérifier un thème](docs/themes/checking).
 
-Un fichier qui n'est pas du TOML valide, ou un bogue, se termine par le
-message et la trace de Python lui-même, pas par cette forme.
+Dans une construction unique, un fichier qui n'est pas du TOML valide,
+ou un bogue, se termine par le message et la trace de Python lui-même,
+pas par cette forme. Avec `--watch`, le même problème tient en une ligne,
+`error: <erreur Python>: <quoi>`, et la trace ne suit qu'avec `--debug`.
 
 ## Avertissements
 
@@ -220,15 +222,16 @@ risque d'être tronqué. Chaque avertissement que la construction peut
 | `warning: image not found: content/<path>` | une image dont le fichier n'existe pas |
 | `warning: image without alt text: <path>` | une image au texte alternatif vide |
 | `warning: unknown code language '<lang>', left plain` | le langage d'un bloc de code que tilder ne colore pas ([blocs](docs/reference/markdown/blocks)) |
-| `warning: no logo.svg in assets/: no icons, no share.png` | le logo que nomme `share.logo_svg` manque |
+| `warning: no <logo> in assets/: no icons, no share.png` | le logo que nomme `share.logo_svg`, `logo.svg` par défaut, manque |
 | `warning: no rsvg-convert or magick: icons and share.png not made` | aucun moteur de rendu SVG n'est installé ([flux et images](docs/reference/feeds-and-images)) |
-| `seo: <page>: title is N characters (max 60)` | un `<title>` plus long que `seo.title_max` |
-| `seo: <page>: description is N characters (50-160)` | une description hors de `seo.description_min` et `seo.description_max` |
+| `seo: <page>: title is N characters (max MAX)` | un `<title>` plus long que `seo.title_max`, `60` par défaut |
+| `seo: <page>: description is N characters (MIN-MAX)` | une description hors de `seo.description_min` et `seo.description_max`, `50-160` par défaut |
 | `seo: <page>: same title as <page>` | deux pages d'une même langue partagent un titre |
 | `seo: <page>: same description as <page>` | deux pages d'une même langue partagent une description |
 
-Sur un site en plusieurs langues, les lignes `seo:` nomment la langue de
-la passe, `seo: [fr] about.html: ...` ([SEO](docs/reference/seo)). Un
+Sur un site en plusieurs langues, chaque ligne `seo:` nomme la langue de
+la passe, celle par défaut comprise : `seo: [en] about.html: ...`,
+`seo: [fr] about.html: ...` ([SEO](docs/reference/seo)). Un
 site qui ne veut aucun avertissement fait échouer sa propre construction
 dessus, comme la construction de ce site le fait sur toute ligne
 `warning:` ou `seo:`. Dans un script shell :

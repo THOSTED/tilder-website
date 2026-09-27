@@ -48,7 +48,8 @@ the pages ([SEO](docs/reference/seo)).
 
 ## The page as text
 
-The text follows the page's sections, in the manner of a man page:
+The text follows the page's sections, in the manner of a man page
+(shortened here: the real rules are 75 columns wide):
 
 ```text
 MYSITE(1)                 My Site Manual                 MYSITE(1)
@@ -152,7 +153,8 @@ added to its own lines, so it copies clean from a terminal. Shortened:
 '------------------------------------'
 ```
 
-The code keeps its spacing exactly; tabs become four spaces. A line past
+The code keeps its spacing exactly; a tab moves to the next tab stop,
+every four columns. A line past
 the 75th column is cut and continued on the next line, indented two
 spaces, the cut marked with `\`: a shell reads it as a continuation.
 

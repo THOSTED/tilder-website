@@ -175,9 +175,9 @@ marked `noindex`, and prints a line on its error output for each
 problem:
 
 ```text
-seo: about.html: title is 64 characters (max 60)
-seo: about.html: description is 38 characters (50-160)
-seo: blog/index.html: same title as about.html
+seo: [en] about.html: title is 64 characters (max 60)
+seo: [en] about.html: description is 38 characters (50-160)
+seo: [en] blog/index.html: same title as about.html
 seo: [fr] about.html: same description as index.html
 ```
 
@@ -188,8 +188,9 @@ seo: [fr] about.html: same description as index.html
 | `same title as` | two pages of one language share a `<title>` |
 | `same description as` | two pages of one language share a description |
 
-On a site with several languages, each line names the language of the
-pass, `[fr]`. A warning does not stop the build nor change its exit
+The sample above is from a site in two languages, where each line names the
+language of the pass, the default one included, `[en]`, `[fr]`; a site in
+one language writes the lines without it, `seo: about.html: ...`. A warning does not stop the build nor change its exit
 code: a site that wants it to, as this one does, fails on any `seo:`
 line in its own build script ([the command line](docs/reference/cli)).
 Change the limits in `[seo]`:

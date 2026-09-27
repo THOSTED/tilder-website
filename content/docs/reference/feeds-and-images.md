@@ -130,7 +130,8 @@ warning: no rsvg-convert or magick: icons and share.png not made
 
 The layout's links to the icons then lead nowhere, and previews point
 to a missing image: install a renderer before deploying. Without the logo,
-the build says so too, and draws nothing:
+the file `share.logo_svg` names, the build says so too, and draws
+nothing:
 
 ```text
 warning: no logo.svg in assets/: no icons, no share.png

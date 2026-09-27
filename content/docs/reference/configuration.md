@@ -271,7 +271,7 @@ type's settings, each listed on the type's page, plus these:
 
 | Key | Default | Meaning |
 |---|---|---|
-| `type` | none, required | the type: `page`, `post`, `event`, `member`, or one the theme adds |
+| `type` | `"post"` | the type: `page`, `post`, `event`, `member`, or one the theme adds |
 | `dir` | the collection's name | the folder, under `content/` |
 
 <!-- 1.2 -->
@@ -318,7 +318,7 @@ The settings of each built-in type are on its page:
 ## Dates
 
 The `[dates]` table: how a date is written out in words, on a post's or an
-event's card and as a post's tagline.
+event's card and as the tagline of a post or an event.
 
 | Key | Default | Meaning |
 |---|---|---|
@@ -404,7 +404,8 @@ disallow = ["/txt/", "/ansi/", "/drafts/"]
 <!-- 1.2 -->
 
 The `[check]` table is the theme's, read by `build.py --check` (tilder
-1.2) and set in `theme/theme.toml`: `unstyled`, the classes the theme
+1.2) and set in `theme/theme.toml`; `content/site.toml` may set it too,
+merged over the theme's as every other table: `unstyled`, the classes the theme
 leaves unstyled on purpose (default `[]`); `contrast`, the pairs of
 colours to check (default `[]`, nothing checked); `contrast_min`, the
 least ratio of every pair (default `4.5`). Every key is described in
