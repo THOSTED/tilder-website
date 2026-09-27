@@ -12,9 +12,7 @@ legal - who publishes this site, who hosts it, what it does with your data
 
 ## Publisher
 
-The site tilder.thosted.fr is published by THOSTED, Théau Trova's company.
-
-Publication director: Théau Trova.
+The site tilder.thosted.fr is published by THOSTED, 4 rue de la République, 69001 Lyon, France. SIRET 944 480 623 00015.
 
 Contact: [contact@thosted.fr](mailto:contact@thosted.fr).
 
