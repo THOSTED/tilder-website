@@ -37,8 +37,7 @@ quand un autre outil vous conviendra mieux.
   en couleurs. Les deux viennent de la même source et ne peuvent donc pas
   diverger. Une construction n'est prise en charge que lorsqu'elle se rend
   des deux façons ; le texte est la moitié du produit, pas un à-côté.
-  `curl` reçoit le texte à la place du HTML, et une plage braille le lit
-  tout aussi bien.
+  `curl` reçoit le texte à la place du HTML.
 
 ### Rien d'un tiers
 
@@ -65,9 +64,13 @@ quand un autre outil vous conviendra mieux.
 ### La bibliothèque standard, rien d'autre
 
   tilder est écrit en Python avec sa seule bibliothèque standard : rien à
-  installer, ni gestionnaire de paquets, ni framework, ni préprocesseur. Le
-  seul outil extérieur, `rsvg-convert`, est facultatif et ne sert qu'à
-  dessiner les icônes et l'image de partage ; l'image Docker le contient.
+  installer, ni gestionnaire de paquets, ni framework, ni préprocesseur.
+  Les outils extérieurs ne servent qu'à dessiner les icônes et l'image de
+  partage, et sont facultatifs : `rsvg-convert`, avec `woff2_decompress`
+  pour que l'image de partage prenne les polices du thème, sinon
+  ImageMagick ; sans l'un ni l'autre, ces images sont omises avec un
+  avertissement. L'image Docker contient `rsvg-convert` et
+  `woff2_decompress`.
 
 ### Accessibilité
 
