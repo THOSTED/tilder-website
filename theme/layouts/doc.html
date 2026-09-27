@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Documentation pages: the doc type's LAYOUT, or layout: doc. Three
+     columns: the search and the collection's sidebar, the text, the
+     page's [TOC] (moved there by nav.js on wide screens). Keep the head,
+     header and footer like layout.html. -->
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ page.description }}">
+<link rel="preload" href="{{ root }}fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ root }}style.css">
+<link rel="icon" href="{{ root }}favicon.ico" sizes="48x48">
+<link rel="icon" href="{{ root }}logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ root }}apple-touch-icon.png">
+<link rel="manifest" href="{{ root }}site.webmanifest">
+<link rel="canonical" href="{{ canonical }}">{{ feeds }}
+<meta name="theme-color" content="{{ share.theme_color }}">
+{{ head }}
+</head>
+<body class="layout-doc type-{{ type }}">
+<div class="page page--wide" id="top">
+
+<a class="skip" href="#contenu">{{ labels.skip }}</a>
+
+<header>
+<!-- The man-page rule is decoration: hidden from screen readers. -->
+<div class="manline manline--head" aria-hidden="true">
+	<span>{{ page.man }}</span>
+	<span>{{ site.manual }}</span>
+	<span>{{ page.man }}</span>
+</div>
+<div class="bar">
+{{ brand }}
+<nav class="nav" aria-label="{{ labels.nav }}">
+{{ nav }}
+</nav>
+{{ languages }}
+</div>
+<p class="tagline">{{ page.tagline }}</p>
+</header>
+
+<div class="doc">
+<!-- Open without JavaScript; nav.js folds it on small screens. -->
+<details class="doc-side" open data-doc-side>
+<summary>{{ doc.contents }}</summary>
+<div class="doc-search" data-search-index="{{ page.search_index }}" data-home="{{ home }}"
+	data-label="{{ search.label }}" data-placeholder="{{ search.placeholder }}"
+	data-none="{{ search.none }}" data-count="{{ search.count }}"></div>
+{{ collection_nav }}
+</details>
+
+<main id="contenu" class="doc-main" lang="{{ content_lang }}">
+{{ body }}
+<div class="pager">{{ prev }}{{ next }}</div>
+</main>
+
+<div class="doc-toc" data-doc-toc hidden>
+<p class="doc-toc-label" aria-hidden="true">{{ doc.on_this_page }}</p>
+</div>
+</div>
+
+<p class="to-top"><a href="#top">{{ labels.to_top }}</a></p>
+
+<footer class="manline manline--foot">
+	<span><a href="{{ home }}{{ footer.left_link }}">{{ footer.left }}</a></span>
+	<span>{{ site.updated }}</span>
+	<span>{{ footer.right }}</span>
+</footer>
+
+</div>
+<script src="{{ root }}nav.js" defer></script>
+<script src="{{ root }}search.js" defer></script>
+{{ script }}</body>
+</html>

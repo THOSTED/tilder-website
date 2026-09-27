@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- The landing page (layout: home in its front matter): the base layout
+     airier, wider, the tagline as the hero's headline. Keep the head,
+     header and footer like layout.html. -->
+<html lang="{{ site.lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ page.description }}">
+<link rel="preload" href="{{ root }}fonts/inter-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ root }}style.css">
+<link rel="icon" href="{{ root }}favicon.ico" sizes="48x48">
+<link rel="icon" href="{{ root }}logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ root }}apple-touch-icon.png">
+<link rel="manifest" href="{{ root }}site.webmanifest">
+<link rel="canonical" href="{{ canonical }}">{{ feeds }}
+<meta name="theme-color" content="{{ share.theme_color }}">
+{{ head }}
+</head>
+<body class="layout-home type-{{ type }}">
+<div class="page page--home" id="top">
+
+<a class="skip" href="#contenu">{{ labels.skip }}</a>
+
+<header>
+<!-- The man-page rule is decoration: hidden from screen readers. -->
+<div class="manline manline--head" aria-hidden="true">
+	<span>{{ page.man }}</span>
+	<span>{{ site.manual }}</span>
+	<span>{{ page.man }}</span>
+</div>
+<div class="bar">
+{{ brand }}
+<nav class="nav" aria-label="{{ labels.nav }}">
+{{ nav }}
+</nav>
+{{ languages }}
+</div>
+</header>
+
+<main id="contenu" class="home" lang="{{ content_lang }}">
+<p class="home-tagline">{{ page.tagline }}</p>
+{{ body }}
+</main>
+
+<p class="to-top"><a href="#top">{{ labels.to_top }}</a></p>
+
+<footer class="manline manline--foot">
+	<span><a href="{{ home }}{{ footer.left_link }}">{{ footer.left }}</a></span>
+	<span>{{ site.updated }}</span>
+	<span>{{ footer.right }}</span>
+</footer>
+
+</div>
+{{ script }}</body>
+</html>
