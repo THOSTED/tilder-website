@@ -62,8 +62,27 @@ class Doc(unittest.TestCase):
 
     def test_prev_next_and_the_text_mirror_line(self):
         html = self.build.read("docs/start.html")
-        self.assertIn('<a class="next" rel="next" href="cli">', html)
-        self.assertIn("next: Command line", self.build.read("txt/docs/start.txt"))
+        self.assertIn('<a class="next" rel="next" href="guide">', html)
+        self.assertIn("next: Guide", self.build.read("txt/docs/start.txt"))
+
+    def test_the_sidebar_nests_a_section(self):
+        html = self.build.read("docs/start.html")
+        self.assertIn('<li class="collection-section"><a class="collection-section-label" href="guide">'
+                      'Guide</a>', html)
+        self.assertNotIn("collection-section--open", html)
+
+    def test_the_section_holding_the_page_is_open(self):
+        html = self.build.read("docs/guide/deep.html")
+        self.assertIn('<li class="collection-section collection-section--open">'
+                      '<a class="collection-section-label" href="../guide">Guide</a>', html)
+        self.assertIn('<a href="deep" aria-current="page">Deep page</a>', html)
+
+    def test_prev_and_next_cross_the_section(self):
+        # Depth-first: start, guide (the section's own page), guide/deep, cli.
+        html = self.build.read("docs/guide/deep.html")
+        self.assertIn('<a class="prev" rel="prev" href="../guide">', html)
+        self.assertIn('<a class="next" rel="next" href="../cli">', html)
+        self.assertIn('<a class="next" rel="next" href="guide">', self.build.read("docs/start.html"))
 
     def test_the_docs_list_is_grouped(self):
         html = self.build.read("docs/index.html")
@@ -84,10 +103,12 @@ class SearchIndex(unittest.TestCase):
 
     def test_one_index_per_language(self):
         en, fr = self.index("docs/search-index.json"), self.index("fr/docs/search-index.json")
-        self.assertEqual([r["t"] for r in en], ["Getting started", "Command line"])
-        # The French pass: a translated page, and an English fallback.
-        self.assertEqual([r["t"] for r in fr], ["Getting started", "Ligne de commande"])
-        self.assertEqual([r["u"] for r in fr], ["docs/start", "docs/cli"])
+        self.assertEqual([r["t"] for r in en], ["Getting started", "Guide", "Deep page", "Command line"])
+        self.assertEqual([r["u"] for r in en], ["docs/start", "docs/guide", "docs/guide/deep", "docs/cli"])
+        # The French pass: translated pages, and an English fallback.
+        self.assertEqual([r["t"] for r in fr],
+                         ["Getting started", "Guide", "Page profonde", "Ligne de commande"])
+        self.assertEqual([r["u"] for r in fr], ["docs/start", "docs/guide", "docs/guide/deep", "docs/cli"])
         self.assertEqual(sorted(en[0]), ["d", "h", "t", "u", "x"])
 
     def test_the_index_is_not_a_page(self):
