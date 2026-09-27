@@ -8,7 +8,7 @@ import shutil
 import subprocess
 import unittest
 
-from tests.helpers import REPO, THEME
+from tests.helpers import REPO, THEME, fixture_build
 
 SCRIPTS = sorted(p.name for p in THEME.glob("*.js"))
 TOKEN = re.compile(r'(/\*.*?\*/|//[^\n]*)|("(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\')', re.S)
@@ -122,4 +122,25 @@ class SearchUnderNode(unittest.TestCase):
         out = self.dom({"data-search-index": ""})
         self.assertEqual(out["children"], [])
         self.assertIsNone(out["ready"])
+
+
+class Loaded(unittest.TestCase):
+    """Where each script is linked, on the built fixture."""
+
+    def setUp(self):
+        self.build = fixture_build(self)
+
+    def test_code_js_on_pages_with_code_with_its_words(self):
+        self.assertIn('<script src="code.js" defer data-copy="copy" data-copied="copied"></script>',
+                      self.build.read("kitchen-sink.html"))
+        self.assertNotIn("code.js", self.build.read("404.html"))
+
+    def test_the_three_scripts_are_served(self):
+        for name in ("code.js", "nav.js", "search.js"):
+            self.assertTrue((self.build.out / name).is_file(), name)
+
+    def test_search_js_twice_on_a_doc_layout_page_that_lists_docs(self):
+        # doc.html links it, and the doc type's SCRIPT adds it where {docs}
+        # lists pages: search.js guards against the second run.
+        self.assertEqual(self.build.read("docs/index.html").count("search.js"), 2)
 
