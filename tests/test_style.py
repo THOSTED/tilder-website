@@ -34,6 +34,35 @@ class Style(unittest.TestCase):
         self.assertIn("@media (prefers-reduced-motion: reduce)", css)
         self.assertIn("@media (prefers-color-scheme: dark)", css)
 
+    def test_the_wordmark_wraps_instead_of_scrolling_the_page(self):
+        # A long path (~/fixture docs/documentation/Getting started, longer
+        # on /fr/) must not scroll the page sideways at 360px: the wordmark
+        # can break at any character, and after each separator.
+        css = CSS.read_text()
+        wordmark = re.search(r"\.wordmark[ \t]*\{([^{}]*)\}", css)
+        self.assertIsNotNone(wordmark, "no .wordmark rule found")
+        self.assertIn("overflow-wrap: anywhere", wordmark.group(1))
+        self.assertRegex(css, r"\.wordmark \.slash::after[ \t]*\{[^{}]*content:\s*\"\\200B\"")
+        narrow = re.search(r"@media \(max-width: 40rem\)[ \t]*\{(.*?)\n\}", css, re.S)
+        self.assertIsNotNone(narrow, "no @media (max-width: 40rem) block found")
+        self.assertRegex(narrow.group(1), r"\.wordmark\s*\{[^{}]*font-size:")
+
+    def test_the_doc_text_column_is_not_squeezed_between_45_and_60rem(self):
+        # Below 60rem the fixed 11ch gutter of .s leaves too little room for
+        # the doc text: .doc-main .s becomes single-column there.
+        css = CSS.read_text()
+        self.assertRegex(
+            css, r"@media \(max-width: 60rem\)[ \t]*\{[^{}]*\.doc-main \.s[ \t]*\{[^{}]*"
+            r"grid-template-columns:\s*minmax\(0,\s*1fr\)")
+
+    def test_ligatures_are_disabled_in_code(self):
+        css = CSS.read_text()
+        self.assertIn("font-variant-ligatures: none", css)
+
+    def test_empty_taglines_take_no_space(self):
+        css = CSS.read_text()
+        self.assertRegex(css, r"\.tagline:empty,\s*\.home-tagline:empty[ \t]*\{[ \t]*display:\s*none")
+
     def test_the_home_hero_title_is_visually_hidden_not_duplicated(self):
         # Controller ruling C3: `.home > .s:first-of-type > h2` must not
         # repeat .sr-only's visually-hidden declarations in a rule of its
