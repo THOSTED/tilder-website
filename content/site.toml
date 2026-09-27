@@ -13,10 +13,11 @@ updated = 2026-09-27                # date in the footer rule and the feed
 title_suffix = " - tilder"
 
 # The footer's link is written from the language's landing page
-# ({{ home }}{{ footer.left_link }}): it goes home. GitHub is in [[nav]].
+# ({{ home }}{{ footer.left_link }}): the publisher, linking to the legal
+# notice of the page's language. GitHub is in [[nav]].
 [footer]
-left = "TILDER"
-left_link = ""
+left = "THOSTED"
+left_link = "legal"
 right = "TILDER(1)"
 
 [languages]                         # the language switcher's names
