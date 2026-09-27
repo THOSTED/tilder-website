@@ -15,10 +15,15 @@ docs - le manuel de tilder
 Ce manuel décrit tilder 1.2.0 : chaque clé de configuration, chaque clé
 d'en-tête, chaque construction Markdown, chaque variable de gabarit,
 chaque classe et chaque option de la ligne de commande de cette version.
-Il s'adresse à celles et ceux qui construisent un site avec. Commencez
-par le guide ; revenez à la référence quand un détail vous manque.
+Il s'adresse à celles et ceux qui s'en servent pour construire un site.
+Commencez par le guide ; revenez à la référence quand un détail vous
+manque.
+
+[TOC]
 
 ## Sections
+
+<!-- 1.2 -->
 
 - [Guide](docs/guide) : de la première construction au site en ligne,
   dans l'ordre où les questions se posent.

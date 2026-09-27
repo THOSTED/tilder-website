@@ -44,8 +44,10 @@ you write, and tours what the build leaves in `public/`.
 
 ### Icons and the share image
 
-  Every build draws `favicon.ico`, the PNG icons and `share.png`, the
-  1200x630 link preview, from the site's `assets/logo.svg`. It needs an
+  Every build draws `favicon.ico` and the PNG icons from the site's
+  `assets/logo.svg`. When the theme has a `share.svg`, it also draws
+  `share.png`, the 1200x630 link preview, from that template, with the
+  logo inside; without one, the preview is the largest icon. It needs an
   SVG renderer: `rsvg-convert` first, else ImageMagick's `magick`. The
   Docker image has `rsvg-convert`, and `woff2_decompress` so the preview
   is drawn with the theme's own fonts.
@@ -71,10 +73,12 @@ blog with one post, a 404 page, English and French, and a minimal theme
 on system fonts. Copy it and make it yours:
 
 ```sh
-git clone https://github.com/THOSTED/tilder
+git clone --branch v1.2.0 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site
 cd my-site
 ```
+
+Skip the clone if you already made it to run tilder with Python.
 
 It holds the three folders of every project: `content/` (the pages and
 `site.toml`), `theme/` (how it looks) and `assets/` (the logo). The
@@ -156,7 +160,8 @@ restarts the process so the new code is loaded.
 
 It also rebuilds at midnight, with no change at all: the build's date
 decides which events are upcoming and which are past, so an event moves
-to the past list the day after it ends.
+to the past list the day after its date. Midnight is the machine's: in a
+container, UTC unless the `TZ` variable says otherwise.
 
 ## What public/ holds
 

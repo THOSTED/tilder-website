@@ -89,9 +89,17 @@ page has exactly one address; the others redirect to it, permanently:
   the example: add your own folders there;
 - `/blog` goes to `/blog/` when `blog/index.html` exists.
 
+The rules, from the example's `handle` block for browsers (its headers
+are left out here):
+
 ```caddyfile
 @index path /index /index.html /blog/index /blog/index.html /fr/index /fr/index.html
 redir @index {http.request.uri.path.dir} permanent
+@noslash {
+  file {path}/index.html
+  not path */
+}
+redir @noslash {path}/ permanent
 @html path_regexp html ^/(.*)\.html$
 redir @html /{re.html.1} permanent
 try_files {path} {path}.html {path}/index.html
@@ -105,8 +113,11 @@ a redirect by following them.
 
 A request from `curl`, `wget` or `httpie`, recognised by its
 `User-Agent`, for a page (an address without a dot) gets the text
-mirror, coloured, from `ansi/`, as `text/plain`, with a 200: no redirect,
-no `-L`. Add `?plain` for the bare ASCII of `txt/`, to save or to pipe.
+mirror, coloured, from `ansi/`, as `text/plain`, with a 200: no redirect
+to follow, no `-L`. The one redirect drops a trailing slash, `/blog/` to
+`/blog`, the address of the folder's text. Add `?plain` for the bare
+ASCII of `txt/`, to save or to pipe: a twin block does the same from
+`txt/`, not shown here.
 
 ```caddyfile
 @terminal {
@@ -118,6 +129,9 @@ no `-L`. Add `?plain` for the bare ASCII of `txt/`, to save or to pipe.
 handle @terminal {
   root * /srv/ansi
   header Content-Type "text/plain; charset=utf-8"
+  header Cache-Control "public, max-age=300"
+  @slash path_regexp slash ^(/.+)/$
+  redir @slash {re.slash.1} permanent
   rewrite / /index.txt
   try_files {path}.txt {path} {path}/index.txt
   file_server
@@ -220,8 +234,10 @@ depends on what they can be told:
 - **Error pages.** One `404.html` is common; a 404 page per language needs
   a rule per prefix.
 
-Every link tilder writes is relative, so the site works under any host
-name, and every page is complete without its scripts.
+Every link between pages is relative, and every page is complete without
+its scripts. The absolute addresses come from `site.url`: the canonical
+link, `og:url`, the sitemaps and the feeds. Set it to the address the
+site is served at.
 
 ## See also
 

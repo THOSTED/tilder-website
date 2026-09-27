@@ -177,7 +177,7 @@ ou non dans un nouvel onglet se décide une fois pour tout le site, dans
 
 ```toml
 [links]
-new_tab = true                # les liens https:// : nouvel onglet
+new_tab = true                # liens externes : nouvel onglet
 same_tab = ["example.com"]    # sauf ces hôtes et sous-domaines
 ```
 
