@@ -18,6 +18,7 @@ Caddyfile                 from tilder's examples/Caddyfile, hosts from the envir
 TILDER_VERSION            the pinned tilder, 1.2.0
 tools/check-coverage.py   the docs name every fact of the pinned tilder
 tests/                    the theme's tests, its fixture site (tests/site/), the content's tests
+.gitignore                public/, .env, __pycache__/
 docs/superpowers/         specs and plans
 ```
 
@@ -25,8 +26,9 @@ docs/superpowers/         specs and plans
 
 ## Make
 
-GNU make, and Docker (or another engine) with the pinned image, or a
-tilder checkout.
+GNU make, run from the repository (or `make -C DIR`), and Docker (or
+another engine) with the pinned image, or a tilder checkout. Paths may
+hold spaces.
 
 | Target | Does |
 |---|---|
@@ -35,6 +37,7 @@ tilder checkout.
 | `make site` | builds `content/` into `public/`; fails on any `warning:` or `seo:` line |
 | `make watch` | checks once, then rebuilds on every change |
 | `make serve` | `docker compose up -d`: the site at http://localhost:8080, its text mirror at http://localhost:8081 |
+| `make stop` | `docker compose down`: stops the stack |
 | `make test` | the tests (`python3 -m unittest`) |
 | `make clean` | removes `public/` |
 
@@ -54,13 +57,13 @@ make DOCKER=podman                           # another container engine
 `compose.yaml` holds one stack: `build` renders the site into a volume
 with the pinned image, then exits; `web` (Caddy) serves it, with clean
 URLs, the text mirror for `curl`, and the plain-text host. `make serve`
-starts it. compose reads `TILDER_VERSION` from the environment: the
-Makefile exports it, and a compose command run by hand needs it too:
+starts it, `make stop` stops it. compose reads `TILDER_VERSION` from the
+environment: the Makefile exports it, and a compose command run by hand
+needs it too:
 
 ```sh
 export TILDER_VERSION=$(cat TILDER_VERSION)
 docker compose run build     # rebuild into the running stack
-docker compose down          # stop
 ```
 
 The hosts and ports come from `.env`: copy `.env.example`, whose defaults
