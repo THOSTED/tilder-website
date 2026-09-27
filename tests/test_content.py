@@ -19,10 +19,11 @@ ALLOWED = re.compile(r"^https?://(tilder\.thosted\.fr|github\.com/THOSTED/tilder
 # while a period inside the URL itself (a path, a `.git` suffix) is kept.
 URL = re.compile(r"https?://[^\s)`\"'>]+?(?=[.,;!?](?:\s|$)|[)`\"'>\s]|$)")
 FENCE = re.compile(r"^[ \t]*(`{3,})([^`\n]*)$", re.M)
-# Every name src/highlight.py accepts at v1.1.0: its LANGS keys, ALIASES
-# keys (aliases resolving to a LANGS entry), SPECIAL (handled line by
-# line: console, diff, text, plain, txt) and SPECIAL_ALIASES keys; plus ""
-# for a bare/closing fence, which is not a language at all.
+# Every name src/highlight.py accepts at v1.2.0 (unchanged since v1.1.0):
+# its LANGS keys, ALIASES keys (aliases resolving to a LANGS entry),
+# SPECIAL (handled line by line: console, diff, text, plain, txt) and
+# SPECIAL_ALIASES keys; plus "" for a bare/closing fence, which is not a
+# language at all.
 LANGS = {"", "sh", "bash", "shell", "zsh", "console", "shell-session", "terminal", "python",
          "py", "toml", "ini", "cfg", "systemd", "yaml", "yml", "json", "html", "xml", "svg",
          "css", "js", "javascript", "ts", "typescript", "node", "make", "makefile", "caddy",
