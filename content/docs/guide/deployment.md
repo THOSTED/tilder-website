@@ -58,7 +58,7 @@ volumes:
 
 This excerpt leaves out the healthcheck's timings and the environment.
 The image tag `1` follows the latest 1.x release; pin a full version,
-`1.3.0`, to choose when a site changes generator.
+`1.4.0`, to choose when a site changes generator.
 
 The hosts come from the environment of `web`. Locally, the defaults serve
 the site at `site.localhost:8080` and its text at

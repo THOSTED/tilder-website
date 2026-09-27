@@ -29,7 +29,7 @@ python3 ../tilder/build.py --check --markdown   # and the table
 With Docker, the project mounted read-only, since nothing is written:
 
 ```sh
-docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.3.0 \
+docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.4.0 \
   python3 -B /tilder/build.py --root /site --check
 ```
 
