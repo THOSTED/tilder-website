@@ -1,16 +1,33 @@
 """The theme's configuration: its words in both languages, and colours
 that are the stylesheet's own."""
 
+import re
 import tomllib
 import unittest
 
-from tests.helpers import THEME, load_tool
+from tests.helpers import THEME
+
+
+def light_tokens():
+    """The custom properties of style.css's first :root rule: the light
+    scheme."""
+    css = re.sub(r"/\*.*?\*/", "", (THEME / "style.css").read_text(), flags=re.S)
+    root = re.search(r"^:root\s*\{([^}]*)\}", css, re.M).group(1)
+    return {k: v.strip() for k, v in re.findall(r"--([\w-]+)\s*:\s*([^;]+);", root)}
 
 
 class ThemeToml(unittest.TestCase):
+    def test_the_check_pairs_every_text_colour_with_both_backgrounds(self):
+        check = tomllib.loads((THEME / "theme.toml").read_text())["check"]
+        self.assertEqual(check["contrast"],
+                         [[f"--{fg}", f"--{bg}"]
+                          for fg in ("text", "muted", "faint", "accent", "info", "warning", "error")
+                          for bg in ("bg", "surface")])
+        self.assertNotIn("unstyled", check)
+
     def test_the_share_colours_are_the_light_tokens(self):
         share = tomllib.loads((THEME / "theme.toml").read_text())["share"]
-        light = load_tool("check-contrast").tokens((THEME / "style.css").read_text())["light"]
+        light = light_tokens()
         self.assertEqual(share, {"theme_color": light["accent"], "background_color": light["bg"],
                                  "text_color": light["text"], "muted_color": light["muted"],
                                  "rule_color": light["rule"]})

@@ -4,7 +4,7 @@ reviewed on all of them (README.md, "Review by eye")."""
 import re
 import unittest
 
-from tests.helpers import REPO, fixture_build, load_tool
+from tests.helpers import contract_classes, fixture_build
 
 # Written only when the theme ships icons/<network>.svg; this theme ships none.
 NOT_SHOWN = {"icon"}
@@ -15,8 +15,7 @@ class KitchenSink(unittest.TestCase):
         self.build = fixture_build(self)
 
     def test_every_contract_class_appears_in_the_fixture(self):
-        check = load_tool("check-theme")
-        classes = check.contract_classes((REPO / "tools" / "tilder-theme.md").read_text())
+        classes = contract_classes()
         written = set()
         for path in self.build.out.rglob("*.html"):
             for value in re.findall(r'class="([^"]*)"', path.read_text()):

@@ -6,7 +6,7 @@ search, a landing page, a showcase. Every page but the landing page reads
 as a man page; the landing page is airier. It names no project and holds
 no site text: copy this folder into any tilder project as `theme/`.
 
-It needs tilder 1.1.0 or later (collection navigation, `LOCALIZED_OUTPUTS`).
+It needs tilder 1.2.0 or later (a manual as a tree of folders, `--check`).
 It speaks English and French out of the box.
 
 ## Files
@@ -15,14 +15,14 @@ It speaks English and French out of the box.
 |---|---|
 | `layout.html` | the base layout: a man page (header rule, wordmark, navigation, one text column, previous/next, footer rule) |
 | `layouts/` | `home.html`, the landing page (`layout: home`); `doc.html`, documentation pages (the `doc` type's layout, or `layout: doc`) |
-| `style.css` | tokens, fonts, every class tilder writes (checked by `tools/check-theme.py`, in the theme's source repository), light and dark |
+| `style.css` | tokens, fonts, every class tilder writes (checked by tilder's `build.py --check`), light and dark |
 | `fonts/` | Inter and JetBrains Mono, latin subsets, woff2, with their licences (OFL) |
 | `share.svg` | the link preview, drawn to `share.png` (1200x630) |
 | `code.js` | the copy button on code blocks |
 | `search.js` | the documentation search, in the doc layout's sidebar |
 | `nav.js` | the doc layout on small and wide screens: folds the sidebar, moves the `[TOC]` |
 | `types/` | `doc.py` and `showcase.py`, the two content types below |
-| `theme.toml` | the theme's words in English, and the `[share]` colours |
+| `theme.toml` | the theme's words in English, the `[share]` colours, and `[check]` for tilder's `build.py --check` |
 | `theme.fr.toml` | the theme's words in French |
 | `LICENSE` | MIT |
 
@@ -49,7 +49,7 @@ blocks in a `{grid}` section sit side by side.
 |---|---|
 | `title`, `description` | as on any page; the description is the card's text and the search's |
 | `order` | a whole number, the page's place in the manual (default 1000; then the file name) |
-| `group` | the sidebar's group, written the same way on every page of a language |
+| `group` | the sidebar's group within a folder, written the same way on every page of a language |
 
 | Setting | Default | |
 |---|---|---|
@@ -57,8 +57,18 @@ blocks in a `{grid}` section sit side by side.
 | `nav` | `"docs/"` | the navigation entry marked current |
 | `empty` | `"No page yet."` | a `{docs}` list with nothing in it |
 | `index` | `"search-index.json"` | the search index, written in the collection's folder, one per language (`fr/docs/search-index.json`) |
+| `recursive` | `true` | the collection reads its subfolders too (tilder's `recursive`) |
 
-A section marked `{docs}` lists every page, grouped. The collection's own
+The manual may be a tree of folders: `docs/guide/writing.md` is the page
+`docs/guide/writing`, in the section `guide`, whose own page is
+`docs/guide/index.md` (served at `docs/guide`); `order` sorts the pages
+and the sections of each folder. The sidebar nests the sections: the one
+holding the page is open, the others fold to their label, a link to
+their own page (a section without one stays unfolded).
+
+A section marked `{docs}` lists every page, grouped: by folder in a tree
+(each card names its section, the title of the section's own page), else
+by `group`. The collection's own
 page (`docs/index.md`) is a plain page: give it `layout: doc` for the
 sidebar, and `search_index: docs/search-index.json` for the search field.
 `[TOC]` on a page goes to the right column on wide screens.
@@ -96,8 +106,9 @@ The rest (copy, previous, next, the sidebar's name...) are tilder's
 
 ## What the site must do
 
-- **Use tilder 1.1.0 or later.** It ignores `theme.fr.toml` on a site
-  that does not declare French, and draws the collection sidebar.
+- **Use tilder 1.2.0 or later.** It ignores `theme.fr.toml` on a site
+  that does not declare French, draws the collection sidebar as a tree,
+  reads a collection's subfolders, and checks the theme (`--check`).
 - **Let the search read its index.** The page's Content-Security-Policy
   needs `connect-src 'self'`, as in tilder's `examples/Caddyfile`. Without
   it, the search field removes itself and the rest of the page works.
@@ -150,11 +161,26 @@ Unicode ranges kept: `U+0000-024F, U+0259, U+02BB-02BC, U+02C6, U+02DA,
 U+02DC, U+0300-036F, U+1E00-1EFF, U+2000-206F, U+20A0-20C0, U+2100-214F,
 U+2190-21FF, U+2212, U+2215, U+2500-257F, U+25A0-25FF, U+FEFF, U+FFFD`.
 
+## Checks
+
+tilder checks the theme against its own contract, and builds nothing:
+
+```sh
+python3 builder/build.py --check              # 0: fine, 1: a check failed
+python3 builder/build.py --check --markdown   # and the table below, as Markdown
+```
+
+Every class tilder writes has a rule in `style.css`, and the colour pairs
+`theme.toml` declares under `[check]` reach the minimum in the light and
+the dark scheme. The theme leaves no class unstyled on purpose. A site
+that ships its own `assets/style.css` is checked on that one.
+
 ## Contrast
 
-Every text colour on both backgrounds, in both schemes, WCAG AA (4.5:1).
-In the theme's source repository, `tools/check-contrast.py theme/style.css
---markdown` prints this table; a test keeps it in step.
+Every text colour on both backgrounds, in both schemes, WCAG AA (4.5:1,
+tilder's default `contrast_min`). tilder's `build.py --check --markdown`
+prints this table; in the theme's source repository, a test keeps it in
+step.
 
 | scheme | foreground | background | ratio | minimum |
 |---|---|---|---:|---:|

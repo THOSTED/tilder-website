@@ -1,21 +1,22 @@
 """The theme's README stays true: its contrast table, its list of files,
 its licence."""
 
-import subprocess
-import sys
 import unittest
 
-from tests.helpers import REPO, THEME
+from tests.helpers import THEME, builder_missing, project, tilder
 
 README = THEME / "README.md"
 
 
 class Readme(unittest.TestCase):
-    def test_the_contrast_table_is_the_script_s(self):
-        table = subprocess.run([sys.executable, str(REPO / "tools" / "check-contrast.py"),
-                                str(THEME / "style.css"), "--markdown"],
-                               capture_output=True, text=True, check=True).stdout.strip()
-        self.assertIn(table, README.read_text())
+    def test_the_contrast_table_is_tilder_s(self):
+        why = builder_missing()
+        if why:
+            self.skipTest(why)
+        done = tilder(project(), "--check", "--markdown")
+        self.assertEqual(done.returncode, 0, done.stderr)
+        self.assertIn("| scheme | foreground |", done.stdout)
+        self.assertIn(done.stdout.strip(), README.read_text())
 
     def test_every_file_of_the_theme_is_named(self):
         text = README.read_text()

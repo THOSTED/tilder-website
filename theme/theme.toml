@@ -17,3 +17,19 @@ background_color = "#fcfcfa"
 text_color = "#1c1e21"
 muted_color = "#4f565d"
 rule_color = "#d4d4cd"
+
+# tilder's build.py --check (tilder docs/theme.md, "Checking a theme"):
+# every class of the contract is styled, and the colour pairs that carry
+# text reach WCAG AA (4.5:1, tilder's default contrast_min) in the light
+# and the dark scheme. The accent is also the focus outline, and text
+# (links) too. README.md, "Contrast", is --check --markdown's table.
+[check]
+contrast = [
+	["--text", "--bg"], ["--text", "--surface"],
+	["--muted", "--bg"], ["--muted", "--surface"],
+	["--faint", "--bg"], ["--faint", "--surface"],
+	["--accent", "--bg"], ["--accent", "--surface"],
+	["--info", "--bg"], ["--info", "--surface"],
+	["--warning", "--bg"], ["--warning", "--surface"],
+	["--error", "--bg"], ["--error", "--surface"],
+]
