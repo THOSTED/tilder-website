@@ -12,7 +12,7 @@ search_index: docs/search-index.json
 
 docs - le manuel de tilder
 
-Ce manuel décrit tilder 1.2.0 : chaque clé de configuration, chaque clé
+Ce manuel décrit tilder 1.3.0 : chaque clé de configuration, chaque clé
 d'en-tête, chaque construction Markdown, chaque variable de gabarit,
 chaque classe et chaque option de la ligne de commande de cette version.
 Il s'adresse à celles et ceux qui s'en servent pour construire un site.

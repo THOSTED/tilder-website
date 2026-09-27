@@ -32,7 +32,7 @@ in the Docker image, whose default command is a watch of `/site` into
 ```sh
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.2.0 \
+  ghcr.io/thosted/tilder:1.3.0 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
@@ -101,7 +101,7 @@ as the first argument; an argument the build does not know is ignored
 
 ### --version
 
-  Print tilder's version and exit: the image's release, `1.2.0`, from
+  Print tilder's version and exit: the image's release, `1.3.0`, from
   its `TILDER_VERSION` variable; `dev` from a checkout, where the variable
   is not set.
 

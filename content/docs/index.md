@@ -12,7 +12,7 @@ search_index: docs/search-index.json
 
 docs - the manual of tilder
 
-This manual describes tilder 1.2.0: every configuration key, front-matter
+This manual describes tilder 1.3.0: every configuration key, front-matter
 key, Markdown construct, placeholder, class and command-line option of
 that version, written for the people who build a site with it. Start with
 the guide; come back to the reference when you need a detail.

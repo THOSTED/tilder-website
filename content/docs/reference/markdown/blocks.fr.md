@@ -349,7 +349,11 @@ haut, et rien n'est ajouté à ses lignes, qui se copient proprement depuis
 un terminal : elles sont seulement ramenées à l'ASCII, les tabulations
 remplacées par quatre espaces. Une ligne plus longue que les 75 colonnes
 du miroir est coupée et continuée sur la suivante, la coupure marquée par
-`\` :
+`\`. Dans le miroir en couleur, `ansi/`, un bloc dans l'un des langages
+ci-dessus (`text` et un langage inconnu exceptés) est aussi coloré,
+chaque composant dans la couleur de son genre, selon les mêmes règles
+que le HTML ; `txt/` reste brut dans tous les cas
+([le miroir en texte](docs/reference/text-mirror)) :
 
 ```text
 .-- python --------------------------------------------------------.

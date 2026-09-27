@@ -20,12 +20,12 @@ you write, and tours what the build leaves in `public/`.
 ### With Docker
 
   The image `ghcr.io/thosted/tilder` holds the generator, Python, and the
-  tools that draw the icons. It is tagged by version: `1.2.0`, `1.2` and
+  tools that draw the icons. It is tagged by version: `1.3.0`, `1.3` and
   `1` follow the releases, `latest` the main branch. Pin a version, so a
   site builds the same way tomorrow:
 
   ```sh
-  docker pull ghcr.io/thosted/tilder:1.2.0
+  docker pull ghcr.io/thosted/tilder:1.3.0
   ```
 
   The generator is in `/tilder` inside the image, with the reference
@@ -38,7 +38,7 @@ you write, and tours what the build leaves in `public/`.
   later is required.
 
   ```sh
-  git clone --branch v1.2.0 https://github.com/THOSTED/tilder
+  git clone --branch v1.3.0 https://github.com/THOSTED/tilder
   python3 tilder/build.py --help
   ```
 
@@ -73,7 +73,7 @@ blog with one post, a 404 page, English and French, and a minimal theme
 on system fonts. Copy it and make it yours:
 
 ```sh
-git clone --branch v1.2.0 https://github.com/THOSTED/tilder
+git clone --branch v1.3.0 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site
 cd my-site
 ```
@@ -96,7 +96,7 @@ With Docker, from `my-site/`:
 mkdir -p public
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.2.0 \
+  ghcr.io/thosted/tilder:1.3.0 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
@@ -150,7 +150,7 @@ The image's default command is the same watch, on `/site` into `/out`:
 
 ```sh
 docker run --rm -u "$(id -u):$(id -g)" \
-  -v "$PWD:/site" -v "$PWD/public:/out" ghcr.io/thosted/tilder:1.2.0
+  -v "$PWD:/site" -v "$PWD/public:/out" ghcr.io/thosted/tilder:1.3.0
 ```
 
 It looks at `content/`, `theme/` and `assets/` every second. A build that
