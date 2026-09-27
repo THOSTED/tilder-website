@@ -47,6 +47,8 @@ calendar = "talks.ics"
 upcoming_tag = "soon"
 ```
 
+<!-- 1.2 -->
+
 | Clé | Rôle |
 |---|---|
 | `type` | le type de ses éléments : `post`, `event`, `member`, ou un type du thème ; `post` par défaut. Les types sont au singulier : `type = "posts"` arrête la construction |
@@ -152,8 +154,8 @@ profondeur d'abord, est décrit sur la page
 ## Les listes
 
 Un titre de section qui se termine par le marqueur d'un type est rempli
-des cartes de la collection, une par élément, chacune cliquable en
-entier :
+des cartes de la collection, une par élément ; la carte d'un article ou
+d'un événement est cliquable en entier :
 
 ```text
 ## Posts {posts}

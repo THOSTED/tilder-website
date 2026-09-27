@@ -23,18 +23,18 @@ each has its default in the type's module, `types/member.py`.
 
 | Key | Default | Meaning |
 |---|---|---|
-| `member.man` | `"SITE-MEMBERS(7)"` | the man-page name of its items, unless one sets its own |
-| `member.nav` | `"members"` | the `[[nav]]` entry its items mark as current |
-| `member.categories` | `["admin", "member"]` | the categories, in the order of the grid and of the filter's buttons |
-| `member.default_category` | `"member"` | a member's category when the front matter sets none |
-| `member.empty` | `"No member listed yet."` | the text of a `{members}` list with nothing in it |
-| `member.search_label` | `"search"` | the label of the search field |
-| `member.search_placeholder` | `"first or last name"` | the placeholder of the search field |
-| `member.all` | `"all"` | the filter's button that shows every category |
-| `member.one` | `"entry"` | the count's noun, for one |
-| `member.many` | `"entries"` | the count's noun, for several |
-| `member.none` | `"No entry matches."` | what a search that finds nothing says |
-| `member.full` | `"full"` | said on the card of a member whose capacity is reached |
+| `man` | `"SITE-MEMBERS(7)"` | the man-page name of its items, unless one sets its own |
+| `nav` | `"members"` | the `[[nav]]` entry its items mark as current |
+| `categories` | `["admin", "member"]` | the categories, in the order of the grid and of the filter's buttons |
+| `default_category` | `"member"` | a member's category when the front matter sets none |
+| `empty` | `"No member listed yet."` | the text of a `{members}` list with nothing in it |
+| `search_label` | `"search"` | the label of the search field |
+| `search_placeholder` | `"first or last name"` | the placeholder of the search field |
+| `all` | `"all"` | the filter's button that shows every category |
+| `one` | `"entry"` | the count's noun, for one |
+| `many` | `"entries"` | the count's noun, for several |
+| `none` | `"No entry matches."` | what a search that finds nothing says |
+| `full` | `"full"` | said on the card of a member whose capacity is reached |
 
 The six words from `search_label` to `none` are for `members.js`, which
 holds no text of its own. `defaults.toml` already declares
@@ -142,9 +142,10 @@ ASCII), and the section carries the collection's six words as
 
 ## Search engines
 
-A member's page is a `ProfilePage` whose `mainEntity` is a `Person`: the
-member's name, the site's organisation as `memberOf`, the profiles as
-`sameAs`, and the `affiliation` as an `Organization`. A member collection
+A member's page is a `ProfilePage` whose `mainEntity` is a `Person`: its
+`name` is the page's heading (its `name:`, else its title without the
+site's suffix), not `display_name`; the site's organisation is its
+`memberOf`, the profiles its `sameAs`, and the `affiliation` as an `Organization`. A member collection
 has no RSS feed: the type gives no feed items.
 
 ## See also

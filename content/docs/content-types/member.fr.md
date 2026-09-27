@@ -6,14 +6,14 @@ order: 40
 
 ## Nom
 
-member - des personnes, une page chacune, dans une grille qu'on peut fouiller
+member - des personnes, une page chacune, dans une grille où l'on peut chercher
 
 Un membre est une personne décrite une seule fois, dans l'en-tête d'un
 fichier, au sein d'une collection de type `member` : les personnes d'une
 association, d'une équipe, une liste de mentors. Chacune a sa page et une
 carte avec ses noms, ses pronoms, son affiliation et ses profils publics ;
 une section marquée `{members}` les montre toutes en une grille que le
-`members.js` du thème peut fouiller et filtrer.
+`members.js` du thème peut parcourir et filtrer.
 
 [TOC]
 
@@ -24,18 +24,18 @@ chacune a sa valeur par défaut dans le module du type, `types/member.py`.
 
 | Clé | Défaut | Rôle |
 |---|---|---|
-| `member.man` | `"SITE-MEMBERS(7)"` | le nom de page de manuel de ses éléments, sauf s'ils fixent le leur |
-| `member.nav` | `"members"` | l'entrée de `[[nav]]` que ses éléments marquent comme courante |
-| `member.categories` | `["admin", "member"]` | les catégories, dans l'ordre de la grille et des boutons du filtre |
-| `member.default_category` | `"member"` | la catégorie d'un membre dont l'en-tête n'en fixe pas |
-| `member.empty` | `"No member listed yet."` | le texte d'une liste `{members}` vide |
-| `member.search_label` | `"search"` | le libellé du champ de recherche |
-| `member.search_placeholder` | `"first or last name"` | le texte indicatif du champ de recherche |
-| `member.all` | `"all"` | le bouton du filtre qui montre toutes les catégories |
-| `member.one` | `"entry"` | le mot qui suit le décompte, au singulier |
-| `member.many` | `"entries"` | le mot qui suit le décompte, au pluriel |
-| `member.none` | `"No entry matches."` | ce que dit une recherche qui ne trouve rien |
-| `member.full` | `"full"` | dit sur la carte d'un membre dont la capacité est atteinte |
+| `man` | `"SITE-MEMBERS(7)"` | le nom de page de manuel de ses éléments, sauf s'ils fixent le leur |
+| `nav` | `"members"` | l'entrée de `[[nav]]` que ses éléments marquent comme courante |
+| `categories` | `["admin", "member"]` | les catégories, dans l'ordre de la grille et des boutons du filtre |
+| `default_category` | `"member"` | la catégorie d'un membre dont l'en-tête n'en fixe pas |
+| `empty` | `"No member listed yet."` | le texte d'une liste `{members}` vide |
+| `search_label` | `"search"` | le libellé du champ de recherche |
+| `search_placeholder` | `"first or last name"` | le texte indicatif du champ de recherche |
+| `all` | `"all"` | le bouton du filtre qui montre toutes les catégories |
+| `one` | `"entry"` | le mot qui suit le décompte, au singulier |
+| `many` | `"entries"` | le mot qui suit le décompte, au pluriel |
+| `none` | `"No entry matches."` | ce que dit une recherche qui ne trouve rien |
+| `full` | `"full"` | dit sur la carte d'un membre dont la capacité est atteinte |
 
 Les six mots de `search_label` à `none` sont destinés à `members.js`, qui
 ne contient aucun texte. `defaults.toml` déclare déjà
@@ -149,8 +149,9 @@ page.
 ## Moteurs de recherche
 
 La page d'un membre est une `ProfilePage` dont la `mainEntity` est une
-`Person` : le nom du membre, l'organisation du site comme `memberOf`, les
-profils comme `sameAs`, et l'`affiliation` comme `Organization`. Une
+`Person` : son `name` est le titre affiché de la page (son `name:`, sinon
+son titre sans le suffixe du site), pas `display_name` ; l'organisation
+du site est son `memberOf`, les profils son `sameAs`, et l'`affiliation` comme `Organization`. Une
 collection de membres n'a pas de flux RSS : le type ne fournit pas
 d'entrées de flux.
 

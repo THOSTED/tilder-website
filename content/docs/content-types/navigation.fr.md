@@ -8,6 +8,8 @@ order: 60
 
 navigation - l'ordre d'une collection, sa barre latérale et ses voisins
 
+<!-- 1.2 -->
+
 Les pages d'une collection ont un ordre, fixé par leur type. Un thème le
 montre de trois façons : une barre latérale de toutes les pages, groupées
 et imbriquées, des liens vers la page précédente et la suivante, et, dans

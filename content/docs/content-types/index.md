@@ -45,6 +45,8 @@ calendar = "talks.ics"
 upcoming_tag = "soon"
 ```
 
+<!-- 1.2 -->
+
 | Key | Meaning |
 |---|---|
 | `type` | the type of its items: `post`, `event`, `member`, or a type of the theme; default `post`. Types are singular: `type = "posts"` stops the build |
@@ -144,7 +146,8 @@ stop the build. The order of the pages, depth first, is on the
 ## Lists
 
 A section heading that ends with a type's marker is filled with the
-collection's cards, one per item, each clickable as a whole:
+collection's cards, one per item; a post's or an event's card is
+clickable as a whole:
 
 ```text
 ## Posts {posts}
