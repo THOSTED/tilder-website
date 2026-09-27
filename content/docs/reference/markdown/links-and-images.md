@@ -11,8 +11,8 @@ links and images - targets from the site root, and figures beside the page
 A link names its target from the site root and the build makes it
 relative to the page, so the same line works on every page, however
 deep. An image does the opposite: its path starts from the page's own
-folder, so it can sit beside the page. The links below are live; the
-image is described, source and output.
+folder, so it can sit beside the page. The links and the images below
+are live.
 
 [TOC]
 
@@ -103,12 +103,22 @@ The alternative text goes in the brackets, the path in the parentheses,
 and an optional caption in double quotes after the path.
 
 ```text
-![A page's two outputs, HTML and text](flow.svg "One source, two renderings.")
+![One Markdown file, two outputs: HTML and text](flow.svg)
+
+![One Markdown file, two outputs: HTML and text](flow.svg "One source, two renderings.")
 ```
 
+### Rendered {example}
+
+  ![One Markdown file, two outputs: HTML and text](flow.svg)
+
+  ![One Markdown file, two outputs: HTML and text](flow.svg "One source, two renderings.")
+
 - The path is **relative to the page's folder**, unlike a link: put the
-  image next to the page. For a post, make the post a folder,
-  `blog/2026-01-01-hello/index.md`, with the image inside.
+  image next to the page. This page is
+  `content/docs/reference/markdown/links-and-images.md`, and its image is
+  `content/docs/reference/markdown/flow.svg`. For a post, make the post a
+  folder, `blog/2026-01-01-hello/index.md`, with the image inside.
 - The alternative text is required: it is what a screen reader says and
   what the text mirror shows.
 - The caption may hold inline markup. The path may not hold a space.
@@ -122,12 +132,13 @@ size, never wider than the column, its `width` and `height` read from the
 file (PNG, JPEG, GIF, WebP or SVG) so the page does not jump while it
 loads, lazy loading, and the caption in a `<figcaption>`. In the text
 mirror, the alternative text follows the `labels.image` word, then the
-caption and the image's path from the site root, for `curl`:
+caption and the image's path from the site root, for `curl`. The figure
+above, in this page's mirror:
 
 ```text
-[ image ] A page's two outputs, HTML and text
+[ image ] One Markdown file, two outputs: HTML and text
   One source, two renderings.
-  /blog/2026-01-01-hello/flow.svg
+  /docs/reference/markdown/flow.svg
 ```
 
 The build warns, and goes on, when the file is missing or the

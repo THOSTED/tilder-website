@@ -11,8 +11,8 @@ links and images - des cibles depuis la racine, des figures à côté de la page
 Un lien nomme sa cible depuis la racine du site, et la construction la
 rend relative à la page : la même ligne fonctionne sur chaque page, si
 profonde soit-elle. Une image fait l'inverse : son chemin part du dossier
-de la page, pour qu'elle puisse se ranger à côté. Les liens ci-dessous
-sont vivants ; l'image est décrite, source et sortie.
+de la page, pour qu'elle puisse se ranger à côté. Les liens et les images
+ci-dessous sont vivants.
 
 [TOC]
 
@@ -109,13 +109,23 @@ les parenthèses, et une légende facultative entre guillemets droits
 après le chemin.
 
 ```text
-![Les deux sorties d'une page, HTML et texte](flow.svg "Une source, deux rendus.")
+![Un fichier Markdown, deux sorties : HTML et texte](flow.svg)
+
+![Un fichier Markdown, deux sorties : HTML et texte](flow.svg "Une source, deux rendus.")
 ```
 
+### Rendu {example}
+
+  ![Un fichier Markdown, deux sorties : HTML et texte](flow.svg)
+
+  ![Un fichier Markdown, deux sorties : HTML et texte](flow.svg "Une source, deux rendus.")
+
 - Le chemin est **relatif au dossier de la page**, contrairement à un
-  lien : rangez l'image à côté de la page. Pour un article, faites de
-  l'article un dossier, `blog/2026-01-01-hello/index.md`, avec l'image
-  dedans.
+  lien : rangez l'image à côté de la page. Cette page est
+  `content/docs/reference/markdown/links-and-images.fr.md`, et son image
+  `content/docs/reference/markdown/flow.svg`, que la version anglaise
+  partage. Pour un article, faites de l'article un dossier,
+  `blog/2026-01-01-hello/index.md`, avec l'image dedans.
 - Le texte de remplacement est obligatoire : c'est ce que dit un lecteur
   d'écran et ce qu'affiche le miroir en texte.
 - La légende peut contenir du balisage en ligne. Le chemin ne peut pas
@@ -131,12 +141,13 @@ naturelle, jamais plus large que la colonne, sa largeur et sa hauteur
 pour que la page ne saute pas pendant le chargement, un chargement
 différé, et la légende dans un `<figcaption>`. Dans le miroir en texte,
 le texte de remplacement suit le mot de `labels.image`, puis viennent la
-légende et le chemin de l'image depuis la racine du site, pour `curl` :
+légende et le chemin de l'image depuis la racine du site, pour `curl`.
+La figure ci-dessus, dans le miroir de cette page :
 
 ```text
-[ image ] Les deux sorties d'une page, HTML et texte
+[ image ] Un fichier Markdown, deux sorties : HTML et texte
   Une source, deux rendus.
-  /blog/2026-01-01-hello/flow.svg
+  /docs/reference/markdown/flow.svg
 ```
 
 La construction avertit, et continue, quand le fichier manque ou que le

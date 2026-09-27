@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140" font-family="ui-monospace, monospace" font-size="14">
+<style>
+.box { fill: #ffffff; stroke: #1f2328; stroke-width: 1.5; }
+.line { fill: none; stroke: #1f2328; stroke-width: 1.5; }
+.head { fill: #1f2328; }
+text { fill: #1f2328; }
+@media (prefers-color-scheme: dark) {
+	.box { fill: #16181d; stroke: #e6e8eb; }
+	.line { stroke: #e6e8eb; }
+	.head { fill: #e6e8eb; }
+	text { fill: #e6e8eb; }
+}
+</style>
+<rect class="box" x="10" y="50" width="120" height="40" rx="4"/>
+<text x="70" y="75" text-anchor="middle">page.md</text>
+<path class="line" d="M130 70 H200 M200 35 V105 M200 35 H300 M200 105 H300"/>
+<path class="head" d="M300 29 L312 35 L300 41 Z M300 99 L312 105 L300 111 Z"/>
+<rect class="box" x="312" y="15" width="158" height="40" rx="4"/>
+<text x="391" y="40" text-anchor="middle">page.html</text>
+<rect class="box" x="312" y="85" width="158" height="40" rx="4"/>
+<text x="391" y="110" text-anchor="middle">txt/page.txt</text>
+</svg>
