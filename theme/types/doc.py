@@ -19,6 +19,10 @@ DEFAULTS = {
     "nav": "docs/",                 # items' nav entry
     "empty": "No page yet.",        # a {docs} list with nothing in it
     "index": "search-index.json",   # the search index, in the collection's folder
+    # tilder 1.2: the collection reads its subfolders too, at any depth:
+    # content/docs/guide/writing.md is the page docs/guide/writing, in the
+    # section guide, whose own page is guide/index.md (docs/guide).
+    "recursive": True,
 }
 TEXT_MAX = 2000                     # characters of body text per page in the index
 
@@ -46,15 +50,17 @@ def sort_key(item, conf):
 
 
 def entry(item, link, conf):
-    """The card: the title, the group, the description. None on the page
-    itself: a documentation page shows no card of its own."""
+    """The card: the title, the group (in a tree of folders, the section:
+    by_section), the description. None on the page itself: a
+    documentation page shows no card of its own."""
     if not link:
         return None
     meta = item["meta"]
+    group = item["section_title"] if "section_title" in item else meta.get("group")
     blocks = [{"k": "para", "text": meta["description"], "cls": []}] if meta.get("description") else []
     return {"k": "entry", "id": None, "cls": ["link"],
             "title": f"[{meta['title']}]({item['path'][:-5]})",
-            "meta": [meta["group"]] if meta.get("group") else [],
+            "meta": [group] if group else [],
             "blocks": blocks, "own": False}
 
 
@@ -68,9 +74,34 @@ def grouped(items):
     return loose + [it for its in named.values() for it in its]
 
 
+def by_section(items):
+    """[(item, cls)] for {docs} in a recursive collection: tilder's
+    depth-first order kept, each card a copy of its item with its
+    section's title (section_title, for entry's meta line), a card whose
+    section is not the previous card's marked "group". A section's own page
+    (the item whose slug is the section) belongs to it; its title is that
+    page's, else the folder's name. A top-level page has none (""), and no
+    group either."""
+    sections = set()  # every folder holding a page, and the folders above it
+    for it in items:
+        parts = it.get("section", "").split("/") if it.get("section") else []
+        sections.update("/".join(parts[:i + 1]) for i in range(len(parts)))
+    titles = {it["slug"]: it["meta"]["title"] for it in items if it["slug"] in sections}
+    out, previous = [], None
+    for it in items:
+        key = it["slug"] if it["slug"] in sections else it.get("section", "")
+        card = dict(it, section_title=titles.get(key, key.rpartition("/")[2]) if key else "")
+        out.append((card, ["group"] if previous is not None and key != previous else []))
+        previous = key
+    return out
+
+
 def docs(items, conf):
     """{docs}: every page, grouped; the first card of a group is marked
-    (entry--group) so the theme can space the groups apart."""
+    (entry--group) so the theme can space the groups apart. In a tree of
+    folders the groups are its sections (by_section), not group:."""
+    if any(it.get("section") for it in items):
+        return {"items": by_section(items), "empty": conf.get("empty", "")}
     out, seen = [], set()
     for it in grouped(items):
         g = it["meta"].get("group") or ""

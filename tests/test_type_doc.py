@@ -83,7 +83,8 @@ after words here
 
 def item(slug, src=None, **meta):
     meta.setdefault("title", slug.title())
-    return {"slug": slug, "meta": meta, "path": f"docs/{slug}.html", "src": src}
+    return {"slug": slug, "meta": meta, "path": f"docs/{slug}.html", "src": src,
+            "section": slug.rpartition("/")[0]}
 
 
 class Attributes(unittest.TestCase):
@@ -95,7 +96,12 @@ class Attributes(unittest.TestCase):
         self.assertEqual(doc.LAYOUT, "doc")
         self.assertEqual(doc.SCRIPT, "search.js")
         self.assertEqual(doc.DEFAULTS, {"man": "SITE-DOCS(7)", "nav": "docs/",
-                                        "empty": "No page yet.", "index": "search-index.json"})
+                                        "empty": "No page yet.", "index": "search-index.json",
+                                        "recursive": True})
+
+    def test_a_docs_collection_reads_its_subfolders(self):
+        # tilder 1.2: content/docs/guide/writing.md is the item guide/writing.
+        self.assertIs(doc.DEFAULTS["recursive"], True)
 
 
 class Defaults(unittest.TestCase):
@@ -143,6 +149,35 @@ class Marker(unittest.TestCase):
         self.assertEqual([(it["slug"], cls) for it, cls in out["items"]],
                          [("a", []), ("d", []), ("b", ["group"]), ("e", []), ("c", ["group"])])
         self.assertEqual(out["empty"], "No page yet.")
+
+    def test_docs_lists_by_section_when_the_pages_have_sections(self):
+        # tilder's depth-first order, kept: a section's own page (the item
+        # whose slug is the section) opens it, then its pages; a section in
+        # a section is a section of its own; group: is not used.
+        its = [item("start"), item("guide", title="The guide"), item("guide/one", group="X"),
+               item("guide/two"), item("ref", title="Reference"), item("ref/cli", title="Cli"),
+               item("ref/cli/opts"), item("ref/seo"), item("cli", group="X")]
+        out = doc.MARKERS["docs"](its, {"empty": ""})
+        self.assertEqual([(it["slug"], cls) for it, cls in out["items"]],
+                         [("start", []), ("guide", ["group"]), ("guide/one", []),
+                          ("guide/two", []), ("ref", ["group"]), ("ref/cli", ["group"]),
+                          ("ref/cli/opts", []), ("ref/seo", ["group"]), ("cli", ["group"])])
+        cards = [doc.entry(it, True, {})["meta"] for it, _ in out["items"]]
+        self.assertEqual(cards, [[], ["The guide"], ["The guide"], ["The guide"],
+                                 ["Reference"], ["Cli"], ["Cli"], ["Reference"], []])
+
+    def test_a_section_without_its_own_page_is_named_by_its_folder(self):
+        its = [item("start"), item("misc/a"), item("misc/b")]
+        out = doc.MARKERS["docs"](its, {"empty": ""})
+        self.assertEqual([cls for _, cls in out["items"]], [[], ["group"], []])
+        self.assertEqual([doc.entry(it, True, {})["meta"] for it, _ in out["items"]],
+                         [[], ["misc"], ["misc"]])
+
+    def test_the_marker_leaves_the_items_as_they_are(self):
+        its = [item("guide"), item("guide/one")]
+        before = [dict(it, meta=dict(it["meta"])) for it in its]
+        doc.MARKERS["docs"](its, {"empty": ""})
+        self.assertEqual(its, before)
 
 
 class JsonLd(unittest.TestCase):

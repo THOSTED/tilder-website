@@ -1,23 +1,14 @@
-import io
 import re
 import unittest
-from contextlib import redirect_stderr, redirect_stdout
 
-from tests.helpers import REPO, THEME, load_tool
+from tests.helpers import THEME
 
 CSS = THEME / "style.css"
 
 
 class Style(unittest.TestCase):
-    def test_every_class_of_the_pinned_contract_is_styled(self):
-        check = load_tool("check-theme")
-        classes = check.contract_classes((REPO / "tools" / "tilder-theme.md").read_text())
-        self.assertEqual(check.missing(CSS.read_text(), classes), [])
-
-    def test_every_token_pair_reaches_aa_in_both_schemes(self):
-        check = load_tool("check-contrast")
-        low = [r for r in check.results(check.tokens(CSS.read_text())) if r[3] < r[4]]
-        self.assertEqual(low, [])
+    # Every class of the contract styled, every token pair at AA in both
+    # schemes: tilder's --check (tests/test_build.py, make check).
 
     def test_the_theme_s_own_classes_are_styled(self):
         css = CSS.read_text()
@@ -27,6 +18,14 @@ class Style(unittest.TestCase):
                      "doc-search-label", "doc-search-input", "doc-search-status",
                      "doc-search-results", "code-box", "code-copy", "entry--group", "entry--example"):
             self.assertRegex(css, r"\." + re.escape(name) + r"(?![\w-])", name)
+
+    def test_the_sidebar_folds_every_section_but_the_open_one(self):
+        # Only a section whose label links to its own page folds: one
+        # without (a span) would leave its pages out of reach.
+        css = CSS.read_text()
+        self.assertRegex(css, r"\.collection-section:not\(\.collection-section--open\) > "
+                              r"a\.collection-section-label \+ ul[ \t]*\{[ \t]*display:\s*none")
+        self.assertRegex(css, r"\.collection-section > ul[ \t]*\{[^{}]*padding-left:")
 
     def test_focus_motion_and_dark_scheme(self):
         css = CSS.read_text()

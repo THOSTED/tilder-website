@@ -1,6 +1,6 @@
 /* The documentation theme. A man page for every page but the landing
    page, which is airier. It styles every class tilder writes (tilder
-   docs/theme.md; tools/check-theme.py checks it at every build), and the
+   docs/theme.md; tilder's build.py --check checks it), and the
    theme's own: the page frame, the home and doc layouts, the search, the
    copy button.
 
@@ -21,8 +21,9 @@
 @font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 700; font-display: swap;
 	src: url("fonts/jetbrains-mono-bold.woff2") format("woff2"); }
 
-/* --- tokens: every colour of the theme; tools/check-contrast.py checks the
-   pairs (README.md, "Contrast"). #rrggbb only. -------------------------- */
+/* --- tokens: every colour of the theme; tilder's build.py --check checks
+   the pairs theme.toml's [check] names (README.md, "Contrast"). Hex
+   colours only. --------------------------------------------------------- */
 
 :root {
 	--bg: #fcfcfa; --surface: #f0f0ec; --text: #1c1e21; --muted: #4f565d;
@@ -235,6 +236,17 @@ pre.code[data-lang]::before { content: attr(data-lang); position: absolute; top:
 .collection-group { margin-top: 1rem; }
 .collection-group-label { display: block; font: 700 0.72rem var(--mono); color: var(--muted);
 	text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.3rem; }
+/* A folder of the manual (tilder 1.2, a recursive collection): its label,
+   a link to the section's own page (a span when it has none), then its
+   pages one step in. Only the section holding the page stays unfolded:
+   every other one is a link away (one without its own page, a span, never
+   folds). */
+.collection-section { margin-top: 0.6rem; }
+.collection-nav .collection-section-label { font-weight: 700; }
+span.collection-section-label { display: block; padding: 0.1rem 0 0.1rem 1ch; color: var(--muted); }
+.collection-section > ul { padding-left: 2ch; margin-top: 0.2rem; }
+.collection-section--open > .collection-section-label:not([aria-current]) { color: var(--accent); }
+.collection-section:not(.collection-section--open) > a.collection-section-label + ul { display: none; }
 .pager { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
 	border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 2.5rem; font-family: var(--mono); }
 .pager:empty { display: none; }
