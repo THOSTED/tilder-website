@@ -96,8 +96,8 @@ label = "Search the documentation"
 none = "No page matches."
 
 [share]
-theme_color = "#00707e"
-background_color = "#fcfcfa"
+theme_color = "#2e6b34"
+background_color = "#f7f8f3"
 ```
 
 A layout that reads `{{ search.label }}` needs the key to exist: a
