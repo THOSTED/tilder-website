@@ -36,6 +36,14 @@ class Rules(unittest.TestCase):
     def test_there_are_scripts_to_check(self):
         self.assertIn("search.js", SCRIPTS)
 
+    def test_pure_ascii(self):
+        for name in SCRIPTS:
+            data = (THEME / name).read_bytes()
+            try:
+                data.decode("ascii")
+            except UnicodeDecodeError as e:
+                self.fail(f"{name}: non-ASCII byte at position {e.start}")
+
     def test_es5_only(self):
         for name in SCRIPTS:
             code, _ = split((THEME / name).read_text())
@@ -114,3 +122,4 @@ class SearchUnderNode(unittest.TestCase):
         out = self.dom({"data-search-index": ""})
         self.assertEqual(out["children"], [])
         self.assertIsNone(out["ready"])
+

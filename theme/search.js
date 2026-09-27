@@ -10,11 +10,11 @@
 	var MAX = 10;
 	var WEIGHTS = [["t", 8], ["h", 4], ["d", 2], ["x", 1]];
 
-	/* Lower case, accents removed: "Élan" and "elan" match. */
+	/* Lower case, accents removed: "\u00c9lan" and "elan" match. */
 	function fold(s) {
 		s = String(s).toLowerCase();
 		if (s.normalize) {
-			s = s.normalize("NFD").replace(/[̀-ͯ]/g, "");
+			s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 		}
 		return s;
 	}
