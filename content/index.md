@@ -42,7 +42,7 @@ One **Markdown** file, two outputs.
 ```
 
 ```console
-$ curl tilder.thosted.fr/hello
+$ curl example.org/hello
 NAME
      hello - a page
 
@@ -55,8 +55,7 @@ DESCRIPTION
 ### Text mirror
 
   Every page has a plain-text twin, 75 columns wide, plain or coloured for
-  terminals. `curl` gets it instead of the HTML, and a braille display
-  reads it as easily.
+  terminals. `curl` gets it instead of the HTML.
 
 ### Content types
 
@@ -89,23 +88,25 @@ DESCRIPTION
 
 ### No dependency
 
-  Python's standard library, nothing to install. One optional tool,
-  `rsvg-convert`, draws the icons and the link preview; the Docker image
-  has it. No page loads anything from another site.
+  Python's standard library, nothing to install. Outside tools only draw
+  the icons and the link preview, and are optional: `rsvg-convert`, with
+  `woff2_decompress`, else ImageMagick; without either, those images are
+  skipped with a warning. The Docker image has `rsvg-convert` and
+  `woff2_decompress`. No page loads anything from another site.
 
 ## Quick start
 
 Copy the starter, a small site with its theme, from the repository's
 `starter/` folder, then build it with the Docker image,
-`ghcr.io/thosted/tilder`:
+`ghcr.io/thosted/tilder:1.2.0`:
 
 ```sh
-git clone https://github.com/THOSTED/tilder
+git clone --branch v1.2.0 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site && cd my-site
 mkdir -p public
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder \
+  ghcr.io/thosted/tilder:1.2.0 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
