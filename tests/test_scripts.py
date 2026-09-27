@@ -145,6 +145,16 @@ class SearchUnderNode(unittest.TestCase):
         self.assertEqual(out["side_tabindex"], "-1")
 
 
+@unittest.skipUnless(shutil.which("node"), "node is not installed")
+class CodeUnderNode(unittest.TestCase):
+    def test_the_button_regains_focus_after_the_fallback_copy(self):
+        args = ["node", str(REPO / "tests" / "js" / "code-dom.js"), str(THEME / "code.js")]
+        out = json.loads(subprocess.run(args, capture_output=True, text=True, check=True).stdout)
+        self.assertEqual(out["button_text"], "copied")
+        self.assertEqual(out["body_children"], 0)
+        self.assertTrue(out["focused_button"])
+
+
 class Loaded(unittest.TestCase):
     """Where each script is linked, on the built fixture."""
 

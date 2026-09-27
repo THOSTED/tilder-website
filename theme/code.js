@@ -12,7 +12,7 @@
 	var copy = me.getAttribute("data-copy") || "";
 	var copied = me.getAttribute("data-copied") || copy;
 
-	function fallback(text, done) {
+	function fallback(text, done, button) {
 		var area = document.createElement("textarea");
 		area.value = text;
 		area.setAttribute("readonly", "");
@@ -27,15 +27,20 @@
 			/* nothing copied: the reader selects the code by hand */
 		}
 		document.body.removeChild(area);
+		/* The textarea held the focus (area.select()): give it back to
+		   the button rather than leaving it on the removed element. */
+		if (button && button.focus) {
+			button.focus();
+		}
 	}
 
-	function write(text, done) {
+	function write(text, done, button) {
 		if (navigator.clipboard && window.isSecureContext) {
 			navigator.clipboard.writeText(text).then(done, function () {
-				fallback(text, done);
+				fallback(text, done, button);
 			});
 		} else {
-			fallback(text, done);
+			fallback(text, done, button);
 		}
 	}
 
@@ -59,7 +64,7 @@
 				timer = setTimeout(function () {
 					button.textContent = copy;
 				}, 2000);
-			});
+			}, button);
 		});
 	}
 
