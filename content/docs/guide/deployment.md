@@ -28,7 +28,10 @@ docker compose up -d
 The stack has two services. `build` runs the tilder image: it builds the
 site into a volume, then watches the sources and rebuilds on every change
 and at midnight. `web` is Caddy, serving that volume; it starts once the
-first build has written `index.html`.
+first build has written `index.html`. This site's own `compose.yaml`
+runs `build` once instead of watching, rebuilt by hand on a change
+(`docker compose run --rm build`), and renames a couple of variables,
+below; both forms work the same way.
 
 ```yaml
 services:
@@ -47,38 +50,48 @@ services:
       build:
         condition: service_healthy
     ports:
-      - "8080:80"
-      - "8081:81"
+      - "${SITE_PORT:-8080}:80"
+      - "${TEXT_PORT:-8081}:81"
+      - "${HTTPS_PORT:-8443}:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - site:/srv:ro
+      - caddy-data:/data
 volumes:
   site:
+  caddy-data:
 ```
 
 This excerpt leaves out the healthcheck's timings and the environment.
 The image tag `1` follows the latest 1.x release; pin a full version,
-`1.4.0`, to choose when a site changes generator.
+`1.4.1`, to choose when a site changes generator. `caddy-data` keeps the
+certificates Caddy obtains, across restarts.
 
 The hosts come from the environment of `web`. Locally, the defaults serve
 the site at `site.localhost:8080` and its text at
-`man.site.localhost:8080`; ports 8080 and 8081 also answer any host, so
+`text.site.localhost:8080`; ports 8080 and 8081 also answer any host, so
 `localhost:8080` serves the site and `localhost:8081` its text, and so
-does the machine's address on the network. In production:
+does the machine's address on the network. In production, this site sets:
 
 | Variable | Production value | What it is |
 |---|---|---|
-| `SITE_HOST` | `example.org` | the site, the same host as `site.url` |
-| `WWW_HOST` | `www.example.org` | redirected to the site, never served |
-| `MAN_HOST` | `man.example.org` | the plain-text host |
-| `SITE_ORIGIN` | `https://example.org` | where the `www` host redirects to |
+| `SITE_HOST` | `tilder.thosted.fr` | the site, the same host as `site.url` |
+| `TEXT_HOST` | the owner's choice | the plain-text host |
+| `SITE_PORT` | `80` | Caddy's HTTP port |
+| `HTTPS_PORT` | `443` | Caddy's HTTPS port |
 | `AUTO_HTTPS` | `ignore_loaded_certs` | Caddy obtains and renews the certificates |
 
 `AUTO_HTTPS` fills Caddy's `auto_https` option, which has no `on`: any
 value but `off` and `disable_certs` keeps automatic HTTPS, and
-`ignore_loaded_certs` changes nothing else. With it, publish Caddy's ports
-80 and 443 rather than 8080 and 8081, and point the three names at the
-machine.
+`ignore_loaded_certs` changes nothing else (`disable_redirects` would
+also do, without the HTTP -> HTTPS redirects). With it, publish Caddy's
+ports 80 and 443, through `SITE_PORT` and `HTTPS_PORT`, rather than 8080
+and 8081, and point the hosts at the machine; keep `TEXT_PORT` bound to
+`127.0.0.1`, `127.0.0.1:8081`, so its plain catch-all stays off the
+public interface once `TEXT_HOST` answers on 443. tilder's own
+`examples/compose.yaml` names the first two `HTTP_PORT` and `MAN_HOST`,
+and adds a `WWW_HOST` that redirects to the site; this site has no `www`
+host, so it drops that variable and the block that serves it.
 
 ## Clean URLs
 
@@ -154,7 +167,7 @@ $ curl "example.org/about?plain" > about.txt
 
 ## The plain-text host
 
-`MAN_HOST` serves `txt/` only: the bare ASCII of every page, at the same
+`TEXT_HOST` serves `txt/` only: the bare ASCII of every page, at the same
 paths, whatever the client. It sniffs nothing, which makes it the
 interface for scripts. Its pages carry `X-Robots-Tag: noindex`, and its
 `robots.txt`, written from `[robots_man]`, asks search engines to stay
