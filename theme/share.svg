@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+	<!-- The link preview, 1200x630, drawn to share.png at every build: a
+	     man page's first lines. The double-brace fields are filled by
+	     tilder from the site's configuration ([share], [site]); "logo" is
+	     the site's assets/logo.svg. -->
+	<rect width="1200" height="630" fill="{{ share.background_color }}"/>
+	<text x="80" y="92" font-family="JetBrains Mono, monospace" font-size="24" fill="{{ share.muted_color }}">{{ manual_upper }}</text>
+	<rect x="80" y="118" width="1040" height="2" fill="{{ share.rule_color }}"/>
+	<image x="80" y="220" width="160" height="160" href="{{ logo }}"/>
+	<text x="280" y="300" font-family="JetBrains Mono, monospace" font-weight="700" font-size="72" fill="{{ share.text_color }}"><tspan fill="{{ share.theme_color }}">~/</tspan>{{ wordmark }}</text>
+	<text x="282" y="360" font-family="Inter, sans-serif" font-size="34" fill="{{ share.muted_color }}">{{ card_1 }}</text>
+	<text x="282" y="406" font-family="Inter, sans-serif" font-size="34" fill="{{ share.muted_color }}">{{ card_2 }}</text>
+	<rect x="80" y="510" width="1040" height="2" fill="{{ share.rule_color }}"/>
+	<text x="80" y="556" font-family="JetBrains Mono, monospace" font-size="24" fill="{{ share.muted_color }}">{{ domain }}</text>
+</svg>
