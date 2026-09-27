@@ -98,8 +98,8 @@ label = "Search the documentation"
 none = "No page matches."
 
 [share]
-theme_color = "#2e6b34"
-background_color = "#f7f8f3"
+theme_color = "#c2410c"
+background_color = "#ffffff"
 ```
 
 Un gabarit qui lit `{{ search.label }}` a besoin que la clé existe : une
