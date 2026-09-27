@@ -165,7 +165,7 @@ the site, in `site.toml`:
 
 ```toml
 [links]
-new_tab = true                # https:// links open a new tab
+new_tab = true                # external links: a new tab
 same_tab = ["example.com"]    # except these hosts, subdomains too
 ```
 

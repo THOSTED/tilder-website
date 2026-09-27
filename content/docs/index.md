@@ -17,7 +17,11 @@ key, Markdown construct, placeholder, class and command-line option of
 that version, written for the people who build a site with it. Start with
 the guide; come back to the reference when you need a detail.
 
+[TOC]
+
 ## Sections
+
+<!-- 1.2 -->
 
 - [Guide](docs/guide): from the first build to a site online, in the
   order you meet things.

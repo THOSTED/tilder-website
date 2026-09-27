@@ -46,9 +46,11 @@ tour de ce que la construction laisse dans `public/`.
 
 ### Les icônes et l'image de partage
 
-  Chaque construction dessine `favicon.ico`, les icônes PNG et `share.png`,
-  l'aperçu de lien en 1200x630, à partir du fichier `assets/logo.svg` du
-  site. Il lui faut un moteur de rendu SVG : `rsvg-convert` d'abord, sinon
+  Chaque construction dessine `favicon.ico` et les icônes PNG à partir du
+  fichier `assets/logo.svg` du site. Quand le thème a un `share.svg`, elle
+  dessine aussi `share.png`, l'aperçu de lien en 1200x630, à partir de ce
+  modèle, logo compris ; sans lui, l'aperçu est la plus grande des icônes.
+  Il lui faut un moteur de rendu SVG : `rsvg-convert` d'abord, sinon
   `magick`, d'ImageMagick. L'image Docker contient `rsvg-convert`, ainsi
   que `woff2_decompress`, pour que l'aperçu soit dessiné avec les polices
   du thème.
@@ -75,10 +77,13 @@ thème minimal sur les polices du système. Copiez-le et faites-en le
 vôtre :
 
 ```sh
-git clone https://github.com/THOSTED/tilder
+git clone --branch v1.2.0 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site
 cd my-site
 ```
+
+Sautez le clonage si vous l'avez déjà fait pour lancer tilder avec
+Python.
 
 On y trouve les trois dossiers de tout projet : `content/` (les pages et
 `site.toml`), `theme/` (l'apparence) et `assets/` (le logo). La page
@@ -165,7 +170,8 @@ charger le nouveau code.
 Elle reconstruit aussi à minuit, sans aucune modification : la date de la
 construction décide quels événements sont à venir et lesquels sont passés,
 si bien qu'un événement rejoint la liste des événements passés le
-lendemain de sa fin.
+lendemain de sa date. Minuit est celui de la machine : dans un conteneur,
+UTC, sauf si la variable `TZ` en décide autrement.
 
 ## Ce que contient public/
 

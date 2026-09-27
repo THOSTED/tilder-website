@@ -94,9 +94,17 @@ page a une seule adresse ; les autres y redirigent, de façon permanente :
   `/fr/index` dans l'exemple : ajoutez-y vos propres dossiers ;
 - `/blog` mène à `/blog/` quand `blog/index.html` existe.
 
+Les règles, tirées du bloc `handle` de l'exemple pour les navigateurs (ses
+en-têtes sont laissés de côté ici) :
+
 ```caddyfile
 @index path /index /index.html /blog/index /blog/index.html /fr/index /fr/index.html
 redir @index {http.request.uri.path.dir} permanent
+@noslash {
+  file {path}/index.html
+  not path */
+}
+redir @noslash {path}/ permanent
 @html path_regexp html ^/(.*)\.html$
 redir @html /{re.html.1} permanent
 try_files {path} {path}.html {path}/index.html
@@ -111,8 +119,11 @@ ne rencontre jamais de redirection.
 Une requête de `curl`, `wget` ou `httpie`, reconnue à son `User-Agent`,
 pour une page (une adresse sans point) reçoit le miroir en texte, en
 couleurs, depuis `ansi/`, en `text/plain`, avec un code 200 : pas de
-redirection, pas besoin de `-L`. Ajoutez `?plain` pour l'ASCII nu de
-`txt/`, à enregistrer ou à passer à un autre programme.
+redirection à suivre, pas besoin de `-L`. La seule redirection retire une
+barre oblique finale, de `/blog/` vers `/blog`, l'adresse du texte du
+dossier. Ajoutez `?plain` pour l'ASCII nu de `txt/`, à enregistrer ou à
+passer à un autre programme : un bloc jumeau fait de même depuis `txt/`,
+non reproduit ici.
 
 ```caddyfile
 @terminal {
@@ -124,6 +135,9 @@ redirection, pas besoin de `-L`. Ajoutez `?plain` pour l'ASCII nu de
 handle @terminal {
   root * /srv/ansi
   header Content-Type "text/plain; charset=utf-8"
+  header Cache-Control "public, max-age=300"
+  @slash path_regexp slash ^(/.+)/$
+  redir @slash {re.slash.1} permanent
   rewrite / /index.txt
   try_files {path}.txt {path} {path}/index.txt
   file_server
@@ -232,8 +246,10 @@ qu'ils en gardent dépend de ce qu'on peut leur dire :
 - **Pages d'erreur.** Une seule page `404.html` est courante ; une page
   404 par langue demande une règle par préfixe.
 
-Chaque lien qu'écrit tilder est relatif : le site fonctionne sous
-n'importe quel nom d'hôte, et chaque page est complète sans ses scripts.
+Chaque lien entre pages est relatif, et chaque page est complète sans ses
+scripts. Les adresses absolues viennent de `site.url` : le lien canonique,
+`og:url`, les plans du site et les flux. Donnez-lui l'adresse à laquelle
+le site est servi.
 
 ## Voir aussi
 
