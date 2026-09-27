@@ -27,10 +27,12 @@
 # answer localhost:8080/:8081). In production the named blocks take
 # precedence over them.
 #
-# Access logs are discarded: the site says so publicly (§4.7), so it must
-# stay true. Do not add a `log { output file ... }`.
+# Access logs are discarded: the site says so publicly (its why page), so
+# it must stay true. Do not add a `log { output file ... }`.
 
 {
+	# off locally; ignore_loaded_certs in production, which keeps automatic
+	# HTTPS (Caddy has no `on`). See .env.example.
 	auto_https {$AUTO_HTTPS:off}
 	admin off
 	servers {
@@ -106,7 +108,7 @@
 		# Two policies, mutually exclusive: no dependency on evaluation
 		# order. Pages may run the site's own script files - members.js,
 		# code.js - and nothing else: script-src 'self', never
-		# 'unsafe-inline' (§4.4). connect-src 'self' lets a theme script
+		# 'unsafe-inline'. connect-src 'self' lets a theme script
 		# fetch a same-origin file (a search index, say); no other host
 		# can be reached.
 		@page not path *.svg
@@ -210,7 +212,7 @@ See: curl {$TEXT_HOST}
 }
 
 # --- the text mirror, on its own host ----------------------------------
-# A dedicated host: no User-Agent sniffing (§11).
+# A dedicated host: no User-Agent sniffing.
 {$TEXT_HOST:http://text.site.localhost} {
 	import base
 	import man
