@@ -5,6 +5,39 @@ The site of [tilder](https://github.com/THOSTED/tilder), served at
 showcase of sites built with it, and its release notes. The site is built
 with tilder itself, from the version pinned in `TILDER_VERSION`.
 
+## Quick start
+
+You need GNU make, Docker (or Podman, `make DOCKER=podman`) and
+Python 3.11+ for the tests. Nothing else: tilder comes from its image.
+
+```sh
+git clone git@github.com:ttrova/tilder-website.git
+cd tilder-website
+make serve
+```
+
+Then open <http://localhost:8080>, or ask a terminal:
+`curl localhost:8080` returns the same page as a 75-column text mirror.
+Edit `content/`, rebuild into the running stack, and reload:
+
+```sh
+TILDER_VERSION=$(cat TILDER_VERSION) docker compose run --rm build
+```
+
+`make` checks the theme and the docs, then builds into `public/`;
+`make stop` stops the stack.
+
+## Writing a page
+
+A page is a Markdown file in tilder's dialect under `content/`; its
+French translation sits next to it, `page.fr.md` beside `page.md`.
+The manual is `content/docs/`, a tree of folders: each folder is a
+section of the sidebar, its `index.md` the section's own page, and the
+pages are ordered by `order:` in their front matter. Every page exists
+in both languages; `make check` fails when a fact of tilder is
+documented in only one. The format is the site's own reference:
+`content/docs/reference/markdown/`, or tilder's `docs/markdown.md`.
+
 ## The repository
 
 ```text
