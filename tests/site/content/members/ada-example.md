@@ -4,7 +4,6 @@ description: A member of the fixture, to show a card with profile links in the t
 first_name: Ada
 last_name: Example
 category: admin
-github: https://github.com/example
 website: https://ada.example.org/
 ---
 
