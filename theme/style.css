@@ -78,7 +78,17 @@ img { max-width: 100%; height: auto; }
 .manline--head { border-bottom: 1px solid var(--rule); padding-bottom: 0.6rem; }
 .manline--foot { border-top: 1px solid var(--rule); padding-top: 0.6rem; margin-top: 3rem; }
 .manline a { color: inherit; }
-.bar { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 2rem; margin: 1.5rem 0 0.3rem; }
+/* Always two lines, at any width: the wordmark alone, full width, then a
+   second line holding the navigation (left) and the language switcher
+   (right). .bar is a plain block: the wordmark (a block h1) and .bar-nav
+   (a block div) stack on their own lines by themselves. */
+.bar { margin: 1.5rem 0 0.3rem; }
+/* The navigation and the language switcher share this one row, the
+   switcher at its far right (nowrap: the pair never splits into two
+   rows); .nav still wraps its own links onto more than one line if it
+   must, rather than pushing the switcher down. */
+.bar-nav { display: flex; flex-wrap: nowrap; justify-content: space-between;
+	align-items: baseline; gap: 0.5rem 2rem; margin-top: 0.5rem; }
 .wordmark { font: 700 1.5rem/1.2 var(--mono); text-transform: lowercase; margin: 0;
 	overflow-wrap: anywhere; }
 .wordmark a { color: inherit; text-decoration: none; }
@@ -93,12 +103,12 @@ img { max-width: 100%; height: auto; }
 .wordmark .cursor { display: inline-block; width: 0.55em; height: 1em; margin-left: 0.1em;
 	vertical-align: -0.12em; background: var(--accent); animation: blink 1.2s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-.nav { font: 0.9rem var(--mono); }
+.nav { font: 0.9rem var(--mono); flex: 1 1 auto; min-width: 0; }
 .nav a { text-decoration: none; }
 .nav a:hover { text-decoration: underline; }
 .nav a[aria-current="page"] { color: var(--text); font-weight: 700; }
 .nav .sep { color: var(--muted); padding: 0 0.6ch; }
-.languages { font: 0.85rem var(--mono); margin-left: auto; }
+.languages { font: 0.85rem var(--mono); flex: 0 0 auto; }
 .languages a { margin-left: 1ch; text-decoration: none; }
 .languages a[aria-current="page"] { color: var(--text); font-weight: 700; }
 .tagline { font: 0.85rem var(--mono); color: var(--muted); margin: 0 0 2.5rem; }
