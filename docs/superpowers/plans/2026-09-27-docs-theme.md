@@ -41,7 +41,7 @@
 The spec read against tilder's code (branch `main`, which now holds the v1.1.0 features). Each resolution is applied in the tasks below. **[owner]** marks one that changes the spec's intent or needs a decision.
 
 1. **`{{ search.* }}` and `{{ doc.* }}` resolve.** `page.fill` walks the merged configuration, `defaults.toml < theme.toml < theme.<lang>.toml < site.toml < site.<lang>.toml` (`config.load_config`), so any table of `theme.toml` is a placeholder and a site overrides it. Verified by a build.
-2. **[owner] `theme.fr.toml` stops the build of any site that does not declare `fr`** (`languages.setup` refuses a `theme.<lang>.toml` of an undeclared language, monolingual sites included). Kept, as the spec asks; the README tells such a site to delete the file. Alternative for later: tilder could ignore undeclared `theme.<lang>.toml`.
+2. **`theme.fr.toml` on a site that does not declare `fr`:** tilder v1.1.0 ignores a `theme.<lang>.toml` of an undeclared language (owner-approved tilder fix, made before the v1.1.0 tag). Until the checkout used for a build has that fix, a site without `fr` fails; the fixture site declares `en` and `fr`, so the plan's builds are unaffected.
 3. **`data-*` on `.inset` is not possible** (`page.html_blocks` writes a bare `<div class="inset">`), and not needed: the page writes its own label. But an inset holds **paragraphs only** (`markdown.inset`), so a table, list, code block or callout cannot be shown live inside one. **[owner]** The theme adds one style: an entry marked `{example}` (`### Rendered {example}`, the construct indented under it) is drawn with the same dashed frame (`.entry--example`). Sub-project C uses it for block constructs.
 4. **`outputs()` reads the source** from `item["src"]` (a `pathlib.Path`; the standard library is not restricted), and strips the front matter and Markdown syntax with local regular expressions (`headings`, `plain`), since `markdown` is not a module a type may import.
 5. **The index's `"u"` is relative to the language's landing page** (`docs/start`, computed as `clean_url(path)` minus `clean_url("index.html")`), not the absolute `/fr/docs/start`; `search.js` puts the layout's `{{ home }}` (`data-home`) before it. Links then work under any prefix or sub-path.
@@ -50,9 +50,9 @@ The spec read against tilder's code (branch `main`, which now holds the v1.1.0 f
 8. **[owner] The `[TOC]` is inside `{{ body }}`,** a folded `<details>`; no layout can put it in a third column. `nav.js` moves it into the right column at 60rem and wider and opens it, and puts it back, folded, when narrower. Without JavaScript there is no right column: the `[TOC]` stays in the text, as tilder draws it. The right column's "On this page" is visual (`aria-hidden`); the moved `<nav>` keeps its `labels.toc` name.
 9. **[owner] `showcase` JSON-LD:** tilder overwrites every type node's `url` (and `inLanguage`) with the page's own (`seo.json_ld`), so a `WebSite` node with the listed site's `url` is impossible. The type returns a `WebPage` whose `about` is `{"@type": "WebSite", "name", "url"}`. `doc` does not set `inLanguage`: tilder does.
 10. **[owner] `{docs}` "grouped":** a marker returns cards only, no headings. The cards come in the sidebar's order (ungrouped first, then each group in the order of its first page), each card's meta line names its group, and the first card of a group is marked `entry--group` (more space above).
-11. **The Docker image ships no `docs/`,** so the contract cannot be "read from the pinned image". `tools/tilder-theme.md` is a verbatim copy of the pinned version's `docs/theme.md`; with `TILDER_BUILD` the checkout's own `docs/theme.md` is used. **[owner]** Alternative: add `COPY docs/theme.md` to tilder's Dockerfile.
+11. **The contract file.** tilder v1.1.0's Docker image ships `docs/theme.md` (owner-approved tilder fix), but reading it needs Docker, which the unit tests must not. So `tools/tilder-theme.md` stays: a verbatim copy of the pinned version's `docs/theme.md`, copied from the `v1.1.0` tag, used by the tests and by `build.sh` in Docker mode; with `TILDER_BUILD` the checkout's own `docs/theme.md` is used.
 12. **The image has no `ENTRYPOINT`** (only `CMD`), so the site spec's `docker run … image --root /site …` would fail. `build.sh` runs `python3 -B /tilder/build.py --root /site --out /out`; the tag is `1.1.0` (Resolution in Global Constraints).
-13. **[owner] The CSP blocks the search.** tilder's `examples/Caddyfile` sends `default-src 'none'` with no `connect-src`, so the index request is refused. The site's Caddyfile (sub-project C) must add `connect-src 'self'`; the README says so; `search.js` removes its field when the index cannot be read.
+13. **The CSP and the search.** tilder v1.1.0's `examples/Caddyfile` adds `connect-src 'self'` (owner-approved tilder fix), so the index request is allowed; a site with its own policy needs the same directive, the README says so; `search.js` removes its field when the index cannot be read.
 14. **The kitchen sink** of spec §10 is content (`content/kitchen-sink.md`, sub-project C). The theme's own is the fixture's `tests/site/content/kitchen-sink.md`, which C copies. `.icon` never appears: the theme ships no `icons/`.
 15. **Fonts:** five files, subset once to latin + latin-ext with fonttools in a throwaway venv (no Reserved Font Name in either licence, checked); the README records versions, sources and ranges.
 16. **JS tests without npm:** `search.js` exports its matching functions when `module` exists (node) and returns before touching the DOM; `tests/js/search-dom.js` runs the real script twice against a 40-line stand-in DOM. `nav.js` and `code.js` are covered by the ES5/rules lint, the build tests and the README's manual check list.
@@ -2084,8 +2084,8 @@ rule_color = "#d4d4cd"
 
 ```toml
 # The theme's words in French (theme.toml holds the English). A site that
-# does not declare "fr" in [site] languages must delete this file: tilder
-# stops on a theme.<lang>.toml of an undeclared language.
+# does not declare "fr" in [site] languages keeps it: tilder ignores a
+# theme.<lang>.toml of an undeclared language.
 
 [search]
 label = "Rechercher dans la documentation"
@@ -3846,12 +3846,11 @@ The rest (copy, previous, next, the sidebar's name...) are tilder's
 
 ## What the site must do
 
-- **Declare French, or delete `theme.fr.toml`.** tilder stops on a
-  `theme.<lang>.toml` of a language the site does not declare.
+- **Use tilder 1.1.0 or later.** It ignores `theme.fr.toml` on a site
+  that does not declare French, and draws the collection sidebar.
 - **Let the search read its index.** The page's Content-Security-Policy
-  needs `connect-src 'self'`; tilder's `examples/Caddyfile` has
-  `default-src 'none'` and no `connect-src`, which blocks it. Without it,
-  the search field removes itself and the rest of the page works.
+  needs `connect-src 'self'`, as in tilder's `examples/Caddyfile`. Without
+  it, the search field removes itself and the rest of the page works.
 - Ship `assets/logo.svg` (tilder draws the icons and `share.png` from it).
 
 ## Scripts
