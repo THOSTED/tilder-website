@@ -79,9 +79,18 @@ class BaseLayout(unittest.TestCase):
         self.assertIn('<div class="manline manline--head" aria-hidden="true">', html)
         self.assertIn("<span>FIXTURE(7)</span>", html)
         self.assertIn("<span>Fixture Manual</span>", html)
-        self.assertIn('<footer class="manline manline--foot">', html)
+        self.assertIn('<footer class="manline manline--foot frame">', html)
         self.assertIn("<span>2026-09-01</span>", html)
         self.assertIn('<a class="skip" href="#contenu">', html)
+
+    def test_the_header_and_footer_share_one_fixed_frame(self):
+        # The header and the footer sit in the same, fixed-width .frame on
+        # every layout; only the content between them (.page and its
+        # --wide/--home variants) may be wider.
+        for name in ("404.html", "docs/index.html", "index.html"):
+            html = self.build.read(name)
+            self.assertIn('<header class="frame" id="top">', html, name)
+            self.assertIn('<footer class="manline manline--foot frame">', html, name)
 
     def test_no_request_to_another_host(self):
         for path in self.pages():
