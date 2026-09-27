@@ -7,9 +7,11 @@ nav:
 layout: home
 ---
 
-## Nom
+## Nom {text}
 
 tilder - un générateur de sites en page de manuel
+
+## Description
 
 Un fichier Markdown en entrée, deux rendus en sortie : une page HTML pour
 le navigateur et son miroir en texte pour le terminal. tilder s'appuie sur
