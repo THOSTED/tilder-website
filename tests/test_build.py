@@ -1,12 +1,11 @@
-"""build.sh and the base layout, end to end, on the fixture site."""
+"""The Makefile's build and tilder's --check on the theme, and the base
+layout, end to end, on the fixture site."""
 
-import pathlib
 import re
 import subprocess
-import tempfile
 import unittest
 
-from tests.helpers import REPO, THEME, Build, builder_missing, fixture_build
+from tests.helpers import REPO, THEME, builder_missing, fixture_build, project, tilder
 
 
 class Pipeline(unittest.TestCase):
@@ -16,9 +15,12 @@ class Pipeline(unittest.TestCase):
     def test_no_warning(self):
         self.assertNotRegex(self.build.stderr, r"(?m)^(warning|seo):")
 
-    def test_the_checks_ran(self):
-        self.assertIn("classes of the contract, all styled", self.build.stdout)
-        self.assertIn("pairs, all at or above their minimum", self.build.stdout)
+    def test_the_theme_passes_tilder_s_checks(self):
+        # Coverage is the real site's concern (make check), not the fixture's.
+        done = tilder(project(), "--check")
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        self.assertRegex(done.stdout, r"(?m)^classes: \d+ of the contract, all styled$")
+        self.assertRegex(done.stdout, r"(?m)^contrast: 28 pairs \(light, dark\), all at or above 4\.5:1$")
 
     def test_theme_files_are_served_and_configuration_is_not(self):
         out = self.build.out
@@ -29,7 +31,7 @@ class Pipeline(unittest.TestCase):
 
 
 class NotBuilt(unittest.TestCase):
-    """A broken input stops build.sh; each case builds on its own."""
+    """A broken input stops make site, or tilder --check; each case on its own."""
 
     def setUp(self):
         why = builder_missing()
@@ -40,31 +42,18 @@ class NotBuilt(unittest.TestCase):
         page = ("---\nman: X(7)\ntitle: Warned\ndescription: A page whose code block names "
                 "a language tilder does not know.\ntagline: x\nnav: -\n---\n\n## Name\n\n"
                 "```nosuchlanguage\ncode\n```\n")
-        build = Build({"content/warned.md": page})
-        self.assertEqual(build.returncode, 1)
-        self.assertIn("unknown code language", build.stderr)
-        self.assertIn("the build printed warnings", build.stderr)
+        root = project({"content/warned.md": page})
+        done = subprocess.run(["make", "-s", "-C", str(REPO), "site", f"ROOT={root}",
+                               f"OUT={root.parent / 'out'}"], capture_output=True, text=True)
+        self.assertEqual(done.returncode, 2, done.stderr)   # make's own code for a failed recipe
+        self.assertIn("unknown code language", done.stderr)
+        self.assertIn("the build printed warnings", done.stderr)
 
-    def test_an_unstyled_contract_class_fails_before_the_build(self):
+    def test_an_unstyled_contract_class_fails_the_check(self):
         css = (THEME / "style.css").read_text().replace(".tag--full", ".tag--ful")
-        build = Build({"theme/style.css": css})
-        self.assertEqual(build.returncode, 1)
-        self.assertIn(".tag--full is written by tilder and not styled", build.stderr)
-
-
-class LayoutMissing(unittest.TestCase):
-    """No tilder needed: build.sh must refuse before it gets that far."""
-
-    def test_a_root_without_theme_layout_html_stops_with_a_readable_error(self):
-        with tempfile.TemporaryDirectory(prefix="theme-test-") as tmp:
-            root = pathlib.Path(tmp) / "site"
-            (root / "theme").mkdir(parents=True)
-            (root / "content").mkdir()
-            done = subprocess.run(
-                [str(REPO / "build.sh"), "--root", str(root), "--out", str(root / "out")],
-                capture_output=True, text=True)
-            self.assertEqual(done.returncode, 2, done.stderr)
-            self.assertIn(f"error: build.sh: {root}/theme/layout.html not found", done.stderr)
+        done = tilder(project({"theme/style.css": css}), "--check")
+        self.assertEqual(done.returncode, 1)
+        self.assertIn("error: theme/style.css: no rule for .tag--full.", done.stderr)
 
 
 class BaseLayout(unittest.TestCase):
