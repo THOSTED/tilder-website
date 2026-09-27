@@ -32,7 +32,7 @@ in the Docker image, whose default command is a watch of `/site` into
 ```sh
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.4.0 \
+  ghcr.io/thosted/tilder:1.4.1 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
@@ -101,7 +101,7 @@ as the first argument; an argument the build does not know is ignored
 
 ### --version
 
-  Print tilder's version and exit: the image's release, `1.4.0`, from
+  Print tilder's version and exit: the image's release, `1.4.1`, from
   its `TILDER_VERSION` variable; `dev` from a checkout, where the variable
   is not set.
 
@@ -171,6 +171,7 @@ The errors of the configuration and of the languages:
 | `[site] languages does not contain the default language "..."` | `site.lang` missing from `site.languages` |
 | `"..." is not a declared language` | a `site.<lang>.toml` or a page `<name>.<lang>.md` for a language not in `site.languages` |
 | `[site] lang is "...", not "..."` | a `site.<lang>.toml` that sets another language |
+| `"..." is not valid TOML: <what> (at line L, column C)` | a syntax error in `site.toml`, `site.<lang>.toml`, `theme.toml` or `theme.<lang>.toml`: fix the TOML syntax there |
 
 From tilder 1.2, a recursive collection adds three:
 
@@ -196,10 +197,13 @@ A theme's types in Python have errors of their own, from a missing
 [custom types](docs/content-types/custom-types). The errors of `--check`
 are listed with [checking a theme](docs/themes/checking).
 
-In a one-shot build, a file that is not valid TOML, or a bug, ends with
-Python's own message and traceback instead of this shape. With
-`--watch`, the same problem is one line, `error: <Python error>: <what>`,
-and the traceback follows only with `--debug`.
+An invalid `site.toml`, `site.<lang>.toml`, `theme.toml` or
+`theme.<lang>.toml` always takes this shape, one line and exit status 1,
+in a one-shot build and with `--watch` alike; the traceback follows only
+with `--debug`. A bug the build cannot name this way still ends a
+one-shot build with Python's own message and traceback. With `--watch`,
+the same bug is one line, `error: <Python error>: <what>`, and the
+traceback follows only with `--debug`.
 
 ## Warnings
 

@@ -32,7 +32,7 @@ surveille `/site` et construit dans `/out` :
 ```sh
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.4.0 \
+  ghcr.io/thosted/tilder:1.4.1 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
@@ -106,7 +106,7 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
 ### --version
 
   Afficher la version de tilder et sortir : la version publiée de
-  l'image, `1.4.0`, tirée de sa variable `TILDER_VERSION` ; `dev` depuis
+  l'image, `1.4.1`, tirée de sa variable `TILDER_VERSION` ; `dev` depuis
   une copie du dépôt, où la variable n'est pas définie.
 
 ### -h, --help
@@ -176,6 +176,7 @@ Les erreurs de la configuration et des langues :
 | `[site] languages does not contain the default language "..."` | `site.lang` absent de `site.languages` |
 | `"..." is not a declared language` | un `site.<lang>.toml` ou une page `<name>.<lang>.md` pour une langue absente de `site.languages` |
 | `[site] lang is "...", not "..."` | un `site.<lang>.toml` qui règle une autre langue |
+| `"..." is not valid TOML: <quoi> (at line L, column C)` | une erreur de syntaxe dans `site.toml`, `site.<lang>.toml`, `theme.toml` ou `theme.<lang>.toml` : corrigez la syntaxe TOML à cet endroit |
 
 Depuis tilder 1.2, une collection récursive en ajoute trois :
 
@@ -201,9 +202,12 @@ manquant à un marqueur que deux types revendiquent, décrites dans
 [vos propres types](docs/content-types/custom-types). Les erreurs de
 `--check` sont décrites dans [vérifier un thème](docs/themes/checking).
 
-Dans une construction unique, un fichier qui n'est pas du TOML valide,
-ou un bogue, se termine par le message et la trace de Python lui-même,
-pas par cette forme. Avec `--watch`, le même problème tient en une ligne,
+Un `site.toml`, `site.<lang>.toml`, `theme.toml` ou `theme.<lang>.toml`
+invalide prend toujours cette forme, une ligne et un code de sortie 1,
+dans une construction unique comme avec `--watch` ; la trace ne suit
+qu'avec `--debug`. Un bogue que la construction ne peut nommer ainsi
+termine encore une construction unique par le message et la trace de
+Python lui-même. Avec `--watch`, ce même bogue tient en une ligne,
 `error: <erreur Python>: <quoi>`, et la trace ne suit qu'avec `--debug`.
 
 ## Avertissements

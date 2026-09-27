@@ -104,15 +104,15 @@ DESCRIPTION
 
 Copiez le site de départ du dépôt, le dossier `starter/`, un petit site
 avec son thème, puis générez-le avec l'image Docker,
-`ghcr.io/thosted/tilder:1.4.0` :
+`ghcr.io/thosted/tilder:1.4.1` :
 
 ```sh
-git clone --branch v1.4.0 https://github.com/THOSTED/tilder
+git clone --branch v1.4.1 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site && cd my-site
 mkdir -p public
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.4.0 \
+  ghcr.io/thosted/tilder:1.4.1 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
