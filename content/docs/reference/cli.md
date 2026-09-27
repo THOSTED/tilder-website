@@ -90,7 +90,8 @@ as the first argument; an argument the build does not know is ignored
   From tilder 1.2, with `--check`: also print the contrast table as
   Markdown, a row per pair and scheme with its ratio, for a theme's
   README. The table goes to the standard output and the summary lines to
-  the error output, so `--check --markdown > contrast.md` keeps only the table.
+  the error output, so `--check --markdown > contrast.md` keeps only the
+  table.
 
 ### --debug
 

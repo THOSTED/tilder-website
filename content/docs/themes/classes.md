@@ -54,18 +54,28 @@ A recursive collection nests its folders in the sidebar, as sections:
 | `.collection-section--open` | `<li>` | added to the section that holds the current page, so the theme may fold the others |
 | `.collection-section-label` | `<a>` or `<span>` | the section's name: a link to its own page (its `index.md`, or a `<name>.md` beside the folder), titled like it; without one, a `<span>` with the folder's name |
 
-On the page `docs/guide/writing`, whose links the build makes relative
-to it:
+The sidebar of this manual on its page `docs/guide/writing`, shortened
+(`<!-- ... -->` stands for the lines left out); the build makes every
+link relative to the page:
 
 ```html
 <nav class="collection-nav" aria-label="In this section">
 <ul>
-	<li><a href="../install">Install</a></li>
 	<li class="collection-section collection-section--open"><a class="collection-section-label" href="../guide">Guide</a>
 	<ul>
-		<li><a href="writing" aria-current="page">Writing</a></li>
+		<li><a href="getting-started">Getting started</a></li>
+		<li><a href="project">The project</a></li>
+		<li><a href="writing" aria-current="page">Writing pages</a></li>
+		<!-- ... -->
 	</ul>
 	</li>
+	<li class="collection-section"><a class="collection-section-label" href="../content-types">Content types</a>
+	<ul>
+		<li><a href="../content-types/page">page</a></li>
+		<!-- ... -->
+	</ul>
+	</li>
+	<!-- ... -->
 </ul>
 </nav>
 ```

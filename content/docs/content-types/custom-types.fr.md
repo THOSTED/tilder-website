@@ -135,7 +135,8 @@ Dans une collection récursive (tilder 1.2), l'identifiant porte les
 dossiers, `guide/writing`, et `section` en contient la partie dossier,
 `guide` ; elle vaut `""` au premier niveau, et dans toute collection qui
 n'est pas récursive. La page propre d'une section se range à côté de son
-dossier : son identifiant est `guide` et sa `section` vaut `""`.
+dossier : son identifiant est `guide`, et sa `section` est le chemin de
+son dossier parent, `""` ici.
 
 ## Le nœud de carte
 

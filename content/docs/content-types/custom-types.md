@@ -129,8 +129,8 @@ target of the item's page.
 In a recursive collection (tilder 1.2), the slug carries the folders,
 `guide/writing`, and `section` holds the folder part, `guide`; it is
 `""` at the top, and in every collection that is not recursive. A
-section's own page sits beside its folder: its slug is `guide` and its
-`section` is `""`.
+section's own page sits beside its folder: its slug is `guide`, and its
+`section` is the path of its parent folder, `""` here.
 
 ## The entry node
 
