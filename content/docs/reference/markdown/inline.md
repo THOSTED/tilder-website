@@ -97,21 +97,23 @@ other sites.
 ## What stays literal
 
 The six constructs do not nest: the first one found wins, and holds its
-content as plain text. There is no escape character: a backslash is
-printed, and does not stop the markup after it. Anything else, HTML
-included, is printed as written.
+content as plain text. There is no escape character: a backslash is an
+ordinary character, so it is printed, and does not stop the markup that
+follows it. Anything else, HTML included, is printed as written.
 
 ```markdown
 **[a link](docs/)** is bold, and <b>this</b> is not.
-A \*backslash\* does not escape.
+a \*b* c
 ```
 
 > **[a link](docs/)** is bold, and <b>this</b> is not.
-> A \*backslash\* does not escape.
+> a \*b* c
 
-The two lines make one paragraph: bold text holding a link's source,
-HTML shown as text, then a backslash printed before italics. Rephrase rather
-than escape. Inside a table cell, `\|` is a pipe
+The first line makes one paragraph: bold text holding a link's source,
+HTML shown as text. The second shows the backslash: `a \*b* c` prints
+`a \`, then an italic `b`, then ` c` - the backslash did not stop the
+asterisk that follows it from opening italics. Rephrase rather than
+escape. The one exception is inside a table cell, where `\|` is a pipe
 ([tables](docs/reference/markdown/blocks#table)).
 
 ## In the text mirror

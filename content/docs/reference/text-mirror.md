@@ -96,27 +96,32 @@ word longer than the line is the one thing that can pass the edge.
 ## ASCII
 
 `txt/` is ASCII: the source keeps its accents and typography, the mirror
-folds them. First these characters are replaced:
+folds them, whatever they sit in - the man header, the updated date, a
+member's link and an image's path are folded too. First these characters
+are replaced:
 
 | Character | Becomes |
 |---|---|
 | em dash, en dash | `-` |
 | curly single quotes | `'` |
 | curly double quotes, guillemets | `"` |
-| middle dot | `-` |
+| middle dot, bullet | `-` |
 | ellipsis | `...` |
-| right arrow | `->` |
+| right arrow, double right arrow | `->`, `=>` |
+| left arrow, up arrow, down arrow, left-right arrow | `<-`, `^`, `v`, `<->` |
+| less-or-equal, greater-or-equal, not equal | `<=`, `>=`, `!=` |
 | north-east arrow, U+2197 | nothing |
 | the ligatures of o and e, a and e, in either case | `oe`, `OE`, `ae`, `AE` |
+| eszett, `ß` | `ss` |
+| o, l, d with a stroke, in either case | `o`/`O`, `l`/`L`, `d`/`D` |
 | no-break space, narrow no-break space | a space |
 | multiplication sign | `x` |
 
 Then every letter loses its accents and other marks: an e with an acute
 accent becomes e, a c with a cedilla becomes c. In prose,
-runs of spaces become one; in code, spacing is kept exactly. A character
-that is neither in the table nor an accented letter, an emoji or another
-arrow, is not folded: it passes into `txt/` as it is, so keep such
-characters out of text meant for the mirror.
+runs of spaces become one; in code, spacing is kept exactly. Whatever is
+left that is not ASCII - an emoji, another script, a symbol not in the
+table - is dropped: `txt/` is ASCII only, whatever the source holds.
 
 ## Blocks as text
 

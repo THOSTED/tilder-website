@@ -100,28 +100,33 @@ que la ligne est donc la seule chose qui puisse dépasser le bord.
 ## ASCII
 
 `txt/` est en ASCII : la source garde ses accents et sa typographie, le
-miroir les ramène à l'ASCII. D'abord, ces caractères sont remplacés :
+miroir les ramène à l'ASCII, où qu'ils se trouvent - l'en-tête de
+manuel, la date de mise à jour, le lien d'un membre et le chemin d'une
+image sont ramenés aussi. D'abord, ces caractères sont remplacés :
 
 | Caractère | Devient |
 |---|---|
 | tiret cadratin, tiret demi-cadratin | `-` |
 | apostrophes typographiques | `'` |
 | guillemets anglais typographiques, guillemets français | `"` |
-| point médian | `-` |
+| point médian, puce | `-` |
 | points de suspension | `...` |
-| flèche vers la droite | `->` |
+| flèche vers la droite, double flèche vers la droite | `->`, `=>` |
+| flèche vers la gauche, vers le haut, vers le bas, à double sens | `<-`, `^`, `v`, `<->` |
+| inférieur ou égal, supérieur ou égal, différent de | `<=`, `>=`, `!=` |
 | flèche nord-est, U+2197 | rien |
 | les ligatures de o et e, de a et e, en capitale ou non | `oe`, `OE`, `ae`, `AE` |
+| eszett, `ß` | `ss` |
+| o, l, d barrés, en capitale ou non | `o`/`O`, `l`/`L`, `d`/`D` |
 | espace insécable, espace fine insécable | une espace |
 | signe de multiplication | `x` |
 
 Ensuite, chaque lettre perd ses accents et autres signes : un e accent
 aigu devient e, un c cédille devient c. Dans la prose, les suites
 d'espaces n'en font plus qu'une ; dans le code, l'espacement est gardé à
-l'identique. Un caractère qui n'est ni dans le tableau ni une lettre
-accentuée, un emoji ou une autre flèche, n'est pas converti : il passe
-tel quel dans `txt/`, gardez donc ces caractères hors du texte destiné au
-miroir.
+l'identique. Ce qui reste hors ASCII - un emoji, une autre écriture, un
+symbole absent du tableau - est retiré : `txt/` n'est qu'ASCII, quoi que
+tienne la source.
 
 ## Les blocs en texte
 
