@@ -12,9 +12,7 @@ legal - qui publie ce site, qui l'héberge, ce qu'il fait de vos données
 
 ## Éditeur
 
-Le site tilder.thosted.fr est édité par THOSTED, l'entreprise de Théau Trova.
-
-Directeur de la publication : Théau Trova.
+Le site tilder.thosted.fr est édité par THOSTED, 4 rue de la République, 69001 Lyon, France. SIRET 944 480 623 00015.
 
 Contact : [contact@thosted.fr](mailto:contact@thosted.fr).
 
