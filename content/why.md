@@ -33,8 +33,7 @@ why, what that costs, and when another tool will serve you better.
   browser, ASCII text for the terminal, with a coloured twin. Both come
   from the same source, so they cannot drift apart. A construct is not
   supported until it renders in both; the text is half the product, not
-  an afterthought. `curl` gets the text instead of the HTML, and a braille
-  display reads it as easily.
+  an afterthought. `curl` gets the text instead of the HTML.
 
 ### Nothing from a third party
 
@@ -59,9 +58,12 @@ why, what that costs, and when another tool will serve you better.
 ### The standard library only
 
   tilder is written in Python with its standard library alone: nothing to
-  install, no package manager, no framework, no preprocessor. The one
-  outside tool, `rsvg-convert`, is optional and only draws the icons and
-  the share image; the Docker image has it.
+  install, no package manager, no framework, no preprocessor. Outside
+  tools only draw the icons and the share image, and are optional:
+  `rsvg-convert`, with `woff2_decompress` so the share image uses the
+  theme's fonts, else ImageMagick; without either, those images are
+  skipped with a warning. The Docker image has `rsvg-convert` and
+  `woff2_decompress`.
 
 ### Accessibility
 
