@@ -1,0 +1,47 @@
+# The theme's fixture site: every layout, type and class of the theme, in
+# two languages. English, neutral; no real person or site.
+
+[site]
+name = "fixture docs"
+url = "https://docs.example"
+lang = "en"
+locale = "en_GB"
+languages = ["en", "fr"]
+manual = "Fixture Manual"
+updated = 2026-09-01
+title_suffix = " - fixture docs"
+
+[footer]
+left = "FIXTURE"
+left_link = ""
+right = "FIXTURE(1)"
+
+[languages]
+en = "English"
+fr = "Français"
+
+[[nav]]
+label = "home"
+href = ""
+
+[[nav]]
+label = "docs"
+href = "docs/"
+
+[[nav]]
+label = "showcase"
+href = "showcase/"
+
+[seo]
+organization = "Fixture Docs"
+
+[share]
+image_alt = "~/fixture docs"
+card = ["a documentation theme", "in two languages"]
+short_name = "fixture"
+
+[collections.docs]
+type = "doc"
+
+[collections.showcase]
+type = "showcase"

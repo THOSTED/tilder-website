@@ -1,0 +1,24 @@
+# The fixture in French: only what differs from site.toml. The theme's
+# own French words come from theme/theme.fr.toml.
+
+[site]
+lang = "fr"
+locale = "fr_FR"
+manual = "Manuel du site de test"
+
+[labels]
+collection_nav = "Dans cette section"
+prev = "précédent"
+next = "suivant"
+
+[[nav]]
+label = "accueil"
+href = ""
+
+[[nav]]
+label = "docs"
+href = "docs/"
+
+[[nav]]
+label = "vitrine"
+href = "showcase/"

@@ -1,0 +1,13 @@
+# The theme's words in French (theme.toml holds the English). A site that
+# does not declare "fr" in [site] languages keeps it: tilder ignores a
+# theme.<lang>.toml of an undeclared language.
+
+[search]
+label = "Rechercher dans la documentation"
+placeholder = "rechercher"
+none = "Aucune page ne correspond."
+count = "{n} pages trouvées"
+
+[doc]
+contents = "Sommaire"
+on_this_page = "Sur cette page"
