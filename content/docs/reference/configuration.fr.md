@@ -277,7 +277,7 @@ plus celles-ci :
 
 | Clé | Défaut | Rôle |
 |---|---|---|
-| `type` | aucun, obligatoire | le type : `page`, `post`, `event`, `member`, ou un type ajouté par le thème |
+| `type` | `"post"` | le type : `page`, `post`, `event`, `member`, ou un type ajouté par le thème |
 | `dir` | le nom de la collection | le dossier, sous `content/` |
 
 <!-- 1.2 -->
@@ -326,7 +326,8 @@ Les réglages de chaque type intégré sont sur sa page :
 ## Dates
 
 La table `[dates]` : comment une date s'écrit en toutes lettres, sur la
-carte d'un article ou d'un événement et comme accroche d'un article.
+carte d'un article ou d'un événement et comme accroche d'un article ou
+d'un événement.
 
 | Clé | Défaut | Rôle |
 |---|---|---|
@@ -415,7 +416,9 @@ disallow = ["/txt/", "/ansi/", "/drafts/"]
 <!-- 1.2 -->
 
 La table `[check]` appartient au thème : lue par `build.py --check`
-(tilder 1.2), elle se règle dans `theme/theme.toml`. `unstyled`, les
+(tilder 1.2), elle se règle dans `theme/theme.toml` ; `content/site.toml`
+peut aussi la régler, fusionnée par-dessus celle du thème comme toute
+autre table. `unstyled`, les
 classes que le thème laisse sans style à dessein (défaut `[]`) ;
 `contrast`, les paires de couleurs à vérifier (défaut `[]`, rien de
 vérifié) ; `contrast_min`, le contraste minimal de chaque paire (défaut

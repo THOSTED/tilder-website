@@ -80,8 +80,8 @@ as the first argument; an argument the build does not know is ignored
   build nothing. Every class the build writes must have a rule in the
   served `style.css` (`assets/style.css` wins over `theme/style.css`),
   but those the theme's `[check] unstyled` names; every pair of colours
-  of `[check] contrast` must reach `contrast_min`, in the light scheme and
-  the dark one. It prints one `error:` line per problem, then a summary
+  of `[check] contrast` must reach `contrast_min`, in the light scheme,
+  and in the dark one when the stylesheet has one. It prints one `error:` line per problem, then a summary
   line per check, and exits 1 when there is a problem, 0 otherwise
   ([checking a theme](docs/themes/checking)).
 
@@ -168,7 +168,7 @@ The errors of the configuration and of the languages:
 | `[collection_defaults] is no longer read` | the same; a type's words go under each `[collections.<name>]` |
 | `collection "..." has type "...s"; types are singular` | a type written in the plural, `posts` |
 | `collection "..." has type "...", which no type defines` | an unknown type; the message lists those loaded |
-| `collections "..." and "..." share the folder content/...` | two collections with one `dir` |
+| `collections "..." and "..." share the folder content/...` | two collections with one `dir`, or one whose `dir` is inside the other's |
 | `[site] languages does not contain the default language "..."` | `site.lang` missing from `site.languages` |
 | `"..." is not a declared language` | a `site.<lang>.toml` or a page `<name>.<lang>.md` for a language not in `site.languages` |
 | `[site] lang is "...", not "..."` | a `site.<lang>.toml` that sets another language |
@@ -199,8 +199,10 @@ A theme's types in Python have errors of their own, from a missing
 [custom types](docs/content-types/custom-types). The errors of `--check`
 are listed with [checking a theme](docs/themes/checking).
 
-A file that is not valid TOML, or a bug, ends with Python's own message
-and traceback instead of this shape.
+In a one-shot build, a file that is not valid TOML, or a bug, ends with
+Python's own message and traceback instead of this shape. With
+`--watch`, the same problem is one line, `error: <Python error>: <what>`,
+and the traceback follows only with `--debug`.
 
 ## Warnings
 
@@ -213,15 +215,16 @@ build can print:
 | `warning: image not found: content/<path>` | an image whose file does not exist |
 | `warning: image without alt text: <path>` | an image with an empty alt text |
 | `warning: unknown code language '<lang>', left plain` | a code block's language tilder does not highlight ([blocks](docs/reference/markdown/blocks)) |
-| `warning: no logo.svg in assets/: no icons, no share.png` | the logo named by `share.logo_svg` is missing |
+| `warning: no <logo> in assets/: no icons, no share.png` | the logo named by `share.logo_svg`, `logo.svg` by default, is missing |
 | `warning: no rsvg-convert or magick: icons and share.png not made` | no SVG renderer is installed ([feeds and images](docs/reference/feeds-and-images)) |
-| `seo: <page>: title is N characters (max 60)` | a `<title>` longer than `seo.title_max` |
-| `seo: <page>: description is N characters (50-160)` | a description outside `seo.description_min` and `seo.description_max` |
+| `seo: <page>: title is N characters (max MAX)` | a `<title>` longer than `seo.title_max`, `60` by default |
+| `seo: <page>: description is N characters (MIN-MAX)` | a description outside `seo.description_min` and `seo.description_max`, `50-160` by default |
 | `seo: <page>: same title as <page>` | two pages of one language share a title |
 | `seo: <page>: same description as <page>` | two pages of one language share a description |
 
-On a site with several languages, the `seo:` lines name the language of
-the pass, `seo: [fr] about.html: ...` ([SEO](docs/reference/seo)). A site
+On a site with several languages, every `seo:` line names the language
+of the pass, the default one included: `seo: [en] about.html: ...`,
+`seo: [fr] about.html: ...` ([SEO](docs/reference/seo)). A site
 that wants no warning at all makes its own build fail on them, as this
 site's build does on any `warning:` or `seo:` line. In a shell script:
 

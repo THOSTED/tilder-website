@@ -50,7 +50,7 @@ double les pages ([SEO](docs/reference/seo)).
 ## La page en texte
 
 Le texte suit les sections de la page, à la manière d'une page de
-manuel :
+manuel (en raccourci ici : les vrais filets font 75 colonnes de large) :
 
 ```text
 MYSITE(1)                 My Site Manual                 MYSITE(1)
@@ -160,8 +160,8 @@ proprement depuis un terminal. En raccourci :
 '------------------------------------'
 ```
 
-Le code garde son espacement à l'identique ; une tabulation devient
-quatre espaces. Une ligne qui dépasse la 75e colonne est coupée et
+Le code garde son espacement à l'identique ; une tabulation avance
+jusqu'au taquet suivant, toutes les quatre colonnes. Une ligne qui dépasse la 75e colonne est coupée et
 continue sur la ligne suivante, en retrait de deux espaces, la coupure
 marquée d'un `\` : un shell la lit comme une continuation.
 
@@ -169,7 +169,7 @@ marquée d'un `\` : un shell la lit comme une continuation.
 
 `ansi/` est le même texte avec des séquences d'échappement ANSI : huit
 couleurs, jamais de fond, pour se lire aussi bien sur un terminal clair
-que sombre. La couleur suit le balisage, sans jamais le deviner d'après
+que sombre. La couleur suit le balisage, sans jamais être devinée d'après
 les mots : la construction marque le code en ligne, les puces des listes
 et les lignes des blocs de code là où elle les rend, et colore exactement
 ceux-là, d'une ligne à l'autre.

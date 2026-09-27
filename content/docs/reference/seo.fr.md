@@ -182,9 +182,9 @@ sauf celles marquées `noindex`, et écrit une ligne sur sa sortie d'erreur
 pour chaque problème :
 
 ```text
-seo: about.html: title is 64 characters (max 60)
-seo: about.html: description is 38 characters (50-160)
-seo: blog/index.html: same title as about.html
+seo: [en] about.html: title is 64 characters (max 60)
+seo: [en] about.html: description is 38 characters (50-160)
+seo: [en] blog/index.html: same title as about.html
 seo: [fr] about.html: same description as index.html
 ```
 
@@ -195,8 +195,9 @@ seo: [fr] about.html: same description as index.html
 | `same title as` | deux pages d'une même langue partagent un `<title>` |
 | `same description as` | deux pages d'une même langue partagent une description |
 
-Sur un site en plusieurs langues, chaque ligne nomme la langue de la
-passe, `[fr]`. Un avertissement n'arrête pas la construction et ne
+L'exemple ci-dessus vient d'un site en deux langues, où chaque ligne nomme la
+langue de la passe, celle par défaut comprise, `[en]`, `[fr]` ; un site
+en une seule langue écrit les lignes sans elle, `seo: about.html: ...`. Un avertissement n'arrête pas la construction et ne
 change pas son code de sortie : un site qui le veut, comme celui-ci, fait
 échouer sa propre construction sur toute ligne `seo:`
 ([la ligne de commande](docs/reference/cli)). Les limites se changent
