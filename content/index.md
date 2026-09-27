@@ -7,9 +7,11 @@ nav:
 layout: home
 ---
 
-## Name
+## Name {text}
 
 tilder - a man-page site builder
+
+## Description
 
 One Markdown file in, two outputs out: an HTML page for browsers and its
 text mirror for terminals. tilder is written in Python's standard library;
