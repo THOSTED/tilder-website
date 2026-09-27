@@ -1,0 +1,42 @@
+# The site, locally and in production: `build` renders content/ with
+# tilder into the `site` volume and exits; `web` (Caddy) serves it.
+#
+#   make serve                 build, then serve: http://localhost:8080
+#   docker compose run build   rebuild into the running stack
+#   docker compose down        stop
+#
+# TILDER_VERSION comes from the file of that name (the Makefile exports
+# it). Hosts and ports come from .env (see .env.example).
+
+services:
+  build:
+    image: ghcr.io/thosted/tilder:${TILDER_VERSION:?run through make, or set TILDER_VERSION}
+    command: ["python3", "-B", "/tilder/build.py", "--root", "/site", "--out", "/out"]
+    volumes:
+      - ./content:/site/content:ro
+      - ./theme:/site/theme:ro
+      - ./assets:/site/assets:ro
+      - site:/out
+
+  web:
+    image: caddy:2-alpine
+    depends_on:
+      build:
+        condition: service_completed_successfully
+    ports:
+      - "${SITE_PORT:-8080}:80"
+      - "${TEXT_PORT:-8081}:81"
+      - "${HTTPS_PORT:-8443}:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - site:/srv:ro
+      - caddy-data:/data
+    environment:
+      SITE_HOST: ${SITE_HOST:-http://site.localhost}
+      TEXT_HOST: ${TEXT_HOST:-http://text.site.localhost}
+      AUTO_HTTPS: ${AUTO_HTTPS:-off}
+    restart: unless-stopped
+
+volumes:
+  site:
+  caddy-data:
