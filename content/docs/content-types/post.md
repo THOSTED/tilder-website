@@ -23,12 +23,12 @@ each has its default in the type's module, `types/post.py`.
 
 | Key | Default | Meaning |
 |---|---|---|
-| `post.man` | `"SITE-BLOG(7)"` | the man-page name of its items, unless one sets its own |
-| `post.nav` | `"blog/"` | the `[[nav]]` entry its items mark as current, and the link of the feed |
-| `post.empty` | `"No post yet."` | the text of a `{posts}` list with nothing in it |
-| `post.feed` | `""` | the RSS feed's path from the site root, `"blog/feed.xml"`; empty for none |
-| `post.feed_title` | `"posts"` | the feed's title |
-| `post.feed_description` | `"Posts."` | the feed's description |
+| `man` | `"SITE-BLOG(7)"` | the man-page name of its items, unless one sets its own |
+| `nav` | `"blog/"` | the `[[nav]]` entry its items mark as current, and the link of the feed |
+| `empty` | `"No post yet."` | the text of a `{posts}` list with nothing in it |
+| `feed` | `""` | the RSS feed's path from the site root, `"blog/feed.xml"`; empty for none |
+| `feed_title` | `"posts"` | the feed's title |
+| `feed_description` | `"Posts."` | the feed's description |
 
 This site's blog, for instance:
 
@@ -100,11 +100,11 @@ title links to the post; on the post's own page the same card, without
 the link, closes the first section. In the text mirror:
 
 ```text
-Hello                                                         [ news ]
-Thursday 1 January 2026
-Me
+     Hello                                                         [ news ]
+     Thursday 1 January 2026
+     Me
 
-    The first post, in a file named by its date: all a post needs.
+         The first post, in a file named by its date: all a post needs.
 ```
 
 ## The list

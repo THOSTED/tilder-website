@@ -8,6 +8,8 @@ order: 60
 
 navigation - the order of a collection, its sidebar and its neighbours
 
+<!-- 1.2 -->
+
 The pages of a collection have an order, set by their type. A theme shows
 it three ways: a sidebar of every page, grouped and nested, links to the
 previous and the next page, and, in the text mirror, a line naming both.

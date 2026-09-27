@@ -96,6 +96,8 @@ def list_data(conf): ...
 
 What `defaults`, `entry` and the others receive:
 
+<!-- 1.2 -->
+
 ```python
 {"slug": "2099-03-01-first-talk",
  "date": "2099-03-01",
@@ -109,6 +111,8 @@ What `defaults`, `entry` and the others receive:
  "content_lang": "en",
  "section": ""}
 ```
+
+<!-- 1.2 -->
 
 | Key | Meaning |
 |---|---|
@@ -383,8 +387,9 @@ leek soup - for a cold evening
 - 2 potatoes
 ```
 
-The build names the new type and its collection, and `/recipes` reads,
-in a terminal:
+On a site whose theme adds only this type and whose only collection
+folder is `content/recipes/`, the build names the new type and its
+collection, and `/recipes` reads, in a terminal:
 
 ```text
 types: event, member, page, post; from theme: recipe

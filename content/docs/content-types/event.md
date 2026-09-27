@@ -23,18 +23,18 @@ each has its default in the type's module, `types/event.py`.
 
 | Key | Default | Meaning |
 |---|---|---|
-| `event.man` | `"SITE-EVENTS(7)"` | the man-page name of its items, unless one sets its own |
-| `event.nav` | `"events"` | the `[[nav]]` entry its items mark as current, and the link of the feed |
-| `event.upcoming_tag` | `"upcoming"` | the tag of an upcoming event's card |
-| `event.past_tag` | `"past"` | the tag of a past event's card |
-| `event.none_upcoming` | `"No upcoming event."` | the text of an `{upcoming}` or `{next-event}` list with nothing in it |
-| `event.none_past` | `"No past event."` | the text of a `{past}` list with nothing in it |
-| `event.link_label` | `"event website ↗"` | the link to the event's own site, on its page |
-| `event.map_label` | `"see on OpenStreetMap ↗"` | the link to the place on the map, on its page |
-| `event.feed` | `""` | the RSS feed's path from the site root, `"events.xml"`; empty for none |
-| `event.feed_title` | `"events"` | the feed's title |
-| `event.feed_description` | `"Upcoming and past events."` | the feed's description |
-| `event.calendar` | `""` | the iCalendar file's path from the site root, `"events.ics"`; empty for none |
+| `man` | `"SITE-EVENTS(7)"` | the man-page name of its items, unless one sets its own |
+| `nav` | `"events"` | the `[[nav]]` entry its items mark as current, and the link of the feed |
+| `upcoming_tag` | `"upcoming"` | the tag of an upcoming event's card |
+| `past_tag` | `"past"` | the tag of a past event's card |
+| `none_upcoming` | `"No upcoming event."` | the text of an `{upcoming}` or `{next-event}` list with nothing in it |
+| `none_past` | `"No past event."` | the text of a `{past}` list with nothing in it |
+| `link_label` | `"event website ↗"` | the link to the event's own site, on its page |
+| `map_label` | `"see on OpenStreetMap ↗"` | the link to the place on the map, on its page |
+| `feed` | `""` | the RSS feed's path from the site root, `"events.xml"`; empty for none |
+| `feed_title` | `"events"` | the feed's title |
+| `feed_description` | `"Upcoming and past events."` | the feed's description |
+| `calendar` | `""` | the iCalendar file's path from the site root, `"events.ics"`; empty for none |
 
 An empty tag, `upcoming_tag = ""`, leaves the card without one.
 `defaults.toml` already declares `[collections.events]`, with `feed =
@@ -100,7 +100,7 @@ later, `past_tag` once that day has gone by. In a list it shows the
 description and links to the event.
 
 On the event's own page, the card also links to the event's site
-(`link`, labelled `link_label`) and to the place on OpenStreetMap
+(`link`, labelled `link_label`) and to the place on the map
 (`map_label`): a marker at `lat` and `lon` when both are given, else a
 search for `place`. It is a link, not an embedded map, so no reader's
 browser calls another site unless they click it. The text mirror keeps

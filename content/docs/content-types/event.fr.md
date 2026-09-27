@@ -24,18 +24,18 @@ chacune a sa valeur par défaut dans le module du type, `types/event.py`.
 
 | Clé | Défaut | Rôle |
 |---|---|---|
-| `event.man` | `"SITE-EVENTS(7)"` | le nom de page de manuel de ses éléments, sauf s'ils fixent le leur |
-| `event.nav` | `"events"` | l'entrée de `[[nav]]` que ses éléments marquent comme courante, et le lien du flux |
-| `event.upcoming_tag` | `"upcoming"` | l'étiquette de la carte d'un événement à venir |
-| `event.past_tag` | `"past"` | l'étiquette de la carte d'un événement passé |
-| `event.none_upcoming` | `"No upcoming event."` | le texte d'une liste `{upcoming}` ou `{next-event}` vide |
-| `event.none_past` | `"No past event."` | le texte d'une liste `{past}` vide |
-| `event.link_label` | `"event website ↗"` | le lien vers le site de l'événement, sur sa page |
-| `event.map_label` | `"see on OpenStreetMap ↗"` | le lien vers le lieu sur la carte, sur sa page |
-| `event.feed` | `""` | le chemin du flux RSS depuis la racine du site, `"events.xml"` ; vide pour aucun |
-| `event.feed_title` | `"events"` | le titre du flux |
-| `event.feed_description` | `"Upcoming and past events."` | la description du flux |
-| `event.calendar` | `""` | le chemin du fichier iCalendar depuis la racine du site, `"events.ics"` ; vide pour aucun |
+| `man` | `"SITE-EVENTS(7)"` | le nom de page de manuel de ses éléments, sauf s'ils fixent le leur |
+| `nav` | `"events"` | l'entrée de `[[nav]]` que ses éléments marquent comme courante, et le lien du flux |
+| `upcoming_tag` | `"upcoming"` | l'étiquette de la carte d'un événement à venir |
+| `past_tag` | `"past"` | l'étiquette de la carte d'un événement passé |
+| `none_upcoming` | `"No upcoming event."` | le texte d'une liste `{upcoming}` ou `{next-event}` vide |
+| `none_past` | `"No past event."` | le texte d'une liste `{past}` vide |
+| `link_label` | `"event website ↗"` | le lien vers le site de l'événement, sur sa page |
+| `map_label` | `"see on OpenStreetMap ↗"` | le lien vers le lieu sur la carte, sur sa page |
+| `feed` | `""` | le chemin du flux RSS depuis la racine du site, `"events.xml"` ; vide pour aucun |
+| `feed_title` | `"events"` | le titre du flux |
+| `feed_description` | `"Upcoming and past events."` | la description du flux |
+| `calendar` | `""` | le chemin du fichier iCalendar depuis la racine du site, `"events.ics"` ; vide pour aucun |
 
 Une étiquette vide, `upcoming_tag = ""`, laisse la carte sans étiquette.
 `defaults.toml` déclare déjà `[collections.events]`, avec
@@ -105,7 +105,7 @@ toutes lettres quand l'événement dure plusieurs jours
 description et mène à l'événement.
 
 Sur la page de l'événement, la carte mène aussi à son site (`link`,
-avec le libellé `link_label`) et au lieu sur OpenStreetMap
+avec le libellé `link_label`) et au lieu sur la carte
 (`map_label`) : un repère à `lat` et `lon` quand les deux sont donnés,
 sinon une recherche de `place`. C'est un lien, pas une carte intégrée :
 le navigateur d'un lecteur n'appelle aucun autre site tant qu'il ne

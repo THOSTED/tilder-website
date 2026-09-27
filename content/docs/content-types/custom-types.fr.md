@@ -44,8 +44,8 @@ valeur par défaut :
 | `SEQUENTIAL` | `False` | le miroir en texte d'un élément reçoit une ligne `previous: ... next: ...` avant son pied de page ([navigation](docs/content-types/navigation)) |
 | `LOCALIZED_OUTPUTS` | `False` | `outputs()` est appelée dans chaque langue, ses fichiers placés sous le préfixe de la langue, `fr/` ; sinon une seule fois, dans la langue par défaut |
 
-Une valeur du mauvais genre, par exemple un `DATED` qui n'est pas un
-`bool`, arrête la construction. Les réglages que reçoit une collection
+Une valeur qui n'est pas du bon type, par exemple un `DATED` qui n'est
+pas un `bool`, arrête la construction. Les réglages que reçoit une collection
 sont les `DEFAULTS` du type avec `[collections.<name>]` par-dessus, plus
 `type` et `dir`.
 
@@ -101,6 +101,8 @@ def list_data(conf): ...
 
 Ce que reçoivent `defaults`, `entry` et les autres :
 
+<!-- 1.2 -->
+
 ```python
 {"slug": "2099-03-01-first-talk",
  "date": "2099-03-01",
@@ -114,6 +116,8 @@ Ce que reçoivent `defaults`, `entry` et les autres :
  "content_lang": "en",
  "section": ""}
 ```
+
+<!-- 1.2 -->
 
 | Clé | Rôle |
 |---|---|
@@ -245,8 +249,8 @@ entry = event.entry
 
 La construction vérifie chaque module et chaque collection avant de
 construire, et signale tous les problèmes qu'elle trouve avant de
-s'arrêter : un `NAME` ou une `entry` absents, un attribut du mauvais
-genre, une fonction qui n'en est pas une, un mot de marqueur revendiqué
+s'arrêter : un `NAME` ou une `entry` absents, un attribut qui n'est pas
+du bon type, une fonction qui n'en est pas une, un mot de marqueur revendiqué
 deux fois, un module qui ne peut pas être importé, une collection dont
 aucun module ne définit le `type`, deux collections sur un même dossier.
 
@@ -395,8 +399,9 @@ leek soup - for a cold evening
 - 2 potatoes
 ```
 
-La construction nomme le nouveau type et sa collection, et `/recipes` se
-lit ainsi dans un terminal :
+Sur un site dont le thème n'ajoute que ce type et dont le seul dossier de
+collection est `content/recipes/`, la construction nomme le nouveau type
+et sa collection, et `/recipes` se lit ainsi dans un terminal :
 
 ```text
 types: event, member, page, post; from theme: recipe

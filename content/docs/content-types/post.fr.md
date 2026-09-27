@@ -24,12 +24,12 @@ chacune a sa valeur par défaut dans le module du type, `types/post.py`.
 
 | Clé | Défaut | Rôle |
 |---|---|---|
-| `post.man` | `"SITE-BLOG(7)"` | le nom de page de manuel de ses éléments, sauf s'ils fixent le leur |
-| `post.nav` | `"blog/"` | l'entrée de `[[nav]]` que ses éléments marquent comme courante, et le lien du flux |
-| `post.empty` | `"No post yet."` | le texte d'une liste `{posts}` vide |
-| `post.feed` | `""` | le chemin du flux RSS depuis la racine du site, `"blog/feed.xml"` ; vide pour aucun |
-| `post.feed_title` | `"posts"` | le titre du flux |
-| `post.feed_description` | `"Posts."` | la description du flux |
+| `man` | `"SITE-BLOG(7)"` | le nom de page de manuel de ses éléments, sauf s'ils fixent le leur |
+| `nav` | `"blog/"` | l'entrée de `[[nav]]` que ses éléments marquent comme courante, et le lien du flux |
+| `empty` | `"No post yet."` | le texte d'une liste `{posts}` vide |
+| `feed` | `""` | le chemin du flux RSS depuis la racine du site, `"blog/feed.xml"` ; vide pour aucun |
+| `feed_title` | `"posts"` | le titre du flux |
+| `feed_description` | `"Posts."` | la description du flux |
 
 Le blog de ce site, par exemple :
 
@@ -104,11 +104,11 @@ même carte, sans le lien, clôt la première section. Dans le miroir en
 texte :
 
 ```text
-Hello                                                         [ news ]
-Thursday 1 January 2026
-Me
+     Hello                                                         [ news ]
+     Thursday 1 January 2026
+     Me
 
-    The first post, in a file named by its date: all a post needs.
+         The first post, in a file named by its date: all a post needs.
 ```
 
 ## La liste
