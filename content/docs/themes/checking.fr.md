@@ -42,16 +42,23 @@ docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.2.0 \
 
 Elle affiche une ligne `error:` par problème, sous la même forme que les
 erreurs de la construction, le fichier, ce qui ne va pas, puis ce qu'il
-faut faire, et une ligne de bilan par vérification. Le code de sortie vaut
+faut faire, et une ligne de bilan pour chaque vérification menée : avec
+des paires de contraste déclarées mais sans `style.css`, la vérification
+du contraste donne une erreur au lieu d'un bilan. Le code de sortie vaut
 0 quand chaque vérification réussit ou est ignorée, 1 quand un problème a
 été trouvé. La construction normale ne lance jamais ces vérifications :
 lancez-les quand le thème change, ou avant chaque construction.
 
+Par exemple, sur un thème écrit pour tilder 1.1, auquel manquent les trois
+classes de section de la 1.2 et qui ne déclare aucune paire de contraste :
+
 ```console
 $ python3 ../tilder/build.py --check
 error: theme/style.css: no rule for .collection-section. Style it, or name it in [check] unstyled (theme/theme.toml)
-classes: 1 of 72 not styled
-contrast: 20 pairs (light, dark), all at or above 4.5:1
+error: theme/style.css: no rule for .collection-section--open. Style it, or name it in [check] unstyled (theme/theme.toml)
+error: theme/style.css: no rule for .collection-section-label. Style it, or name it in [check] unstyled (theme/theme.toml)
+classes: 3 of 72 not styled
+contrast: skipped, no [check] contrast in theme/theme.toml
 $ echo $?
 1
 ```

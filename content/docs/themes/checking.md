@@ -40,16 +40,22 @@ docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.2.0 \
 <!-- 1.2 -->
 
 It prints one `error:` line per problem, in the shape of the build's own
-errors, the file, what is wrong, then what to do, and one summary line per
-check. The exit code is 0 when every check passes or is skipped, 1 when a
+errors, the file, what is wrong, then what to do, and a summary line for
+each check it ran: with contrast pairs declared but no `style.css`, the
+contrast check has an error instead of a summary. The exit code is 0 when every check passes or is skipped, 1 when a
 problem was found. The normal build never runs these checks: run them when
 the theme changes, or before every build.
+
+For example, on a theme written for tilder 1.1, which lacks the three
+section classes of 1.2 and declares no contrast pairs:
 
 ```console
 $ python3 ../tilder/build.py --check
 error: theme/style.css: no rule for .collection-section. Style it, or name it in [check] unstyled (theme/theme.toml)
-classes: 1 of 72 not styled
-contrast: 20 pairs (light, dark), all at or above 4.5:1
+error: theme/style.css: no rule for .collection-section--open. Style it, or name it in [check] unstyled (theme/theme.toml)
+error: theme/style.css: no rule for .collection-section-label. Style it, or name it in [check] unstyled (theme/theme.toml)
+classes: 3 of 72 not styled
+contrast: skipped, no [check] contrast in theme/theme.toml
 $ echo $?
 1
 ```

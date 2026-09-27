@@ -81,6 +81,8 @@ A theme's scripts follow the rules of tilder's own contract (its
 `AGENTS.md`, "Scripts"), which the server's Content-Security-Policy
 enforces:
 
+<!-- 1.2 -->
+
 - **A file, never inline.** ES5, no dependency, a file the site serves:
   never a `<script>` with code in the page, never a CDN. The example
   Caddyfile's policy allows scripts with `script-src 'self'` alone, so a
@@ -94,9 +96,6 @@ enforces:
   `data-*` attributes the build or the layout writes: `labels.copy` for
   the copy button, a theme's `[search]` for its search.
 - **No storage, no cookie.**
-
-<!-- 1.2 -->
-
 - **Same-origin requests only.** A script may fetch the site's own files,
   a search index for example, and nothing else: no other host. The policy
   grants `connect-src 'self'`; under a policy that lacks it, the browser
