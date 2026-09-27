@@ -5,10 +5,10 @@
 label = "Search the documentation"     # the search field's label (search.js)
 placeholder = "search"                 # the field's placeholder
 none = "No page matches."              # a search that finds nothing
-count = "{n} pages found"              # {n}: how many pages match
+count = "Pages found: {n}"             # {n}: how many pages match
 
 [doc]
-contents = "Contents"                  # the sidebar's summary on small screens
+contents = "Documentation"             # the sidebar's summary on small screens
 on_this_page = "On this page"          # the right column, over the [TOC]
 
 [share]                                # the link preview and the browser UI

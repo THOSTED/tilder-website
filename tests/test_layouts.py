@@ -43,15 +43,16 @@ class Doc(unittest.TestCase):
         html = self.build.read("docs/start.html")
         self.assertIn('data-search-index="docs/search-index.json" data-home="../"', html)
         self.assertIn('data-label="Search the documentation"', html)
-        self.assertIn('data-count="{n} pages found"', html)
-        self.assertIn("<summary>Contents</summary>", html)
+        self.assertIn('data-count="Pages found: {n}"', html)
+        self.assertIn("<summary>Documentation</summary>", html)
         self.assertIn('<p class="doc-toc-label" aria-hidden="true">On this page</p>', html)
 
     def test_french_words_from_theme_fr_toml(self):
         html = self.build.read("fr/docs/cli.html")
         self.assertIn('data-home="../"', html)
         self.assertIn('data-label="Rechercher dans la documentation"', html)
-        self.assertIn("<summary>Sommaire</summary>", html)
+        self.assertIn("<summary>Documentation</summary>", html)
+        self.assertIn('data-count="Pages trouvées : {n}"', html)
         self.assertIn('<p class="doc-toc-label" aria-hidden="true">Sur cette page</p>', html)
 
     def test_scripts_are_linked_from_the_root(self):

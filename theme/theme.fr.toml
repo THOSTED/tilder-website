@@ -6,8 +6,8 @@
 label = "Rechercher dans la documentation"
 placeholder = "rechercher"
 none = "Aucune page ne correspond."
-count = "{n} pages trouvées"
+count = "Pages trouvées : {n}"
 
 [doc]
-contents = "Sommaire"
+contents = "Documentation"
 on_this_page = "Sur cette page"
