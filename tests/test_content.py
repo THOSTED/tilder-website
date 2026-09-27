@@ -9,10 +9,15 @@ from tests.helpers import REPO
 
 CONTENT = REPO / "content"
 ENGLISH_ONLY = {"kitchen-sink.md"}          # the theme's test page (ledger Ruling)
-ALLOWED = re.compile(r"https?://(tilder\.thosted\.fr|github\.com/THOSTED/tilder"
+ALLOWED = re.compile(r"^https?://(tilder\.thosted\.fr|github\.com/THOSTED/tilder(?:\.git)?"
                      r"|([\w-]+\.)*example\.(org|com|net)|[\w.-]+\.example|localhost)"
                      r"(?=[/:)\s`\"'>]|$)")
-URL = re.compile(r"https?://[^\s)`\"'>]+")
+# Anchored (^) so a disallowed host cannot smuggle an allowed-looking one
+# later in the same string (a query parameter, say). Lazy up to a
+# trailing sentence mark ("." "," ";" "!" "?") immediately before
+# whitespace/end, so prose punctuation is not read as part of the URL,
+# while a period inside the URL itself (a path, a `.git` suffix) is kept.
+URL = re.compile(r"https?://[^\s)`\"'>]+?(?=[.,;!?](?:\s|$)|[)`\"'>\s]|$)")
 FENCE = re.compile(r"^[ \t]*(`{3,})([^`\n]*)$", re.M)
 # Every name src/highlight.py accepts at v1.1.0: its LANGS keys, ALIASES
 # keys (aliases resolving to a LANGS entry), SPECIAL (handled line by
@@ -37,6 +42,23 @@ def toml_pages():
 def front(path):
     m = re.match(r"---\n(.*?)\n---\n", path.read_text(encoding="utf-8"), re.S)
     return dict(l.split(":", 1) for l in m.group(1).splitlines() if ":" in l) if m else {}
+
+
+class LinkPatterns(unittest.TestCase):
+    def test_a_disallowed_host_cannot_smuggle_an_allowed_one_in_its_query_string(self):
+        url = "https://evil.com/?u=https://example.org"
+        self.assertNotRegex(url, ALLOWED)
+
+    def test_a_trailing_sentence_mark_is_not_swallowed_into_the_url(self):
+        text = "Read the docs at https://tilder.thosted.fr. It helps."
+        self.assertEqual(URL.findall(text), ["https://tilder.thosted.fr"])
+
+    def test_a_mid_url_period_is_kept(self):
+        text = "see https://tilder.thosted.fr/docs/reference.html here"
+        self.assertEqual(URL.findall(text), ["https://tilder.thosted.fr/docs/reference.html"])
+
+    def test_a_git_suffix_on_the_repository_is_allowed(self):
+        self.assertRegex("https://github.com/THOSTED/tilder.git", ALLOWED)
 
 
 class Content(unittest.TestCase):
