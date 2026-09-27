@@ -88,8 +88,8 @@ ligne en retrait qui n'est pas un élément prolonge l'élément du dessus.
 1. Copier le site de départ
 2. Le construire, puis le laisser se reconstruire
    pendant que vous écrivez
-   - `./build.sh`
-   - `./build.sh --watch`
+   - `python3 builder/build.py`
+   - `python3 builder/build.py --watch`
 3. Écrire la première page
 ```
 
@@ -100,8 +100,8 @@ ligne en retrait qui n'est pas un élément prolonge l'élément du dessus.
   1. Copier le site de départ
   2. Le construire, puis le laisser se reconstruire
      pendant que vous écrivez
-     - `./build.sh`
-     - `./build.sh --watch`
+     - `python3 builder/build.py`
+     - `python3 builder/build.py --watch`
   3. Écrire la première page
 
 Dans le miroir en texte, chaque élément est en retrait de deux espaces,
@@ -314,7 +314,7 @@ langages se lisent ligne par ligne plutôt que mot par mot :
 
 ````text
 ```console
-$ ./build.sh
+$ python3 builder/build.py
 built public/
 ```
 
@@ -327,7 +327,7 @@ built public/
 ### Rendu {example}
 
   ```console
-  $ ./build.sh
+  $ python3 builder/build.py
   built public/
   ```
 
