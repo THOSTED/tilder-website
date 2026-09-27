@@ -160,26 +160,36 @@ spaces, the cut marked with `\`: a shell reads it as a continuation.
 
 ## Colours
 
-`ansi/` is the same text with ANSI escape sequences: eight colours, never
-a background, so it reads on light and dark terminals alike. Colour
-follows the markup, never a guess from the words: the build marks
-inline code, list markers and code-block lines where it renders them,
-and colours exactly those, across line breaks.
+`ansi/` is the same text with ANSI escape sequences: eight colours, or a
+256-colour accent the site chose (`text.accent`), never a background, so
+it reads on light and dark terminals alike. Colour follows the markup,
+never a guess from the words: the build marks inline code, list markers,
+code-block lines and, in a highlighted code block, each token, where it
+renders them, and colours exactly those, across line breaks.
 
 | What | Colour |
 |---|---|
 | the header and footer rules | dim |
 | a section's title, when it holds only letters, digits, spaces and `-()'` | bold |
 | the page's name, on the first line of the first section | bold |
-| inline `code` | cyan, the accent, as far as its backquotes go |
-| list markers | cyan |
-| URLs | cyan, underlined |
-| `[ tags ]` | bold cyan |
+| inline `code` | the accent, as far as its backquotes go |
+| list markers | the accent |
+| URLs | the accent, underlined |
+| `[ tags ]` | bold, in the accent |
 | a code block's rules | dim |
-| a command line in a code block | cyan |
-| an information callout's box and label | cyan, the label bold |
+| a command line in a code block with no language, or in `text` | the accent |
+| an information callout's box and label | the accent, the label bold |
 | a warning callout | yellow |
 | an error callout | red |
+
+The accent is `text.accent`: `"cyan"` by default, or any of the eight
+colour names or a 256-colour index from 16 to 255, such as `208` for
+orange, set in `site.toml` (a `site.<lang>.toml` may set its own)
+([configuration](docs/reference/configuration)). A URL's or a command
+line's closing punctuation - a final `.,;:!?`, a quote left unpaired, a
+bracket never opened - is left uncoloured: in a sentence such as (see
+https://example.org/a_(b)), only the address is coloured, not the `).`
+that ends it.
 
 A command line is a code-block line that starts with one of the words of
 `text.commands`, alone or after a prompt, `$` or `#` and a space; by default only
@@ -195,6 +205,39 @@ follow `labels.info`, `labels.warning` and `labels.error` in every
 language. Remove the escape sequences from a file of `ansi/`, and what
 is left is its twin in `txt/`, byte for byte. `txt/` has no escape
 sequence at all: it survives `curl > file`.
+
+## Highlighted code blocks
+
+A code block in a language `highlight.py` knows is highlighted in
+`ansi/` too, each token in its kind's colour, by the same rules as the
+HTML page: `ansi/` never disagrees with what a browser shows. Colour
+only, never a character added: the spaces around a token are left
+uncoloured, and stripped of its escapes, the block is the one of `txt/`.
+A line cut at the 75th column keeps its colours on the next line.
+
+| Token | Colour |
+|---|---|
+| keyword; in `sh` and `console`, the command word | bold, in the accent |
+| builtin or type; in `sh` and `console`, an option (`-s`, `--out`) | the accent |
+| string, a `diff` `+` line | green |
+| comment, a `console` prompt (`$ `, `# `) | dim |
+| number, variable | magenta |
+| tag, key, section, a `diff` hunk header (`@@`) | bold |
+| a `diff` `-` line | red |
+
+The command word is the first word of a command: at the start of a
+line (after a `$ ` prompt in `console`), after `|`, `||`, `&&`, `;`,
+`&`, `(`, `$(`, after a prefix such as `sudo` or `env`, and after a
+variable assignment.
+
+The languages highlighted are `sh`, `python`, `js`, `c`, `go`, `rust`,
+`sql`, `json`, `yaml`, `ini`, `conf`, `dockerfile`, `html`, `css` and
+`make`, each by its own token rules, plus `console` and `diff`, coloured
+line by line; the full list of names and their aliases is in [code
+blocks](docs/reference/markdown/blocks). A block with no language, in
+`text`, or in a language tilder does not know is not highlighted: only
+its command lines (`text.commands`) are in the accent, and `txt/` stays
+plain either way.
 
 ## Leaving a page out
 

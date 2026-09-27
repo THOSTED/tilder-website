@@ -128,7 +128,8 @@ s'entendent qu'à travers un lecteur d'écran. Traduisez-les dans
 
 Les trois libellés d'encadré choisissent aussi la couleur de la boîte
 dans le miroir en couleur : la boîte dont le filet du haut porte
-`labels.info` est cyan, `labels.warning` jaune, `labels.error` rouge
+`labels.info` suit `text.accent`, `labels.warning` est jaune,
+`labels.error` rouge
 ([le miroir en texte](docs/reference/text-mirror)). Les variables du
 gabarit ne servent que là où le `layout.html` du thème les écrit, comme
 le fait celui du site de départ.
@@ -374,20 +375,28 @@ uid_domain = "example.org"
 
 ## Texte
 
-La table `[text]` : les couleurs du miroir en texte.
+La table `[text]` : les couleurs du miroir en texte coloré.
 
 | Clé | Défaut | Rôle |
 |---|---|---|
 | `text.commands` | `["curl"]` | les mots qui commencent une ligne de commande à mettre en valeur, dans un bloc de code du miroir en couleur |
+| `text.accent` | `"cyan"` | la couleur d'accent unique d'`ansi/` : les liens, les `[ tags ]`, les puces de liste, le `code` en ligne, les lignes de commande, l'encadré INFO, et (dans un bloc de code coloré) les mots-clés et les identifiants natifs |
 
-Une ligne de bloc de code qui commence par l'un de ces mots, seul ou
-après une invite, `$` ou `#` suivi d'une espace, prend la couleur
-d'accent dans `ansi/` ; `txt/` n'a aucune couleur
-([le miroir en texte](docs/reference/text-mirror)).
+Une ligne de bloc de code qui commence par l'un des mots de
+`text.commands`, seul ou après une invite, `$` ou `#` suivi d'une
+espace, prend la couleur d'accent dans `ansi/` ; `txt/` n'a aucune
+couleur ([le miroir en texte](docs/reference/text-mirror)).
+
+`text.accent` vaut l'un des huit noms de couleur `black`, `red`,
+`green`, `yellow`, `blue`, `magenta`, `cyan` (le défaut), `white`, ou un
+index de 256 couleurs de 16 à 255, tel que `208` pour l'orange. Toute
+autre valeur arrête la construction. Un `site.<lang>.toml` peut régler
+son propre accent pour cette langue.
 
 ```toml
 [text]
 commands = ["curl", "docker", "python3"]
+accent = 208
 ```
 
 ## Robots

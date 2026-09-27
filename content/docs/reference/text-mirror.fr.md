@@ -168,26 +168,38 @@ marquée d'un `\` : un shell la lit comme une continuation.
 ## Les couleurs
 
 `ansi/` est le même texte avec des séquences d'échappement ANSI : huit
-couleurs, jamais de fond, pour se lire aussi bien sur un terminal clair
-que sombre. La couleur suit le balisage, sans jamais être devinée d'après
-les mots : la construction marque le code en ligne, les puces des listes
-et les lignes des blocs de code là où elle les rend, et colore exactement
-ceux-là, d'une ligne à l'autre.
+couleurs, ou un accent en 256 couleurs choisi par le site (`text.accent`),
+jamais de fond, pour se lire aussi bien sur un terminal clair que sombre.
+La couleur suit le balisage, sans jamais être devinée d'après les mots :
+la construction marque le code en ligne, les puces des listes, les
+lignes des blocs de code et, dans un bloc de code coloré, chaque
+composant, là où elle les rend, et colore exactement ceux-là, d'une
+ligne à l'autre.
 
 | Quoi | Couleur |
 |---|---|
 | les filets d'en-tête et de pied de page | atténués |
 | le titre d'une section, quand il ne contient que des lettres, des chiffres, des espaces et `-()'` | gras |
 | le nom de la page, sur la première ligne de la première section | gras |
-| le `code` en ligne | cyan, la couleur d'accent, exactement jusqu'à ses accents graves |
-| les puces des listes | cyan |
-| les URL | cyan, soulignées |
-| les `[ tags ]` | cyan gras |
+| le `code` en ligne | la couleur d'accent, exactement jusqu'à ses accents graves |
+| les puces des listes | la couleur d'accent |
+| les URL | la couleur d'accent, soulignées |
+| les `[ tags ]` | gras, dans la couleur d'accent |
 | les filets d'un bloc de code | atténués |
-| une ligne de commande dans un bloc de code | cyan |
-| la boîte et le libellé d'un encadré d'information | cyan, le libellé en gras |
+| une ligne de commande dans un bloc de code sans langage, ou en `text` | la couleur d'accent |
+| la boîte et le libellé d'un encadré d'information | la couleur d'accent, le libellé en gras |
 | un encadré d'avertissement | jaune |
 | un encadré d'erreur | rouge |
+
+La couleur d'accent est `text.accent` : `"cyan"` par défaut, ou l'un des
+huit noms de couleur, ou un index de 256 couleurs de 16 à 255, tel que
+`208` pour l'orange, réglé dans `site.toml` (un `site.<lang>.toml` peut
+régler le sien) ([configuration](docs/reference/configuration)). La
+ponctuation qui referme une phrase autour d'une URL ou d'une ligne de
+commande - un `.,;:!?` final, une apostrophe restée seule, une
+parenthèse jamais ouverte - reste sans couleur : dans une phrase comme
+(voir https://example.org/a_(b)), seule l'adresse est colorée, pas le
+`).` qui la termine.
 
 Une ligne de commande est une ligne de bloc de code qui commence par l'un
 des mots de `text.commands`, seul ou après une invite, `$` ou `#` suivi
@@ -203,6 +215,41 @@ couleurs suivent donc `labels.info`, `labels.warning` et `labels.error`
 dans chaque langue. Retirez les séquences d'échappement d'un fichier de
 `ansi/`, et il reste son jumeau de `txt/`, octet pour octet. `txt/` ne
 contient aucune séquence d'échappement : il survit à `curl > fichier`.
+
+## Les blocs de code colorés
+
+Un bloc de code dans un langage que `highlight.py` connaît est aussi
+coloré dans `ansi/`, chaque composant dans la couleur de son genre,
+selon les mêmes règles que la page HTML : `ansi/` ne dit jamais le
+contraire de ce que montre un navigateur. Seule la couleur change,
+jamais un caractère ajouté : les espaces autour d'un composant restent
+sans couleur, et une fois ses séquences d'échappement retirées, le bloc
+est celui de `txt/`. Une ligne coupée à la 75e colonne garde ses
+couleurs sur la ligne suivante.
+
+| Composant | Couleur |
+|---|---|
+| mot-clé ; en `sh` et `console`, le mot de commande | gras, dans la couleur d'accent |
+| identifiant natif ou type ; en `sh` et `console`, une option (`-s`, `--out`) | la couleur d'accent |
+| chaîne, une ligne `+` de `diff` | vert |
+| commentaire, une invite `console` (`$ `, `# `) | atténué |
+| nombre, variable | magenta |
+| étiquette, clé, section, l'en-tête d'un extrait `diff` (`@@`) | gras |
+| une ligne `-` de `diff` | rouge |
+
+Le mot de commande est le premier mot d'une commande : au début d'une
+ligne (après une invite `$ ` en `console`), après `|`, `||`, `&&`, `;`,
+`&`, `(`, `$(`, après un préfixe comme `sudo` ou `env`, et après
+l'affectation d'une variable.
+
+Les langages colorés sont `sh`, `python`, `js`, `c`, `go`, `rust`,
+`sql`, `json`, `yaml`, `ini`, `conf`, `dockerfile`, `html`, `css` et
+`make`, chacun selon ses propres règles, plus `console` et `diff`,
+colorés ligne par ligne ; la liste complète des noms et de leurs alias
+est dans [les blocs de code](docs/reference/markdown/blocks). Un bloc
+sans langage, en `text`, ou dans un langage que tilder ne connaît pas
+n'est pas coloré : seules ses lignes de commande (`text.commands`)
+prennent la couleur d'accent, et `txt/` reste brut dans tous les cas.
 
 ## Écarter une page
 

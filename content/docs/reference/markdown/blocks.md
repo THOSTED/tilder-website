@@ -335,7 +335,11 @@ button that copies its code as plain text, worded by `labels.copy` and
 by two rules, the language in the top one, and nothing is added to its
 lines, so they copy clean from a terminal: they are only folded to ASCII,
 tabs expanded to four spaces. A line longer than the mirror's 75 columns
-is cut and continued on the next one, the cut marked with `\`:
+is cut and continued on the next one, the cut marked with `\`. In the
+coloured mirror, `ansi/`, a block in a language above (`text` and an
+unknown language excepted) is highlighted too, each token in its kind's
+colour, the same rules as the HTML; `txt/` stays plain either way
+([the text mirror](docs/reference/text-mirror)):
 
 ```text
 .-- python --------------------------------------------------------.

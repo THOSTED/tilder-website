@@ -125,8 +125,8 @@ through a screen reader. Translate them in `site.<lang>.toml`.
 | `labels.next` | `"next"` | the label of `{{ next }}`, and of that line |
 
 The three callout labels also pick the colour of the callout's box in the
-coloured mirror: the box whose top rule carries `labels.info` is cyan,
-`labels.warning` yellow, `labels.error` red
+coloured mirror: the box whose top rule carries `labels.info` follows
+`text.accent`, `labels.warning` is yellow, `labels.error` red
 ([the text mirror](docs/reference/text-mirror)). The layout placeholders
 work only where the theme's `layout.html` writes them, as the starter's
 does.
@@ -364,19 +364,27 @@ uid_domain = "example.org"
 
 ## Text
 
-The `[text]` table: the text mirror's colours.
+The `[text]` table: the coloured text mirror's colours.
 
 | Key | Default | Meaning |
 |---|---|---|
 | `text.commands` | `["curl"]` | the words that start a command line worth highlighting, in a code block of the coloured mirror |
+| `text.accent` | `"cyan"` | the one accent colour of `ansi/`: links, `[ tags ]`, list markers, inline `code`, command lines, the INFO box, and (in a highlighted code block) keywords and builtins |
 
-A code-block line that starts with one of these words, alone or after a
+A code-block line that starts with one of `text.commands`, alone or after a
 prompt, `$` or `#` and a space, is coloured in the accent in `ansi/`; `txt/` has no
 colour at all ([the text mirror](docs/reference/text-mirror)).
+
+`text.accent` is one of the eight colour names `black`, `red`, `green`,
+`yellow`, `blue`, `magenta`, `cyan` (the default), `white`, or a
+256-colour index from 16 to 255, such as `208` for orange. Anything else
+stops the build. A `site.<lang>.toml` may set its own accent for that
+language.
 
 ```toml
 [text]
 commands = ["curl", "docker", "python3"]
+accent = 208
 ```
 
 ## Robots
