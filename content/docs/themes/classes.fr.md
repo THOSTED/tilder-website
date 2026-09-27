@@ -56,18 +56,28 @@ sous forme de sections :
 | `.collection-section--open` | `<li>` | ajoutée à la section qui contient la page courante, ce qui permet au thème de replier les autres |
 | `.collection-section-label` | `<a>` ou `<span>` | le nom de la section : un lien vers sa propre page (son `index.md`, ou un `<name>.md` à côté du dossier), intitulé comme elle ; sans elle, un `<span>` avec le nom du dossier |
 
-Sur la page `docs/guide/writing`, dont la construction rend les liens
-relatifs :
+La barre latérale de ce manuel sur sa page `docs/guide/writing`, abrégée
+(`<!-- ... -->` tient la place des lignes omises) ; la construction rend
+chaque lien relatif à la page :
 
 ```html
-<nav class="collection-nav" aria-label="In this section">
+<nav class="collection-nav" aria-label="Dans cette section">
 <ul>
-	<li><a href="../install">Install</a></li>
 	<li class="collection-section collection-section--open"><a class="collection-section-label" href="../guide">Guide</a>
 	<ul>
-		<li><a href="writing" aria-current="page">Writing</a></li>
+		<li><a href="getting-started">Premiers pas</a></li>
+		<li><a href="project">Le projet</a></li>
+		<li><a href="writing" aria-current="page">Écrire des pages</a></li>
+		<!-- ... -->
 	</ul>
 	</li>
+	<li class="collection-section"><a class="collection-section-label" href="../content-types">Types de contenu</a>
+	<ul>
+		<li><a href="../content-types/page">page</a></li>
+		<!-- ... -->
+	</ul>
+	</li>
+	<!-- ... -->
 </ul>
 </nav>
 ```
