@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1197 1197" width="512" height="512">
+<!-- Provisional logo, until tilder has one: the glyphs "~/" of JetBrains
+     Mono Bold (theme/fonts/, OFL), outlined as paths from the font's own
+     contours, dark on transparent. tilder draws the icons and share.png
+     from this file. -->
+<path fill="#1c1e21" d="M54 703L54 624Q54 563 94 526Q134 488 199 488Q240 488 267 502Q294 516 312 536Q329 556 343 577Q357 597 371 611Q385 624 406 624Q444 624 444 581L444 508L550 508L550 587Q550 648 511 686Q471 723 405 723Q364 723 337 709Q310 695 293 675Q275 655 261 635Q247 614 233 601Q219 587 198 587Q160 587 160 630L160 703L54 703ZM662 1068L1012 128L1142 128L792 1068L662 1068Z"/>
+</svg>

@@ -1,0 +1,77 @@
+# The site in French: only what differs from site.toml. Tables are merged
+# key by key; [[nav]] is replaced as a whole, so all six entries are here.
+# The theme's own French words (search, sidebar) come from
+# theme/theme.fr.toml. The name, tilder, is a brand: title_suffix stays.
+
+[site]
+lang = "fr"
+locale = "fr_FR"
+manual = "manuel de tilder"
+
+[labels]
+skip = "aller au contenu"
+nav = "Navigation principale"
+info = "INFO"
+warning = "ATTENTION"
+error = "ERREUR"
+image = "image"                     # text mirror: [ image ] alt text
+task_done = "fait"
+task_todo = "à faire"
+to_top = "↑ haut de page"
+copy = "copier"
+copied = "copié"
+external = "site externe"
+new_tab = "s'ouvre dans un nouvel onglet"
+table = "tableau"
+toc = "sommaire"
+website = "site web"
+languages = "Langues"
+collection_nav = "Dans cette section"
+prev = "précédent"
+next = "suivant"
+
+[[nav]]
+label = "accueil"
+href = ""
+
+[[nav]]
+label = "docs"
+href = "docs/"
+
+[[nav]]
+label = "pourquoi"
+href = "why"
+
+[[nav]]
+label = "vitrine"
+href = "showcase/"
+
+[[nav]]
+label = "blog"
+href = "blog/"
+
+[[nav]]
+label = "GitHub ↗"
+href = "https://github.com/THOSTED/tilder"
+
+[share]
+card = ["un générateur de sites en page de manuel", "un fichier Markdown, du HTML et du texte"]
+
+[collections.docs]
+empty = "Aucune page pour l'instant."
+
+[collections.showcase]
+empty = "Aucun site pour l'instant."
+visit = "visiter le site ↗"
+
+[collections.blog]
+empty = "Aucun article pour l'instant."
+feed_title = "blog de tilder"
+feed_description = "Les notes de version de tilder."
+
+[dates]
+weekdays = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
+months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+          "août", "septembre", "octobre", "novembre", "décembre"]
+first = "1er"                       # le 1er du mois
+format = "{weekday} {day} {month} {year}"
