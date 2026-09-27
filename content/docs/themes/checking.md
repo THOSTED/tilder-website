@@ -8,8 +8,6 @@ order: 50
 
 checking - build.py --check, the classes and the contrast of a theme
 
-<!-- 1.2 -->
-
 `build.py --check` checks the site's theme against the tilder that runs
 it, and builds nothing. Two checks: every class the build writes has a
 rule in `style.css`, and every pair of colours the theme declares reaches
@@ -20,8 +18,6 @@ build, in a Makefile or in CI.
 [TOC]
 
 ## The command
-
-<!-- 1.2 -->
 
 From the project, with Python:
 
@@ -37,17 +33,17 @@ docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.2.0 \
   python3 -B /tilder/build.py --root /site --check
 ```
 
-<!-- 1.2 -->
-
 It prints one `error:` line per problem, in the shape of the build's own
 errors, the file, what is wrong, then what to do, and a summary line for
 each check it ran: with contrast pairs declared but no `style.css`, the
-contrast check has an error instead of a summary. The exit code is 0 when every check passes or is skipped, 1 when a
-problem was found. The normal build never runs these checks: run them when
-the theme changes, or before every build.
+contrast check has an error instead of a summary. The exit code is 0
+when every check passes or is skipped, 1 when a problem was found. The
+normal build never runs these checks: run them when the theme changes,
+or before every build.
 
-For example, on a theme written for tilder 1.1, which lacks the three
-section classes of 1.2 and declares no contrast pairs:
+For example, tilder 1.2.0 checking the theme of this site as it was
+written for tilder 1.1, before it styled the three section classes of
+1.2 and before its `theme.toml` declared contrast pairs:
 
 ```console
 $ python3 ../tilder/build.py --check
@@ -62,8 +58,6 @@ $ echo $?
 
 ## The classes
 
-<!-- 1.2 -->
-
 tilder holds the list of every class it writes, `CLASSES` in its
 `src/contract.py`: the classes of the [classes](docs/themes/classes) page.
 The check looks for each one in `style.css`, the site's
@@ -71,8 +65,6 @@ The check looks for each one in `style.css`, the site's
 `.name` appears with no name character after it, comments and the
 contents of strings aside. So `.toc` does not count for `.toc-label`,
 and a class named only in a comment is missing.
-
-<!-- 1.2 -->
 
 A theme that leaves a class unstyled on purpose names it in `[check]
 unstyled`, and the check skips it: a theme without profile logos, say,
@@ -91,15 +83,11 @@ learns what to style before a page shows it unstyled.
 
 ## The contrast
 
-<!-- 1.2 -->
-
 The theme declares the pairs of colours that carry text, foreground then
 background, as custom properties of its `style.css`, in `[check]
 contrast`. The check computes the WCAG 2 contrast ratio of each pair and
 reports each one below `contrast_min`, 4.5 by default, the WCAG AA
 minimum for text, with its ratio.
-
-<!-- 1.2 -->
 
 It reads the colours where a browser would:
 
@@ -107,8 +95,6 @@ It reads the colours where a browser would:
 - **dark**: those of the `:root` rule inside `@media
   (prefers-color-scheme: dark)`, over the light ones, so a dark scheme only
   sets what differs. Without such a rule, only the light scheme is checked.
-
-<!-- 1.2 -->
 
 Only a rule whose selector is exactly `:root` counts: not `:root, .dark`,
 not one inside `@supports` or `@layer`. A colour a pair uses must be
@@ -131,8 +117,6 @@ contrast: skipped, no [check] contrast in theme/theme.toml
 ```
 
 ## The [check] table
-
-<!-- 1.2 -->
 
 The three keys live in the theme's `theme.toml`, under `[check]`. They
 are read from `defaults.toml`, then the theme's `theme.toml`, then the
@@ -163,8 +147,6 @@ names, `contrast` a list of pairs of names starting with `--`,
 
 ## A table for the README
 
-<!-- 1.2 -->
-
 With `--markdown`, the check also prints the contrast table as Markdown,
 on standard output, and its summary lines on standard error: redirect the
 output to a file and paste the table in the theme's README, so its users
@@ -174,13 +156,16 @@ see the ratios without running anything.
 python3 ../tilder/build.py --check --markdown > contrast.md
 ```
 
+The table begins with the light scheme, then the dark one, each pair in
+the order of `[check] contrast`. The first rows for the starter's theme:
+
 ```text
 | scheme | foreground | background | ratio | minimum |
 |---|---|---|---:|---:|
 | light | `--fg` | `--bg` | 17.40 | 4.5 |
+| light | `--fg` | `--bg-inset` | 15.68 | 4.5 |
 | light | `--fg-muted` | `--bg` | 7.46 | 4.5 |
-| dark | `--fg` | `--bg` | 14.26 | 4.5 |
-| dark | `--fg-muted` | `--bg` | 7.49 | 4.5 |
+| light | `--fg-muted` | `--bg-inset` | 6.72 | 4.5 |
 ```
 
 The starter's theme passes both checks and declares its pairs in

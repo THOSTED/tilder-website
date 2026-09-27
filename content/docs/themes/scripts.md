@@ -81,8 +81,6 @@ A theme's scripts follow the rules of tilder's own contract (its
 `AGENTS.md`, "Scripts"), which the server's Content-Security-Policy
 enforces:
 
-<!-- 1.2 -->
-
 - **A file, never inline.** ES5, no dependency, a file the site serves:
   never a `<script>` with code in the page, never a CDN. The example
   Caddyfile's policy allows scripts with `script-src 'self'` alone, so a

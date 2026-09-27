@@ -75,8 +75,6 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
   événements passés le lendemain. Minuit est celui de la machine : dans
   un conteneur, UTC sauf si la variable `TZ` dit autre chose.
 
-<!-- 1.2 -->
-
 ### --check
 
   Depuis tilder 1.2 : vérifier le thème par rapport au tilder qui le
@@ -85,18 +83,18 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
   l'emporte sur `theme/style.css`), sauf celles que nomme le
   `[check] unstyled` du thème ; chaque paire de couleurs de
   `[check] contrast` doit atteindre `contrast_min`, en thème clair, et en
-  thème sombre quand la feuille de style en a un. Elle écrit une ligne `error:` par problème, puis une
-  ligne de bilan par vérification, et sort avec 1 s'il y a un problème, 0
-  sinon ([vérifier un thème](docs/themes/checking)).
-
-<!-- 1.2 -->
+  thème sombre quand la feuille de style en a un. Elle écrit une ligne
+  `error:` par problème, puis une ligne de bilan par vérification, et sort
+  avec 1 s'il y a un problème, 0 sinon
+  ([vérifier un thème](docs/themes/checking)). Elle n'écrit rien, pas
+  même le dossier de sortie : `--out` n'est pas lu.
 
 ### --markdown
 
   Depuis tilder 1.2, avec `--check` : écrire aussi le tableau des
-  contrastes en Markdown, une ligne par paire avec son rapport, pour le
-  README d'un thème. Le tableau part sur la sortie standard et les
-  lignes de bilan sur la sortie d'erreur :
+  contrastes en Markdown, une ligne par paire et par thème, clair ou
+  sombre, avec son rapport, pour le README d'un thème. Le tableau part
+  sur la sortie standard et les lignes de bilan sur la sortie d'erreur :
   `--check --markdown > contrast.md` ne garde que le tableau.
 
 ### --debug
@@ -178,8 +176,6 @@ Les erreurs de la configuration et des langues :
 | `[site] languages does not contain the default language "..."` | `site.lang` absent de `site.languages` |
 | `"..." is not a declared language` | un `site.<lang>.toml` ou une page `<name>.<lang>.md` pour une langue absente de `site.languages` |
 | `[site] lang is "...", not "..."` | un `site.<lang>.toml` qui règle une autre langue |
-
-<!-- 1.2 -->
 
 Depuis tilder 1.2, une collection récursive en ajoute trois :
 

@@ -72,8 +72,6 @@ as the first argument; an argument the build does not know is ignored
   event moves to the past list the day after it. Midnight is the
   machine's: in a container, UTC unless the `TZ` variable says otherwise.
 
-<!-- 1.2 -->
-
 ### --check
 
   From tilder 1.2: check the theme against the tilder that runs it, and
@@ -81,18 +79,18 @@ as the first argument; an argument the build does not know is ignored
   served `style.css` (`assets/style.css` wins over `theme/style.css`),
   but those the theme's `[check] unstyled` names; every pair of colours
   of `[check] contrast` must reach `contrast_min`, in the light scheme,
-  and in the dark one when the stylesheet has one. It prints one `error:` line per problem, then a summary
-  line per check, and exits 1 when there is a problem, 0 otherwise
-  ([checking a theme](docs/themes/checking)).
-
-<!-- 1.2 -->
+  and in the dark one when the stylesheet has one. It prints one
+  `error:` line per problem, then a summary line per check, and exits 1
+  when there is a problem, 0 otherwise
+  ([checking a theme](docs/themes/checking)). It writes nothing, not
+  even the output folder: `--out` is not read.
 
 ### --markdown
 
   From tilder 1.2, with `--check`: also print the contrast table as
-  Markdown, a row per pair with its ratio, for a theme's README. The
-  table goes to the standard output and the summary lines to the error
-  output, so `--check --markdown > contrast.md` keeps only the table.
+  Markdown, a row per pair and scheme with its ratio, for a theme's
+  README. The table goes to the standard output and the summary lines to
+  the error output, so `--check --markdown > contrast.md` keeps only the table.
 
 ### --debug
 
@@ -172,8 +170,6 @@ The errors of the configuration and of the languages:
 | `[site] languages does not contain the default language "..."` | `site.lang` missing from `site.languages` |
 | `"..." is not a declared language` | a `site.<lang>.toml` or a page `<name>.<lang>.md` for a language not in `site.languages` |
 | `[site] lang is "...", not "..."` | a `site.<lang>.toml` that sets another language |
-
-<!-- 1.2 -->
 
 From tilder 1.2, a recursive collection adds three:
 

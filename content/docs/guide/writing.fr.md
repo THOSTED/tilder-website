@@ -43,8 +43,6 @@ oblique finale.
 - Chaque page figure dans `sitemap.xml` et `sitemap.txt`, sauf si son
   `robots` contient `noindex`.
 
-<!-- 1.2 -->
-
 Dans une collection récursive, comme la documentation que vous lisez, les
 dossiers s'imbriquent : `content/docs/guide/writing.md` est la page
 `/docs/guide/writing`, et le `index.md` d'un dossier est la page propre de

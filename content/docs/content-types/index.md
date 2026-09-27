@@ -45,8 +45,6 @@ calendar = "talks.ics"
 upcoming_tag = "soon"
 ```
 
-<!-- 1.2 -->
-
 | Key | Meaning |
 |---|---|
 | `type` | the type of its items: `post`, `event`, `member`, or a type of the theme; default `post`. Types are singular: `type = "posts"` stops the build |
@@ -124,8 +122,6 @@ An item is one file in the collection's folder, or a folder of its own:
 
 ## Recursive collections
 
-<!-- 1.2 -->
-
 With `recursive = true` (tilder 1.2), a collection also reads its
 subfolders, at any depth. `content/docs/guide/writing.md` is the item
 `guide/writing`, served at `/docs/guide/writing`, in the section `guide`.
@@ -134,8 +130,6 @@ it: `content/docs/guide/index.md` is `/docs/guide`, the section's own
 page. A `guide.md` beside the folder may be that page instead; a section
 with neither has no page, and its folder's name stands for it. The
 documentation you are reading is such a collection.
-
-<!-- 1.2 -->
 
 `recursive` is `false` unless the collection or its type's settings set
 it, and it is `true` or `false`, nothing else. A dated type cannot be

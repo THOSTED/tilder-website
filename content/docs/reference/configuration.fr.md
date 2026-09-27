@@ -280,8 +280,6 @@ plus celles-ci :
 | `type` | `"post"` | le type : `page`, `post`, `event`, `member`, ou un type ajouté par le thème |
 | `dir` | le nom de la collection | le dossier, sous `content/` |
 
-<!-- 1.2 -->
-
 Depuis tilder 1.2, `recursive = true` fait des sous-dossiers de `dir`
 des sections de la collection, et de leurs fichiers ses éléments, dans
 l'arbre de la barre latérale ([navigation](docs/content-types/navigation)).
@@ -413,13 +411,11 @@ disallow = ["/txt/", "/ansi/", "/drafts/"]
 
 ## Vérification du thème
 
-<!-- 1.2 -->
-
 La table `[check]` appartient au thème : lue par `build.py --check`
 (tilder 1.2), elle se règle dans `theme/theme.toml` ; `content/site.toml`
 peut aussi la régler, fusionnée par-dessus celle du thème comme toute
-autre table. `unstyled`, les
-classes que le thème laisse sans style à dessein (défaut `[]`) ;
+autre table. `unstyled`, les classes que le thème laisse sans style à
+dessein (défaut `[]`) ;
 `contrast`, les paires de couleurs à vérifier (défaut `[]`, rien de
 vérifié) ; `contrast_min`, le contraste minimal de chaque paire (défaut
 `4.5`). Chaque clé est décrite dans

@@ -8,8 +8,6 @@ order: 60
 
 navigation - the order of a collection, its sidebar and its neighbours
 
-<!-- 1.2 -->
-
 The pages of a collection have an order, set by their type. A theme shows
 it three ways: a sidebar of every page, grouped and nested, links to the
 previous and the next page, and, in the text mirror, a line naming both.
@@ -66,8 +64,6 @@ sidebar shows two groups. The neighbours ignore groups.
 
 ## Sections
 
-<!-- 1.2 -->
-
 In a recursive collection (tilder 1.2), the folders are sections, as the
 sections of this manual are. The order is depth first: within a folder,
 its items and its sections are sorted by `sort_key`, a section by its own
@@ -78,12 +74,11 @@ then the pages it holds. So
 section, and `order: 10` in `content/docs/content-types/page.md` places
 the page inside it.
 
-<!-- 1.2 -->
-
 The sidebar nests the sections, each labelled by its own page's title,
 linked, or by its folder's name when it has none. `group` works at every
 level. The neighbours and the text line follow the same depth-first
-order, from the last page of a section to the next section's own page.
+order: the last page of a section leads on to whatever follows it, the
+next page of the folder above or the next section's own page.
 
 ## The sidebar
 
@@ -104,8 +99,6 @@ nothing marked, on the collection's own page; it is empty elsewhere.
 </ul>
 </nav>
 ```
-
-<!-- 1.2 -->
 
 With sections (tilder 1.2), a section is a list item of class
 `.collection-section` holding its label and a nested list; the section of

@@ -274,8 +274,6 @@ type's settings, each listed on the type's page, plus these:
 | `type` | `"post"` | the type: `page`, `post`, `event`, `member`, or one the theme adds |
 | `dir` | the collection's name | the folder, under `content/` |
 
-<!-- 1.2 -->
-
 From tilder 1.2, `recursive = true` makes the subfolders of `dir`
 sections of the collection, and their files its items, in the sidebar's
 tree ([navigation](docs/content-types/navigation)). It is `false` unless
@@ -401,12 +399,10 @@ disallow = ["/txt/", "/ansi/", "/drafts/"]
 
 ## Theme checks
 
-<!-- 1.2 -->
-
 The `[check]` table is the theme's, read by `build.py --check` (tilder
 1.2) and set in `theme/theme.toml`; `content/site.toml` may set it too,
-merged over the theme's as every other table: `unstyled`, the classes the theme
-leaves unstyled on purpose (default `[]`); `contrast`, the pairs of
+merged over the theme's as every other table: `unstyled`, the classes
+the theme leaves unstyled on purpose (default `[]`); `contrast`, the pairs of
 colours to check (default `[]`, nothing checked); `contrast_min`, the
 least ratio of every pair (default `4.5`). Every key is described in
 [checking a theme](docs/themes/checking).

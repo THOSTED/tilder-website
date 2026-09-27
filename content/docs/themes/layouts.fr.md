@@ -102,8 +102,6 @@ remplacée par sa valeur :
 | `{{ body }}` | les sections de la page, enveloppées dans un `<article>` pour un type qui est un article (articles, événements) |
 | `{{ script }}` | les balises `<script>` dont la page a besoin, si le thème a les fichiers ([scripts](docs/themes/scripts)) |
 
-<!-- 1.2 -->
-
 Dans une collection récursive, comme cette documentation,
 `{{ collection_nav }}` est un arbre : chaque dossier est une section, un
 `<li class="collection-section">` avec son libellé et sa propre liste, et
