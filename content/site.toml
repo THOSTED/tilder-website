@@ -78,3 +78,4 @@ feed_description = "Release notes of tilder."
 
 [text]
 commands = ["curl", "docker", "python3"]  # highlighted in the text mirror
+accent = 208                              # orange, matching the theme's accent
