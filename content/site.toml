@@ -1,0 +1,80 @@
+# The tilder website: English at the root, French under /fr/
+# (site.fr.toml holds what differs). Every key not set here comes from
+# tilder's defaults.toml, then theme/theme.toml.
+
+[site]
+name = "tilder"
+url = "https://tilder.thosted.fr"
+lang = "en"
+locale = "en_GB"
+languages = ["en", "fr"]            # the default first; French under /fr/
+manual = "tilder manual"            # centre of the man-page header rule
+updated = 2026-09-27                # date in the footer rule and the feed
+title_suffix = " - tilder"
+
+# The footer's link is written from the language's landing page
+# ({{ home }}{{ footer.left_link }}): it goes home. GitHub is in [[nav]].
+[footer]
+left = "TILDER"
+left_link = ""
+right = "TILDER(1)"
+
+[languages]                         # the language switcher's names
+en = "English"
+fr = "Français"
+
+[links]
+new_tab = false                     # external links stay in the same tab
+
+[[nav]]
+label = "home"
+href = ""
+
+[[nav]]
+label = "docs"
+href = "docs/"
+
+[[nav]]
+label = "why"
+href = "why"
+
+[[nav]]
+label = "showcase"
+href = "showcase/"
+
+[[nav]]
+label = "blog"
+href = "blog/"
+
+[[nav]]
+label = "GitHub ↗"
+href = "https://github.com/THOSTED/tilder"
+
+[seo]
+organization = "tilder"             # the publisher, in structured data
+
+[share]
+image_alt = "~/tilder"
+card = ["a man-page site builder", "one Markdown file, HTML and text"]
+short_name = "tilder"               # web manifest
+
+# The documentation: content/docs/, the theme's doc type (sidebar, search).
+[collections.docs]
+type = "doc"
+man = "TILDER-DOCS(7)"
+
+# Sites built with tilder: content/showcase/.
+[collections.showcase]
+type = "showcase"
+man = "TILDER-SHOWCASE(7)"
+
+# Release notes: content/blog/, with an RSS feed.
+[collections.blog]
+type = "post"
+man = "TILDER-BLOG(7)"
+feed = "blog/feed.xml"
+feed_title = "tilder blog"
+feed_description = "Release notes of tilder."
+
+[text]
+commands = ["curl", "docker", "python3"]  # highlighted in the text mirror
