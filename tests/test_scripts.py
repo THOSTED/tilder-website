@@ -123,6 +123,27 @@ class SearchUnderNode(unittest.TestCase):
         self.assertEqual(out["children"], [])
         self.assertIsNone(out["ready"])
 
+    def give_up(self, nav, mode):
+        args = ["node", str(REPO / "tests" / "js" / "search-give-up-dom.js"),
+                str(THEME / "search.js"), nav, mode]
+        return json.loads(subprocess.run(args, capture_output=True, text=True, check=True).stdout)
+
+    def test_a_slow_request_times_out_and_gives_up(self):
+        out = self.give_up("nav", "timeout")
+        self.assertEqual(out["timeout"], 10000)
+        self.assertTrue(out["has_ontimeout"])
+        self.assertTrue(out["has_onabort"])
+        self.assertTrue(out["hidden"])
+
+    def test_giving_up_with_the_focus_moves_it_to_the_collection_nav(self):
+        self.assertEqual(self.give_up("nav", "timeout")["focused"], "link")
+        self.assertEqual(self.give_up("nav", "abort")["focused"], "link")
+
+    def test_giving_up_without_a_collection_nav_focuses_the_doc_side(self):
+        out = self.give_up("nonav", "abort")
+        self.assertEqual(out["focused"], "side")
+        self.assertEqual(out["side_tabindex"], "-1")
+
 
 class Loaded(unittest.TestCase):
     """Where each script is linked, on the built fixture."""

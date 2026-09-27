@@ -118,10 +118,28 @@
 	box.appendChild(status);
 	box.appendChild(list);
 
-	/* The index cannot be read (offline, blocked): the field goes away. */
+	/* The index cannot be read (offline, blocked, too slow): the field
+	   goes away. If it had the focus, that focus moves to somewhere
+	   still useful rather than dropping to <body>: the collection nav's
+	   first link, or, failing that, the doc-side container itself. */
 	function give_up() {
+		var had_focus = document.activeElement === input;
 		box.innerHTML = "";
 		box.hidden = true;
+		if (!had_focus) {
+			return;
+		}
+		var side = box.parentNode;
+		var target = side && side.querySelector ? side.querySelector(".collection-nav a") : null;
+		if (!target && side) {
+			if (!side.hasAttribute("tabindex")) {
+				side.setAttribute("tabindex", "-1");
+			}
+			target = side;
+		}
+		if (target && target.focus) {
+			target.focus();
+		}
 	}
 
 	function load() {
@@ -131,6 +149,7 @@
 		loading = true;
 		var req = new XMLHttpRequest();
 		req.open("GET", url);
+		req.timeout = 10000;
 		req.onload = function () {
 			try {
 				if (req.status !== 200) {
@@ -144,6 +163,8 @@
 			run();
 		};
 		req.onerror = give_up;
+		req.ontimeout = give_up;
+		req.onabort = give_up;
 		req.send();
 	}
 
