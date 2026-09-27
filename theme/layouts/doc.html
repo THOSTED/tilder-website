@@ -20,11 +20,10 @@
 {{ head }}
 </head>
 <body class="layout-doc type-{{ type }}">
-<div class="page page--wide" id="top">
 
 <a class="skip" href="#contenu">{{ labels.skip }}</a>
 
-<header>
+<header class="frame" id="top">
 <!-- The man-page rule is decoration: hidden from screen readers. -->
 <div class="manline manline--head" aria-hidden="true">
 	<span>{{ page.man }}</span>
@@ -42,6 +41,8 @@
 </div>
 <p class="tagline">{{ page.tagline }}</p>
 </header>
+
+<div class="page page--wide">
 
 <div class="doc">
 <!-- Open without JavaScript; nav.js folds it on small screens. -->
@@ -65,13 +66,14 @@
 
 <p class="to-top"><a href="#top">{{ labels.to_top }}</a></p>
 
-<footer class="manline manline--foot">
+</div>
+
+<footer class="manline manline--foot frame">
 	<span><a href="{{ home }}{{ footer.left_link }}">{{ footer.left }}</a></span>
 	<span>{{ site.updated }}</span>
 	<span>{{ footer.right }}</span>
 </footer>
 
-</div>
 <script src="{{ root }}nav.js" defer></script>
 <script src="{{ root }}search.js" defer></script>
 {{ script }}</body>
