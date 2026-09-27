@@ -46,7 +46,7 @@ example - the notes of a small team
 | Front matter | |
 |---|---|
 | `title` | the site's name |
-| `url` | **required**, the site's address, `https://...` |
+| `url` | **required**, the site's address, `https://example.org` |
 | `description` | one sentence, the text of the card |
 | `image` | optional, a screenshot next to the file (`showcase/<slug>/shot.png`) |
 | `order` | optional, a whole number: the place in the list (default 1000, then the slug) |
