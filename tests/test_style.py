@@ -12,7 +12,7 @@ class Style(unittest.TestCase):
 
     def test_the_theme_s_own_classes_are_styled(self):
         css = CSS.read_text()
-        for name in ("page", "manline", "manline--head", "manline--foot", "bar", "tagline",
+        for name in ("page", "manline", "manline--head", "manline--foot", "bar", "bar-nav", "tagline",
                      "skip", "to-top", "pager", "home", "home-tagline", "doc", "doc--toc",
                      "doc-side", "doc-main", "doc-toc", "doc-toc-label", "doc-search",
                      "doc-search-label", "doc-search-input", "doc-search-status",
@@ -26,6 +26,20 @@ class Style(unittest.TestCase):
         self.assertRegex(css, r"\.collection-section:not\(\.collection-section--open\) > "
                               r"a\.collection-section-label \+ ul[ \t]*\{[ \t]*display:\s*none")
         self.assertRegex(css, r"\.collection-section > ul[ \t]*\{[^{}]*padding-left:")
+
+    def test_the_header_is_always_two_lines_wordmark_then_nav_and_switcher(self):
+        # .bar is a plain block (the wordmark, a block h1, stacks above
+        # .bar-nav on its own line at any width); .bar-nav holds .nav and
+        # .languages nowrap, so that pair shares its row, the switcher
+        # pinned at the far right, and never lands under the nav.
+        css = CSS.read_text()
+        bar = re.search(r"(?<![\w-])\.bar[ \t]*\{([^{}]*)\}", css)
+        self.assertIsNotNone(bar, "no .bar rule found")
+        self.assertNotIn("display: flex", bar.group(1))
+        bar_nav = re.search(r"\.bar-nav[ \t]*\{([^{}]*)\}", css)
+        self.assertIsNotNone(bar_nav, "no .bar-nav rule found")
+        self.assertIn("flex-wrap: nowrap", bar_nav.group(1))
+        self.assertIn("justify-content: space-between", bar_nav.group(1))
 
     def test_focus_motion_and_dark_scheme(self):
         css = CSS.read_text()
