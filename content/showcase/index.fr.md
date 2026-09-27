@@ -46,7 +46,7 @@ example - les notes d'une petite équipe
 | Front matter | |
 |---|---|
 | `title` | le nom du site |
-| `url` | **obligatoire**, l'adresse du site, `https://...` |
+| `url` | **obligatoire**, l'adresse du site, `https://example.org` |
 | `description` | une phrase, le texte de la carte |
 | `image` | facultative, une capture d'écran à côté du fichier (`showcase/<slug>/shot.png`) |
 | `order` | facultatif, un nombre entier : la place dans la liste (1000 par défaut, puis le slug) |
