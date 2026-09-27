@@ -91,24 +91,37 @@ def json_ld(item, conf):
 # --- the search index ---------------------------------------------------------
 
 FRONT = re.compile(r"\A---\n.*?\n---\n", re.S)
-FENCE = re.compile(r"^(`{3,})[^\n]*\n.*?^\1`*[ \t]*$", re.S | re.M)
+# A fence may be indented under an entry (`### Rendered {example}`): the
+# closing fence shares the opening one's indent, not necessarily column 0.
+FENCE = re.compile(r"^([ \t]*)(`{3,})[^\n]*\n.*?^\1\2`*[ \t]*$", re.S | re.M)
 COMMENT = re.compile(r"<!--.*?-->", re.S)
 MARKERS_RE = re.compile(r"\s*\{[^}\n]*\}[ \t]*$", re.M)
 LINK = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
 H2 = re.compile(r"^##[ \t]+(.+?)[ \t]*$", re.M)
+# `## Title {text}`: rendered in the text mirror only, never in the HTML
+# page (docs/markdown.md); it must not be searchable either.
+TEXT_ONLY = re.compile(r"^##[ \t]+[^\n]*\{text\}[^\n]*\n.*?(?=^##[ \t]|\Z)", re.S | re.M)
+
+
+def strip_text_only(body):
+    """A Markdown body with every `{text}`-marked section removed. No
+    replacement text: the next heading must stay at column 0 for H2 to
+    find it, and `plain`'s whitespace collapses regardless."""
+    return TEXT_ONLY.sub("", body)
 
 
 def headings(src):
-    """The ## titles, markers removed, outside code blocks."""
-    body = FENCE.sub("", FRONT.sub("", src, count=1))
+    """The ## titles, markers removed, outside code blocks and {text}
+    sections."""
+    body = strip_text_only(FENCE.sub("", FRONT.sub("", src, count=1)))
     return [MARKERS_RE.sub("", h).strip() for h in H2.findall(body)]
 
 
 def plain(src):
     """The words of a Markdown source: no front matter, code blocks,
-    comments, markers, link targets or punctuation of the syntax. The
-    builder's parser is not a type's to import (docs/types.md)."""
-    text = FENCE.sub(" ", FRONT.sub("", src, count=1))
+    comments, markers, link targets, {text} sections or punctuation of the
+    syntax. The builder's parser is not a type's to import (docs/types.md)."""
+    text = strip_text_only(FENCE.sub(" ", FRONT.sub("", src, count=1)))
     text = COMMENT.sub(" ", text)
     text = MARKERS_RE.sub("", text)
     text = LINK.sub(r"\1", text)

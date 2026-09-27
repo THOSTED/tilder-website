@@ -41,6 +41,45 @@ echo "not in the text"
 | cell | other |
 """
 
+# A fenced block indented under an entry (`### Rendered {example}`): the
+# closing fence shares the opening one's indent, not column 0.
+INDENTED_FENCE = """---
+title: Guide
+---
+
+## Name
+
+before the fence
+
+### An example {example}
+
+  ```toml
+  ## not a heading
+  secret_code = 1
+  ```
+
+after the fence
+"""
+
+# A `{text}` section: rendered in the text mirror only, never in the HTML
+# page, so it must not be searchable either.
+TEXT_ONLY_SECTION = """---
+title: Guide
+---
+
+## Visible
+
+visible words here
+
+## Hidden {text}
+
+secretword only for the text mirror
+
+## After
+
+after words here
+"""
+
 
 def item(slug, src=None, **meta):
     meta.setdefault("title", slug.title())
@@ -154,3 +193,20 @@ class Index(unittest.TestCase):
         data = json.loads(doc.outputs([item("start", self.src)], dict(doc.DEFAULTS, dir="docs"))
                           ["docs/search-index.json"])
         self.assertEqual(len(data[0]["x"]), 2000)
+
+    def test_an_indented_fence_under_an_entry_leaks_no_code(self):
+        # The closing fence shares the opening one's indent (not column 0):
+        # the whole block, not just its first line, must be dropped.
+        self.assertEqual(doc.headings(INDENTED_FENCE), ["Name"])
+        text = doc.plain(INDENTED_FENCE)
+        self.assertNotIn("secret_code", text)
+        self.assertNotIn("not a heading", text)
+        self.assertIn("before the fence", text)
+        self.assertIn("after the fence", text)
+
+    def test_text_only_sections_are_excluded_from_headings_and_text(self):
+        self.assertEqual(doc.headings(TEXT_ONLY_SECTION), ["Visible", "After"])
+        text = doc.plain(TEXT_ONLY_SECTION)
+        self.assertNotIn("secretword", text)
+        self.assertIn("visible words here", text)
+        self.assertIn("after words here", text)
