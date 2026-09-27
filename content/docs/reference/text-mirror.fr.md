@@ -229,12 +229,12 @@ couleurs sur la ligne suivante.
 
 | Composant | Couleur |
 |---|---|
-| mot-clé ; en `sh` et `console`, le mot de commande | gras, dans la couleur d'accent |
-| identifiant natif ou type ; en `sh` et `console`, une option (`-s`, `--out`) | la couleur d'accent |
-| chaîne, une ligne `+` de `diff` | vert |
-| commentaire, une invite `console` (`$ `, `# `) | atténué |
-| nombre, variable | magenta |
-| étiquette, clé, section, l'en-tête d'un extrait `diff` (`@@`) | gras |
+| mot-clé ; en `sh` et `console`, le mot de commande ; en `markdown`, `[!INFO]` et pareils, `[TOC]` | gras, dans la couleur d'accent |
+| identifiant natif ou type ; en `sh` et `console`, une option (`-s`, `--out`) ; en `markdown`, une puce de liste, une case à cocher, l'emphase | la couleur d'accent |
+| chaîne, une ligne `+` de `diff` ; en `markdown`, le `code` en ligne, le titre d'un lien | vert |
+| commentaire, une invite `console` (`$ `, `# `) ; en `markdown`, une ligne de clôture, une règle, les barres d'un tableau, le `>` d'une citation, les `---` du front matter | atténué |
+| nombre, variable ; en `markdown`, la cible d'un lien, les `{marqueurs}` qui terminent une ligne | magenta |
+| étiquette, clé, section, l'en-tête d'un extrait `diff` (`@@`) ; en `markdown`, un titre, une clé du front matter | gras |
 | une ligne `-` de `diff` | rouge |
 
 Le mot de commande est le premier mot d'une commande : au début d'une
@@ -243,13 +243,14 @@ ligne (après une invite `$ ` en `console`), après `|`, `||`, `&&`, `;`,
 l'affectation d'une variable.
 
 Les langages colorés sont `sh`, `python`, `js`, `c`, `go`, `rust`,
-`sql`, `json`, `yaml`, `ini`, `conf`, `dockerfile`, `html`, `css` et
-`make`, chacun selon ses propres règles, plus `console` et `diff`,
-colorés ligne par ligne ; la liste complète des noms et de leurs alias
-est dans [les blocs de code](docs/reference/markdown/blocks). Un bloc
-sans langage, en `text`, ou dans un langage que tilder ne connaît pas
-n'est pas coloré : seules ses lignes de commande (`text.commands`)
-prennent la couleur d'accent, et `txt/` reste brut dans tous les cas.
+`sql`, `json`, `jsonc`, `yaml`, `kyaml`, `ini`, `conf`, `dockerfile`,
+`html`, `css` et `make`, chacun selon ses propres règles, plus
+`console`, `diff` et `markdown`, colorés ligne par ligne ; la liste
+complète des noms et de leurs alias est dans [les blocs de
+code](docs/reference/markdown/blocks). Un bloc sans langage, en
+`text`, ou dans un langage que tilder ne connaît pas n'est pas coloré :
+seules ses lignes de commande (`text.commands`) prennent la couleur
+d'accent, et `txt/` reste brut dans tous les cas.
 
 ## Écarter une page
 
@@ -258,7 +259,7 @@ dans `txt/` ni dans `ansi/`. La page 404 du site de départ le fait : un
 terminal reçoit à la place un court message du serveur
 ([écrire des pages](docs/guide/writing), [déploiement](docs/guide/deployment)).
 
-```text
+```markdown
 ---
 title: 404
 description: Page not found.

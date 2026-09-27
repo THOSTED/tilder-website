@@ -21,7 +21,7 @@ Consecutive lines make one paragraph, joined by spaces; a blank line
 ends it. Words in braces at the end of a paragraph are classes, applied
 on the web page only: the text mirror prints the paragraph plain.
 
-```text
+```markdown
 The build joins these two lines
 into one paragraph.
 
@@ -58,7 +58,7 @@ A paragraph wrapped entirely in single asterisks is an empty state: the
 muted, monospace line that says something is not there yet. A list with
 nothing in it shows the same line.
 
-```text
+```markdown
 *No talk announced yet.*
 ```
 
@@ -80,7 +80,7 @@ starts a numbered one. A numbered list starts at its first number:
 to nest a list inside it. An indented line that is not an item carries
 on the item above it.
 
-```text
+```markdown
 1. Copy the starter site
 2. Build it, then keep it rebuilding
    while you write
@@ -115,7 +115,7 @@ list.
 or a checked one. Screen readers hear `labels.task_todo` or
 `labels.task_done` for the box ("to do", "done").
 
-```text
+```markdown
 - [x] move the blog into folders
 - [ ] write the first report
 ```
@@ -137,7 +137,7 @@ folded by default in a `<details>` that opens without any script. In the text
 mirror it is a numbered list of the section names. Each output lists
 only the sections it shows ([sections](docs/reference/markdown/sections)).
 
-```text
+```markdown
 [TOC]
 ```
 
@@ -157,7 +157,7 @@ the right-hand column.
 `<hr>` on the web page, a line of dashes in the text mirror. At the very
 top of a file, `---` opens the front matter instead.
 
-```text
+```markdown
 Above the rule.
 
 ---
@@ -180,7 +180,7 @@ page, and indented in the text mirror. A line holding only `>` separates
 two paragraphs. An inset holds paragraphs, with inline markup: a list or
 a code block inside it is read as text.
 
-```text
+```markdown
 > **Note:** the [archive ↗](https://archive.example.org/) keeps older posts.
 >
 > A second paragraph.
@@ -201,7 +201,7 @@ An inset whose first line is `[!INFO]`, `[!WARNING]` or `[!ERROR]` is a
 callout, in GitHub's syntax. Text may follow the marker on the same line.
 GitHub's other names are accepted, in upper or lower case.
 
-```text
+```markdown
 > [!INFO]
 > The build runs again at midnight.
 
@@ -250,7 +250,7 @@ highlighting, done by the build (no script), and shows the language in
 the block's corner. The block keeps its spacing exactly, and a long line
 scrolls sideways instead of widening the page.
 
-````text
+````markdown
 ```python
 def fold(text, width=75):
     return textwrap.wrap(text, width)
@@ -279,18 +279,23 @@ of four or more.
 | `rust` | `rs` |
 | `sql` | `postgres`, `postgresql` |
 | `json` | |
+| `jsonc` | `json-with-comments` |
 | `yaml` | `yml` |
+| `kyaml` | `kyml` |
 | `ini` | `toml`, `cfg`, `systemd` |
 | `conf` | `caddy`, `caddyfile`, `nginx` |
 | `dockerfile` | `docker`, `containerfile` |
 | `html` | `xml`, `svg` |
 | `css` | |
 | `make` | `makefile` |
+| `markdown` | `md`, `mdown` |
 | `diff` | `patch` |
 | `text` | `plain`, `txt` |
 
 The name may be written in any case; the label shows it in lower case,
-as written: `caddy`, not `conf`. Three languages are
+as written: `caddy`, not `conf`. `jsonc` is JSON with `//` and `/* */`
+comments, such as VS Code's settings; `kyaml` is Kubernetes' strict
+YAML subset, flow style and quoted values. Five languages are
 read line by line rather than word by word:
 
 - `console`: a line starting with a prompt, `$ ` or `# `, possibly after
@@ -298,10 +303,15 @@ read line by line rather than word by word:
   line is output, left plain.
 - `diff`: added lines and removed lines are coloured apart, hunk headers
   muted.
-- `text`: no highlighting at all, but the label is shown. Every Markdown
-  source in this manual is a `text` block.
+- `markdown`: this dialect - front matter keys, headings and their
+  `{markers}`, fences (a fenced block's own code is left plain),
+  comments, rules, quotes and `[!KIND]` callouts, `[TOC]`, list markers
+  and task boxes, tables, and inline markup - `code`, emphasis, a
+  link's or an image's target - within every line. Most of the source
+  blocks of this reference are `markdown` blocks.
+- `text`: no highlighting at all, but the label is shown.
 
-````text
+````markdown
 ```console
 $ python3 builder/build.py
 built public/
@@ -357,7 +367,7 @@ works in the cells, and `\|` writes a pipe inside one. Every line of
 the table starts with `|`: a line without one turns the block into a
 paragraph.
 
-```text
+```markdown
 | Output | Format | Width |
 |:-------|:------:|------:|
 | page   | HTML   | any   |
@@ -386,7 +396,7 @@ A block starting with `<!--` is copied into the web page as it is, where
 the browser does not show it, and left out of the text mirror. Use it for
 notes to the people who edit the page, such as a fact still to find:
 
-```text
+```markdown
 <!-- TO FILL: the venue's address. -->
 
 *Venue to be announced.*

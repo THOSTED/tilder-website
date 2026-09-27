@@ -143,7 +143,7 @@ A section heading that ends with a type's marker is filled with the
 collection's cards, one per item; a post's or an event's card is
 clickable as a whole:
 
-```text
+```markdown
 ## Posts {posts}
 
 ## Coming up {upcoming:talks}

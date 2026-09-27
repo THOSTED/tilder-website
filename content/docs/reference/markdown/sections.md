@@ -25,7 +25,7 @@ name in the left margin, its content beside it. In the text mirror, the
 name is printed in capitals at the left edge and the content indented
 five spaces under it.
 
-```text
+```markdown
 ## Name
 
 sections - `##` headings, their ids and their markers
@@ -58,7 +58,7 @@ other characters turned into one hyphen. `## Section ids` gets
 
 `{#id}` at the end of the heading sets the id instead:
 
-```text
+```markdown
 ## Ids {#ids}
 ```
 
@@ -72,7 +72,7 @@ keeps links working when the title is reworded or translated.
 A heading may end with markers in braces: one marker per pair of braces,
 or several separated by spaces, in any order.
 
-```text
+```markdown
 ## Contact {#write}
 ## Members {members} {#team}
 ## Coming up {upcoming:talks grid}
@@ -116,7 +116,7 @@ page. Use them for what makes sense in one output only: a note about
 `curl` for terminal readers, a section built around an image for the
 browser.
 
-```text
+```markdown
 ## In the terminal {text}
 
 You are reading the text mirror.
@@ -145,7 +145,7 @@ A section whose heading ends with a type's marker is filled by the build
 with a collection's cards, one per item: the section heading and its
 marker are all you write.
 
-```text
+```markdown
 ## Posts {posts}
 
 ## Coming up {upcoming:talks}
@@ -176,7 +176,7 @@ body, the `<div class="b">` beside the heading, for the theme to style.
 `{grid}` is such a class too, and a list marker adds its own word, without
 the collection's name: `{upcoming:talks}` gives `.upcoming`.
 
-```text
+```markdown
 ## Sponsors {wide}
 ```
 

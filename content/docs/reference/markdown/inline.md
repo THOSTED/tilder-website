@@ -19,7 +19,7 @@ rendered in a frame, as it renders in any sentence of the site.
 Two asterisks on each side make bold text. One asterisk or one
 underscore on each side makes italic text.
 
-```text
+```markdown
 A **bold** word, an *italic* one, and _another_ one.
 ```
 
@@ -32,7 +32,7 @@ Both are written so that ordinary text is left alone:
 - `_italic_` works only around whole words, so `snake_case` stays as
   written.
 
-```text
+```markdown
 2 * 3 * 4 is 24, and snake_case is not italic.
 ```
 
@@ -50,7 +50,7 @@ Two tildes on each side strike text through; two plus signs on each side
 underline it, with a dotted line, since a plain underline reads as a link
 on the web.
 
-```text
+```markdown
 The meetup is on ~~Friday~~ Saturday, ++at noon++.
 ```
 
@@ -67,7 +67,7 @@ them would change the meaning. Underlined text is printed plain.
 A word or a phrase between backquotes is code: set in the monospace
 font, and never read for any other markup.
 
-```text
+```markdown
 Run `python3 builder/build.py`, and keep **`--watch` on** while you write.
 ```
 
@@ -84,7 +84,7 @@ text mirror, code is printed as it is, and coloured in the ANSI mirror.
 without a leading slash and without `.html`; the build makes it relative
 to the page.
 
-```text
+```markdown
 Read [the guide](docs/guide), or the [example ↗](https://example.org/).
 ```
 
@@ -101,7 +101,7 @@ content as plain text. There is no escape character: a backslash is
 printed, and does not stop the markup after it. Anything else, HTML
 included, is printed as written.
 
-```text
+```markdown
 **[a link](docs/)** is bold, and <b>this</b> is not.
 A \*backslash\* does not escape.
 ```

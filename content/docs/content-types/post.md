@@ -69,7 +69,7 @@ address, and its date is the post's date; there is no `date:` key.
 
 ## Front matter
 
-```text
+```markdown
 ---
 title: Hello
 description: The first post, in a file named by its date: all a post needs.
@@ -112,7 +112,7 @@ the link, closes the first section. In the text mirror:
 A section marked `{posts}` lists every post of the collection, newest
 first. The blog's own page is usually just that:
 
-```text
+```markdown
 ---
 man: MYSITE-BLOG(7)
 title: blog

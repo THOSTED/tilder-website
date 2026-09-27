@@ -23,7 +23,7 @@ Un titre `###` ouvre une entrée dans la section en cours. Les blocs de
 son corps sont en retrait de deux espaces ; le premier bloc qui n'est pas
 en retrait termine l'entrée, et la page revient à la section.
 
-```text
+```markdown
 ### Rencontre de printemps
 
   Trois conférences et un atelier, ouverts à tous.
@@ -59,7 +59,7 @@ sortes :
 | `AAAA-MM-JJ \| date en toutes lettres` | `<time datetime="AAAA-MM-JJ">`, qui affiche la date en toutes lettres | la date en toutes lettres |
 | tout autre texte | un élément simple | une ligne à part |
 
-```text
+```markdown
 ### Rencontre d'automne
 
   - 2026-10-17 | samedi 17 octobre 2026
@@ -103,7 +103,7 @@ tout thème.
 | `{link}` | `.entry--link` | une carte dont le lien du titre couvre toute la carte |
 | tout autre mot | `.entry--<mot>` | une classe pour le thème |
 
-```text
+```markdown
 ### Rencontre d'hiver {next}
 
   - `prochain`
@@ -146,7 +146,7 @@ Le thème de ce site met en forme un marqueur de plus, `{example}` : le
 cadre pointillé marqué `Rendu` autour de chaque exemple vivant de la
 page des [blocs](docs/reference/markdown/blocks).
 
-```text
+```markdown
 ### Rendu {example}
 
   | un exemple | vivant |
@@ -161,7 +161,7 @@ encadrés, code, tableaux, images. Chacun est en retrait de deux espaces,
 ses lignes suivantes comprises, et des lignes vides les séparent comme
 partout ailleurs.
 
-```text
+```markdown
 ### Version 2.0
 
   - `version`

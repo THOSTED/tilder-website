@@ -26,7 +26,7 @@ la page de manuel : son nom dans la marge de gauche, son contenu à côté.
 Dans le miroir en texte, le nom est imprimé en capitales contre la marge
 et le contenu en retrait de cinq espaces en dessous.
 
-```text
+```markdown
 ## Nom
 
 sections - les titres `##`, leurs identifiants et leurs marqueurs
@@ -59,7 +59,7 @@ même titre donne `les-identifiants-2`.
 
 `{#id}` à la fin du titre fixe l'identifiant :
 
-```text
+```markdown
 ## Identifiants {#ids}
 ```
 
@@ -75,7 +75,7 @@ Un titre peut se terminer par des marqueurs entre accolades : un par
 paire d'accolades, ou plusieurs séparés par des espaces, dans n'importe
 quel ordre.
 
-```text
+```markdown
 ## Contact {#write}
 ## Membres {members} {#team}
 ## À venir {upcoming:talks grid}
@@ -120,7 +120,7 @@ web. Servez-vous-en pour ce qui n'a de sens que dans une sortie : une
 remarque sur `curl` pour les lecteurs du terminal, une section bâtie
 autour d'une image pour le navigateur.
 
-```text
+```markdown
 ## Dans le terminal {text}
 
 Vous lisez le miroir en texte.
@@ -150,7 +150,7 @@ Une section dont le titre se termine par le marqueur d'un type est
 remplie par la construction avec les cartes d'une collection, une par
 élément : le titre et son marqueur sont tout ce que vous écrivez.
 
-```text
+```markdown
 ## Articles {posts}
 
 ## À venir {upcoming:talks}
@@ -183,7 +183,7 @@ forme. `{grid}` est lui aussi une telle classe, et un marqueur de liste
 ajoute son propre mot, sans le nom de la collection : `{upcoming:talks}`
 donne `.upcoming`.
 
-```text
+```markdown
 ## Partenaires {wide}
 ```
 

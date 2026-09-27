@@ -22,7 +22,7 @@ A page states everything itself: `man`, `title`, `description`,
 no collection to take them from. Every key of
 [writing pages](docs/guide/writing) applies.
 
-```text
+```markdown
 ---
 man: MYSITE-ABOUT(7)
 title: About

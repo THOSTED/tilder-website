@@ -64,7 +64,7 @@ more than one.
 
 ## Front matter
 
-```text
+```markdown
 ---
 title: Spring meetup
 description: Talks and a workshop on documentation, then dinner.
@@ -117,7 +117,7 @@ Three markers list a collection of events, all by the date of the build:
 | `{past}` | the events that started before today, latest first |
 | `{next-event}` | the next event only, marked the same way |
 
-```text
+```markdown
 ## Upcoming {upcoming}
 
 ## Past {past}

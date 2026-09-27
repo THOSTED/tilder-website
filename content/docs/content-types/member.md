@@ -57,7 +57,7 @@ from being built.
 
 ## Front matter
 
-```text
+```markdown
 ---
 title: Jane Doe
 description: Jane Doe, who runs the project and answers its mail.
@@ -96,7 +96,7 @@ grid (`.grid`), in this order: by category, in the order of
 `categories` (a category not listed there comes after them); then by last
 name, accents and case ignored; then by file name.
 
-```text
+```markdown
 ## Members {members}
 ```
 

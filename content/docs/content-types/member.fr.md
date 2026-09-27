@@ -58,7 +58,7 @@ chaque champ ; son nom l'empêche d'être construit.
 
 ## En-tête
 
-```text
+```markdown
 ---
 title: Jane Doe
 description: Jane Doe, who runs the project and answers its mail.
@@ -98,7 +98,7 @@ en grille (`.grid`), dans cet ordre : par catégorie, dans l'ordre de
 nom, sans tenir compte des accents ni de la casse ; puis par nom de
 fichier.
 
-```text
+```markdown
 ## Members {members}
 ```
 
