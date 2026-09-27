@@ -15,7 +15,7 @@ Makefile                  build, check, watch, serve, stop, test, clean
 compose.yaml              the build and Caddy, locally and in production
 Caddyfile                 from tilder's examples/Caddyfile, hosts from the environment
 .env.example              the hosts and ports, local defaults
-TILDER_VERSION            the pinned tilder, 1.2.0
+TILDER_VERSION            the pinned tilder, 1.4.0
 tools/check-coverage.py   the docs name every fact of the pinned tilder
 tests/                    the theme's tests, its fixture site (tests/site/), the content's tests
 .gitignore                public/, .env, __pycache__/
