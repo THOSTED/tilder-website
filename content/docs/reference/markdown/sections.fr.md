@@ -40,8 +40,11 @@ Cette source est le début de cette page. Les pages s'ouvrent sur
 c'est ainsi qu'une page de manuel se lit.
 
 Un titre `##` tient seul, avec ou sans ligne vide autour. Seuls `##` et
-`###` sont des titres : une ligne qui commence par `#` ou `####` est un
-paragraphe, imprimé tel quel.
+`###`, suivis d'une espace, sont des titres : une ligne qui commence par
+`#`, `####` ou `##Titre` est un paragraphe, imprimé tel quel. Le titre
+d'une section est lui aussi imprimé tel quel, sans balisage en ligne :
+`**gras**` y garde ses astérisques, sur la page, dans la table des
+matières et dans le miroir en texte.
 
 Ce qui précède le premier `##` d'un fichier est rendu en haut de la page
 web, hors de toute section, et omis du miroir en texte.

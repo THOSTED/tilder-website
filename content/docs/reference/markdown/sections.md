@@ -39,8 +39,11 @@ line `name - summary`, then a paragraph that sums the page up
 man page reads that way.
 
 A `##` heading stands on its own, with or without a blank line around it.
-Only `##` and `###` are headings: a line starting with `#` or `####` is a
-paragraph, printed as written.
+Only `##` and `###`, followed by a space, are headings: a line starting
+with `#`, `####` or `##Title` is a paragraph, printed as written. A
+section's title is printed as written too, with no inline markup:
+`**bold**` in it keeps its asterisks, on the page, in the table of
+contents and in the text mirror.
 
 Whatever comes before the first `##` of a file is rendered at the top of
 the web page, outside any section, and left out of the text mirror.

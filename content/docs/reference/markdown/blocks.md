@@ -49,7 +49,8 @@ A line in the warning colour. {warn}
 
 `small`, `muted`, `faint`, `mono` and `warn` are the classes every theme
 is expected to style ([classes](docs/themes/classes)). Any other word in
-the braces becomes a class too, for a theme that styles it.
+the braces becomes a class too, for a theme that styles it. A `{#id}`
+there is dropped: a paragraph has no id.
 
 ## Empty state
 
@@ -144,7 +145,8 @@ only the sections it shows ([sections](docs/reference/markdown/sections)).
 
   [TOC]
 
-Put it where the contents should appear, near the top of a long page.
+`[toc]` works too, in any case. Put it where the contents should
+appear, near the top of a long page.
 This page has one under its `## Name`; on a wide screen, this site's
 theme moves the first table of contents of a documentation page into
 the right-hand column.
@@ -330,15 +332,16 @@ If the theme ships `code.js`, as this one does, every code block gets a
 button that copies its code as plain text, worded by `labels.copy` and
 `labels.copied`; the script is loaded only on pages with code
 ([scripts](docs/themes/scripts)). In the text mirror, the block is framed
-by two rules, the language in the top one, and its lines are left
-untouched; a line longer than the mirror's 75 columns is cut and
-continued on the next one, the cut marked with `\`:
+by two rules, the language in the top one, and nothing is added to its
+lines, so they copy clean from a terminal: they are only folded to ASCII,
+tabs expanded to four spaces. A line longer than the mirror's 75 columns
+is cut and continued on the next one, the cut marked with `\`:
 
 ```text
-.-- python ---------------------------------------------------------------.
+.-- python --------------------------------------------------------.
   def fold(text, width=75):
       return textwrap.wrap(text, width)
-'-------------------------------------------------------------------------'
+'------------------------------------------------------------------'
 ```
 
 ## Table
@@ -346,7 +349,9 @@ continued on the next one, the cut marked with `\`:
 Pipes separate the cells; the second line, of dashes, separates the
 header from the rows. Colons in that line set each column's alignment:
 `:---` left, the default, `:---:` centred, `---:` right. Inline markup
-works in the cells, and `\|` writes a pipe inside one.
+works in the cells, and `\|` writes a pipe inside one. Every line of
+the table starts with `|`: a line without one turns the block into a
+paragraph.
 
 ```text
 | Output | Format | Width |

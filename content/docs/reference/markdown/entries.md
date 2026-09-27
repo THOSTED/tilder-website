@@ -39,7 +39,8 @@ That source renders as follows.
 Back in the section, after the entry.
 
 The title may hold inline markup, such as a link. An entry has no id of
-its own: to link to it, link to its section. Entries do not nest: a
+its own, and a `{#id}` on its heading is dropped: to link to it, link to
+its section. Entries do not nest: a
 `####` heading is not one.
 
 In the text mirror, the title is printed at the section's indent and the
@@ -127,8 +128,8 @@ That source renders as follows.
 
 `{next}` and `{full}` change the tag only; the card itself looks like any
 other. The build sets them on the cards it writes: `{next}` on the first
-event of an `{upcoming}` list, `{full}` on a member whose front matter
-says `full: yes`. It sets `{link}` on the cards of posts and events in
+event of an `{upcoming}` list and on the one card of `{next-event}`,
+`{full}` on a member whose front matter says `full: yes`. It sets `{link}` on the cards of posts and events in
 a list, whose title links to the item's page; the last entry above is
 such a card, clickable anywhere. In a section marked `{grid}`, entries
 are laid out as cards side by side
