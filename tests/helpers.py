@@ -96,7 +96,7 @@ def builder_missing():
 
 def tilder(root, *args, out=None):
     """Run tilder on the project at `root` (--root), with `args` (--check),
-    into `out` when given (--out): the Makefile's $(RUN) $(OUTARG)."""
+    into `out` when given (--out): the Makefile's $(CHECK) and $(BUILD)."""
     local = os.environ.get("TILDER_BUILD")
     if local:
         argv = [sys.executable, "-B", local, "--root", str(root)]
