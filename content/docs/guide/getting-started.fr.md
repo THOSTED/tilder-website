@@ -21,13 +21,13 @@ tour de ce que la construction laisse dans `public/`.
 ### Avec Docker
 
   L'image `ghcr.io/thosted/tilder` contient le générateur, Python et les
-  outils qui dessinent les icônes. Elle porte un tag par version : `1.4.0`,
+  outils qui dessinent les icônes. Elle porte un tag par version : `1.4.1`,
   `1.4` et `1` suivent les versions publiées, `latest` la branche
   principale. Fixez une version, pour que le site se construise demain
   comme aujourd'hui :
 
   ```sh
-  docker pull ghcr.io/thosted/tilder:1.4.0
+  docker pull ghcr.io/thosted/tilder:1.4.1
   ```
 
   Le générateur est dans `/tilder` à l'intérieur de l'image, avec la
@@ -40,7 +40,7 @@ tour de ce que la construction laisse dans `public/`.
   Python 3.11 ou plus récent.
 
   ```sh
-  git clone --branch v1.4.0 https://github.com/THOSTED/tilder
+  git clone --branch v1.4.1 https://github.com/THOSTED/tilder
   python3 tilder/build.py --help
   ```
 
@@ -77,7 +77,7 @@ thème minimal sur les polices du système. Copiez-le et faites-en le
 vôtre :
 
 ```sh
-git clone --branch v1.4.0 https://github.com/THOSTED/tilder
+git clone --branch v1.4.1 https://github.com/THOSTED/tilder
 cp -r tilder/starter my-site
 cd my-site
 ```
@@ -101,7 +101,7 @@ Avec Docker, depuis `my-site/` :
 mkdir -p public
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.4.0 \
+  ghcr.io/thosted/tilder:1.4.1 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
@@ -158,7 +158,7 @@ vers `/out` :
 
 ```sh
 docker run --rm -u "$(id -u):$(id -g)" \
-  -v "$PWD:/site" -v "$PWD/public:/out" ghcr.io/thosted/tilder:1.4.0
+  -v "$PWD:/site" -v "$PWD/public:/out" ghcr.io/thosted/tilder:1.4.1
 ```
 
 Elle regarde `content/`, `theme/` et `assets/` chaque seconde. Une
