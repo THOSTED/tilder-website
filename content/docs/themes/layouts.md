@@ -98,8 +98,6 @@ optional (`{{title}}` works). Each is replaced by its value:
 | `{{ body }}` | the sections of the page, wrapped in an `<article>` for a type that is an article (posts, events) |
 | `{{ script }}` | the `<script>` tags the page needs, if the theme has the files ([scripts](docs/themes/scripts)) |
 
-<!-- 1.2 -->
-
 In a recursive collection, such as this documentation, `{{ collection_nav }}`
 is a tree: each folder is a section, an `<li class="collection-section">`
 with its label and a list of its own, and the section that holds the page

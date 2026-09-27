@@ -8,8 +8,6 @@ order: 60
 
 navigation - l'ordre d'une collection, sa barre latérale et ses voisins
 
-<!-- 1.2 -->
-
 Les pages d'une collection ont un ordre, fixé par leur type. Un thème le
 montre de trois façons : une barre latérale de toutes les pages, groupées
 et imbriquées, des liens vers la page précédente et la suivante, et, dans
@@ -69,8 +67,6 @@ Les voisins ignorent les groupes.
 
 ## Les sections
 
-<!-- 1.2 -->
-
 Dans une collection récursive (tilder 1.2), les dossiers sont des
 sections, comme le sont les sections de ce manuel. L'ordre va en
 profondeur d'abord : dans un dossier, ses éléments et ses sections sont
@@ -82,13 +78,12 @@ pages qu'elle contient. Ainsi `order: 20` dans
 `order: 10` dans `content/docs/content-types/page.md` place la page à
 l'intérieur.
 
-<!-- 1.2 -->
-
 La barre latérale imbrique les sections, chacune avec pour libellé le
 titre de sa propre page, en lien, ou le nom de son dossier quand elle n'en
 a pas. `group` fonctionne à tous les niveaux. Les voisins et la ligne en
-texte suivent le même ordre en profondeur d'abord, de la dernière page
-d'une section à la page de la section suivante.
+texte suivent le même ordre en profondeur d'abord : la dernière page
+d'une section mène à ce qui la suit, la page suivante du dossier parent ou
+la page de la section suivante.
 
 ## La barre latérale
 
@@ -110,8 +105,6 @@ elle-même ; elle est vide ailleurs.
 </ul>
 </nav>
 ```
-
-<!-- 1.2 -->
 
 Avec des sections (tilder 1.2), une section est un élément de liste de
 classe `.collection-section` qui contient son libellé et une liste

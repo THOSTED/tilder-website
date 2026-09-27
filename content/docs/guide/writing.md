@@ -40,8 +40,6 @@ folder's `index.md` is the folder's own page, with a trailing slash.
 - Every page is listed in `sitemap.xml` and `sitemap.txt`, unless its
   `robots` says `noindex`.
 
-<!-- 1.2 -->
-
 In a recursive collection, such as the documentation you are reading,
 folders nest: `content/docs/guide/writing.md` is the page
 `/docs/guide/writing`, and a folder's `index.md` is that section's own

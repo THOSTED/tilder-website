@@ -47,8 +47,6 @@ calendar = "talks.ics"
 upcoming_tag = "soon"
 ```
 
-<!-- 1.2 -->
-
 | Clé | Rôle |
 |---|---|
 | `type` | le type de ses éléments : `post`, `event`, `member`, ou un type du thème ; `post` par défaut. Les types sont au singulier : `type = "posts"` arrête la construction |
@@ -130,8 +128,6 @@ seul :
 
 ## Collections récursives
 
-<!-- 1.2 -->
-
 Avec `recursive = true` (tilder 1.2), une collection lit aussi ses
 sous-dossiers, à toute profondeur. `content/docs/guide/writing.md` est
 l'élément `guide/writing`, servi à `/docs/guide/writing`, dans la section
@@ -141,8 +137,6 @@ dossier, servi à côté de lui : `content/docs/guide/index.md` est
 tenir ce rôle à sa place ; une section qui n'a ni l'un ni l'autre n'a pas
 de page, et le nom de son dossier la représente. La documentation que
 vous lisez est une telle collection.
-
-<!-- 1.2 -->
 
 `recursive` vaut `false` sauf si la collection ou les réglages de son type
 le fixent, et ne prend que `true` ou `false`. Un type daté ne peut pas

@@ -101,8 +101,6 @@ def list_data(conf): ...
 
 Ce que reçoivent `defaults`, `entry` et les autres :
 
-<!-- 1.2 -->
-
 ```python
 {"slug": "2099-03-01-first-talk",
  "date": "2099-03-01",
@@ -116,8 +114,6 @@ Ce que reçoivent `defaults`, `entry` et les autres :
  "content_lang": "en",
  "section": ""}
 ```
-
-<!-- 1.2 -->
 
 | Clé | Rôle |
 |---|---|
@@ -135,12 +131,11 @@ Les valeurs de l'en-tête sont des chaînes, telles qu'écrites :
 `meta["serves"]` vaut `"4"`, pas un nombre. `item["path"][:-5]`, le
 chemin sans `.html`, est la cible d'un lien vers la page de l'élément.
 
-<!-- 1.2 -->
-
 Dans une collection récursive (tilder 1.2), l'identifiant porte les
 dossiers, `guide/writing`, et `section` en contient la partie dossier,
 `guide` ; elle vaut `""` au premier niveau, et dans toute collection qui
-n'est pas récursive.
+n'est pas récursive. La page propre d'une section se range à côté de son
+dossier : son identifiant est `guide` et sa `section` vaut `""`.
 
 ## Le nœud de carte
 

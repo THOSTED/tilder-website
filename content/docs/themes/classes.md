@@ -31,8 +31,10 @@ can build; `build.py --check` tells it which ones it misses.
 | `.languages` | `<nav>` | the language switcher, `{{ languages }}`: one `<a>` per language, the current one `aria-current="page"` |
 
 The segments of the wordmark between the site's name and the page's own
-link to the pages they name, when there is one; on the landing page, the
-wordmark is `~/site` and the cursor.
+link to the pages they name: a folder's `index.md`, else the page beside
+it. A section of a recursive collection without its own page is named
+by its folder, not linked. On the landing page, the wordmark is `~/site`
+and the cursor.
 
 ## A collection's navigation
 
@@ -44,25 +46,24 @@ wordmark is `~/site` and the cursor.
 | `.prev`, `.next` | `<a>` | `{{ prev }}` and `{{ next }}`, the links to the neighbours, with `rel="prev"` and `rel="next"` |
 | `.prev-label`, `.next-label` | `<span>` | inside them, the words `labels.prev` and `labels.next`, before the neighbour's title |
 
-<!-- 1.2 -->
-
 A recursive collection nests its folders in the sidebar, as sections:
 
 | Class | On | What |
 |---|---|---|
 | `.collection-section` | `<li>` | a section: its label, then a `<ul>` of its pages |
 | `.collection-section--open` | `<li>` | added to the section that holds the current page, so the theme may fold the others |
-| `.collection-section-label` | `<a>` or `<span>` | the section's name: a link to its own page (its `index.md`), titled like it; without one, a `<span>` with the folder's name |
+| `.collection-section-label` | `<a>` or `<span>` | the section's name: a link to its own page (its `index.md`, or a `<name>.md` beside the folder), titled like it; without one, a `<span>` with the folder's name |
 
-<!-- 1.2 -->
+On the page `docs/guide/writing`, whose links the build makes relative
+to it:
 
 ```html
 <nav class="collection-nav" aria-label="In this section">
 <ul>
-	<li><a href="install">Install</a></li>
-	<li class="collection-section collection-section--open"><a class="collection-section-label" href="guide">Guide</a>
+	<li><a href="../install">Install</a></li>
+	<li class="collection-section collection-section--open"><a class="collection-section-label" href="../guide">Guide</a>
 	<ul>
-		<li><a href="guide/writing" aria-current="page">Writing</a></li>
+		<li><a href="writing" aria-current="page">Writing</a></li>
 	</ul>
 	</li>
 </ul>

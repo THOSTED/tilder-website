@@ -21,8 +21,6 @@ the guide; come back to the reference when you need a detail.
 
 ## Sections
 
-<!-- 1.2 -->
-
 - [Guide](docs/guide): from the first build to a site online, in the
   order you meet things.
 - [Content types](docs/content-types): collections, posts, events,

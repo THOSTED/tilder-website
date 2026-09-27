@@ -8,8 +8,6 @@ order: 50
 
 checking - build.py --check, les classes et le contraste d'un thème
 
-<!-- 1.2 -->
-
 `build.py --check` vérifie le thème du site au regard du tilder qui
 l'exécute, et ne construit rien. Deux vérifications : chaque classe
 qu'écrit la construction a une règle dans `style.css`, et chaque paire de
@@ -21,8 +19,6 @@ construction, dans un Makefile ou en intégration continue.
 [TOC]
 
 ## La commande
-
-<!-- 1.2 -->
 
 Depuis le projet, avec Python :
 
@@ -38,8 +34,6 @@ docker run --rm -v "$PWD:/site:ro" ghcr.io/thosted/tilder:1.2.0 \
   python3 -B /tilder/build.py --root /site --check
 ```
 
-<!-- 1.2 -->
-
 Elle affiche une ligne `error:` par problème, sous la même forme que les
 erreurs de la construction, le fichier, ce qui ne va pas, puis ce qu'il
 faut faire, et une ligne de bilan pour chaque vérification menée : avec
@@ -49,8 +43,10 @@ du contraste donne une erreur au lieu d'un bilan. Le code de sortie vaut
 été trouvé. La construction normale ne lance jamais ces vérifications :
 lancez-les quand le thème change, ou avant chaque construction.
 
-Par exemple, sur un thème écrit pour tilder 1.1, auquel manquent les trois
-classes de section de la 1.2 et qui ne déclare aucune paire de contraste :
+Par exemple, tilder 1.2.0 qui vérifie le thème de ce site tel qu'il était
+écrit pour tilder 1.1, avant qu'il ne mette en forme les trois classes de
+section de la 1.2 et que son `theme.toml` ne déclare des paires de
+contraste :
 
 ```console
 $ python3 ../tilder/build.py --check
@@ -65,8 +61,6 @@ $ echo $?
 
 ## Les classes
 
-<!-- 1.2 -->
-
 tilder tient la liste de chaque classe qu'il écrit, `CLASSES` dans son
 `src/contract.py` : les classes de la page [classes](docs/themes/classes).
 La vérification cherche chacune d'elles dans `style.css`, le
@@ -74,8 +68,6 @@ La vérification cherche chacune d'elles dans `style.css`, le
 compte quand `.name` apparaît sans caractère de nom à sa suite, hors
 commentaires et hors contenu des chaînes. Ainsi `.toc` ne compte pas pour
 `.toc-label`, et une classe citée seulement dans un commentaire manque.
-
-<!-- 1.2 -->
 
 Un thème qui laisse volontairement une classe sans style la nomme dans
 `[check] unstyled`, et la vérification l'ignore : un thème sans logos de
@@ -95,16 +87,12 @@ sans style.
 
 ## Le contraste
 
-<!-- 1.2 -->
-
 Le thème déclare les paires de couleurs qui portent du texte, le
 premier plan puis le fond, sous forme de propriétés personnalisées de son
 `style.css`, dans `[check] contrast`. La vérification calcule le rapport
 de contraste WCAG 2 de chaque paire et signale, avec son rapport, chacune
 de celles qui passent sous `contrast_min` : 4,5 par défaut, le minimum
 WCAG AA pour le texte.
-
-<!-- 1.2 -->
 
 Elle lit les couleurs là où un navigateur les lirait :
 
@@ -114,8 +102,6 @@ Elle lit les couleurs là où un navigateur les lirait :
   (prefers-color-scheme: dark)`, par-dessus celles du mode clair, si bien
   que le mode sombre ne définit que ce qui change. Sans une telle règle,
   seul le mode clair est vérifié.
-
-<!-- 1.2 -->
 
 Seule compte une règle dont le sélecteur est exactement `:root` : pas
 `:root, .dark`, pas une règle placée dans `@supports` ou `@layer`. Une
@@ -140,8 +126,6 @@ contrast: skipped, no [check] contrast in theme/theme.toml
 ```
 
 ## La table [check]
-
-<!-- 1.2 -->
 
 Les trois clés se placent dans le `theme.toml` du thème, sous `[check]`.
 Elles sont lues dans `defaults.toml`, puis dans le `theme.toml` du thème,
@@ -172,8 +156,6 @@ une liste de noms, `contrast` une liste de paires de noms commençant par
 
 ## Un tableau pour le README
 
-<!-- 1.2 -->
-
 Avec `--markdown`, la vérification affiche aussi le tableau des
 contrastes en Markdown, sur la sortie standard, et ses lignes de bilan
 sur la sortie d'erreur : redirigez la sortie vers un fichier et collez le
@@ -184,13 +166,17 @@ rapports sans rien lancer.
 python3 ../tilder/build.py --check --markdown > contrast.md
 ```
 
+Le tableau donne d'abord le mode clair, puis le sombre, chaque paire
+dans l'ordre de `[check] contrast`. Ses premières lignes pour le thème du
+site de départ :
+
 ```text
 | scheme | foreground | background | ratio | minimum |
 |---|---|---|---:|---:|
 | light | `--fg` | `--bg` | 17.40 | 4.5 |
+| light | `--fg` | `--bg-inset` | 15.68 | 4.5 |
 | light | `--fg-muted` | `--bg` | 7.46 | 4.5 |
-| dark | `--fg` | `--bg` | 14.26 | 4.5 |
-| dark | `--fg-muted` | `--bg` | 7.49 | 4.5 |
+| light | `--fg-muted` | `--bg-inset` | 6.72 | 4.5 |
 ```
 
 Le thème du site de départ passe les deux vérifications et déclare ses

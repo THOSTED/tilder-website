@@ -23,8 +23,6 @@ manque.
 
 ## Sections
 
-<!-- 1.2 -->
-
 - [Guide](docs/guide) : de la première construction au site en ligne,
   dans l'ordre où les questions se posent.
 - [Types de contenu](docs/content-types) : les collections, les articles,

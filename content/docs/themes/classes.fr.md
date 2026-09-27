@@ -32,8 +32,10 @@ construire ; `build.py --check` lui dit lesquelles il oublie.
 | `.languages` | `<nav>` | le sélecteur de langue, `{{ languages }}` : un `<a>` par langue, l'actuelle marquée `aria-current="page"` |
 
 Les segments du logotype situés entre le nom du site et celui de la page
-mènent aux pages qu'ils nomment, quand elles existent ; sur la page
-d'accueil, le logotype se réduit à `~/site` et au curseur.
+mènent aux pages qu'ils nomment : le `index.md` d'un dossier, sinon la
+page à côté de lui. Une section de collection récursive sans page propre
+est nommée d'après son dossier, sans lien. Sur la page d'accueil, le
+logotype se réduit à `~/site` et au curseur.
 
 ## La navigation d'une collection
 
@@ -45,8 +47,6 @@ d'accueil, le logotype se réduit à `~/site` et au curseur.
 | `.prev`, `.next` | `<a>` | `{{ prev }}` et `{{ next }}`, les liens vers les voisines, avec `rel="prev"` et `rel="next"` |
 | `.prev-label`, `.next-label` | `<span>` | à l'intérieur, les mots `labels.prev` et `labels.next`, avant le titre de la voisine |
 
-<!-- 1.2 -->
-
 Une collection récursive imbrique ses dossiers dans la barre latérale,
 sous forme de sections :
 
@@ -54,17 +54,18 @@ sous forme de sections :
 |---|---|---|
 | `.collection-section` | `<li>` | une section : son libellé, puis une `<ul>` de ses pages |
 | `.collection-section--open` | `<li>` | ajoutée à la section qui contient la page courante, ce qui permet au thème de replier les autres |
-| `.collection-section-label` | `<a>` ou `<span>` | le nom de la section : un lien vers sa propre page (son `index.md`), intitulé comme elle ; sans elle, un `<span>` avec le nom du dossier |
+| `.collection-section-label` | `<a>` ou `<span>` | le nom de la section : un lien vers sa propre page (son `index.md`, ou un `<name>.md` à côté du dossier), intitulé comme elle ; sans elle, un `<span>` avec le nom du dossier |
 
-<!-- 1.2 -->
+Sur la page `docs/guide/writing`, dont la construction rend les liens
+relatifs :
 
 ```html
 <nav class="collection-nav" aria-label="In this section">
 <ul>
-	<li><a href="install">Install</a></li>
-	<li class="collection-section collection-section--open"><a class="collection-section-label" href="guide">Guide</a>
+	<li><a href="../install">Install</a></li>
+	<li class="collection-section collection-section--open"><a class="collection-section-label" href="../guide">Guide</a>
 	<ul>
-		<li><a href="guide/writing" aria-current="page">Writing</a></li>
+		<li><a href="writing" aria-current="page">Writing</a></li>
 	</ul>
 	</li>
 </ul>

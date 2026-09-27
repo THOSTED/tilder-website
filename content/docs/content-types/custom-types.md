@@ -96,8 +96,6 @@ def list_data(conf): ...
 
 What `defaults`, `entry` and the others receive:
 
-<!-- 1.2 -->
-
 ```python
 {"slug": "2099-03-01-first-talk",
  "date": "2099-03-01",
@@ -111,8 +109,6 @@ What `defaults`, `entry` and the others receive:
  "content_lang": "en",
  "section": ""}
 ```
-
-<!-- 1.2 -->
 
 | Key | Meaning |
 |---|---|
@@ -130,11 +126,11 @@ Front-matter values are strings, as written: `meta["serves"]` is `"4"`,
 not a number. `item["path"][:-5]`, the path without `.html`, is the link
 target of the item's page.
 
-<!-- 1.2 -->
-
 In a recursive collection (tilder 1.2), the slug carries the folders,
 `guide/writing`, and `section` holds the folder part, `guide`; it is
-`""` at the top, and in every collection that is not recursive.
+`""` at the top, and in every collection that is not recursive. A
+section's own page sits beside its folder: its slug is `guide` and its
+`section` is `""`.
 
 ## The entry node
 
