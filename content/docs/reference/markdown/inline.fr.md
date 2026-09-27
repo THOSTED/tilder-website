@@ -70,10 +70,10 @@ Un mot ou une expression entre accents graves est du code : en police à
 chasse fixe, et jamais lu pour un autre balisage.
 
 ```text
-Lancez `./build.sh`, et gardez **`--watch` actif** pendant que vous écrivez.
+Lancez `python3 builder/build.py`, et gardez **`--watch` actif** pendant que vous écrivez.
 ```
 
-> Lancez `./build.sh`, et gardez **`--watch` actif** pendant que vous écrivez.
+> Lancez `python3 builder/build.py`, et gardez **`--watch` actif** pendant que vous écrivez.
 
 La fin de cet exemple montre aussi la règle suivante : pas
 d'imbrication. Le gras garde les accents graves tels quels, pas du code.

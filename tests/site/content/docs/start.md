@@ -12,9 +12,9 @@ getting started - the **first** page {mono}
 
 ## Install {#install}
 
-Run `build.sh` and read the [cli](docs/cli) page.
+Run `make` and read the [cli](docs/cli) page.
 
 ```sh
-./build.sh
+make
 ## not a heading
 ```

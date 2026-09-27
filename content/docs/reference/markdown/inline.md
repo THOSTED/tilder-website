@@ -68,10 +68,10 @@ A word or a phrase between backquotes is code: set in the monospace
 font, and never read for any other markup.
 
 ```text
-Run `./build.sh`, and keep **`--watch` on** while you write.
+Run `python3 builder/build.py`, and keep **`--watch` on** while you write.
 ```
 
-> Run `./build.sh`, and keep **`--watch` on** while you write.
+> Run `python3 builder/build.py`, and keep **`--watch` on** while you write.
 
 The end of that example also shows the next rule: no nesting. The bold
 text holds the backquotes as they are, not code. Code cannot hold a

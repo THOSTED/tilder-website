@@ -84,8 +84,8 @@ on the item above it.
 1. Copy the starter site
 2. Build it, then keep it rebuilding
    while you write
-   - `./build.sh`
-   - `./build.sh --watch`
+   - `python3 builder/build.py`
+   - `python3 builder/build.py --watch`
 3. Write the first page
 ```
 
@@ -96,8 +96,8 @@ on the item above it.
   1. Copy the starter site
   2. Build it, then keep it rebuilding
      while you write
-     - `./build.sh`
-     - `./build.sh --watch`
+     - `python3 builder/build.py`
+     - `python3 builder/build.py --watch`
   3. Write the first page
 
 In the text mirror, each item is indented two spaces, as `- item` or
@@ -303,7 +303,7 @@ read line by line rather than word by word:
 
 ````text
 ```console
-$ ./build.sh
+$ python3 builder/build.py
 built public/
 ```
 
@@ -316,7 +316,7 @@ built public/
 ### Rendered {example}
 
   ```console
-  $ ./build.sh
+  $ python3 builder/build.py
   built public/
   ```
 

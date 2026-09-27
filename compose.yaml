@@ -5,8 +5,9 @@
 #   docker compose run build   rebuild into the running stack
 #   docker compose down        stop
 #
-# TILDER_VERSION comes from the file of that name (the Makefile exports
-# it). Hosts and ports come from .env (see .env.example).
+# TILDER_VERSION comes from the file of that name: the Makefile exports
+# it; by hand, export TILDER_VERSION=$(cat TILDER_VERSION) first. Hosts
+# and ports come from .env (see .env.example).
 
 services:
   build:
