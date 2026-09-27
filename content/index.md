@@ -54,6 +54,13 @@ DESCRIPTION
 
 ## Features {grid}
 
+### Free software
+
+  MIT licence, code on GitHub: tilder itself, and this site. Nothing to
+  install beyond Python's standard library, nothing to lock you in: your
+  content stays plain Markdown files, yours to keep. Contributions are
+  welcome, as issues and pull requests.
+
 ### Text mirror
 
   Every page has a plain-text twin, 75 columns wide, plain or coloured for
