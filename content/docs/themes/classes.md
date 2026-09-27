@@ -110,7 +110,7 @@ constructs, its source and its rendering.
 | Class | On | What |
 |---|---|---|
 | `pre.code` | `<pre tabindex="0">` | a code block, around a `<code>`; focusable, so a keyboard can scroll it |
-| `pre.code[data-lang]` | `<pre class="code">` | a highlighted block: `data-lang` holds the language as written, for the theme to show (`content: attr(data-lang)`); the `<code>` inside is `language-<lang>` |
+| `pre.code[data-lang]` | `<pre class="code">` | a highlighted block: `data-lang` holds the language as written, in lowercase, for the theme to show (`content: attr(data-lang)`); the `<code>` inside is `language-<lang>` |
 | `.hl-k` | `<span>` | a keyword |
 | `.hl-b` | `<span>` | a builtin, a type, a literal |
 | `.hl-s` | `<span>` | a string |

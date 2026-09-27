@@ -14,6 +14,8 @@ placeholders, a stylesheet, and whatever else it chooses to add: fonts,
 scripts, a link preview, content types. tilder ships no theme but the
 starter's, a minimal one to copy and grow.
 
+[TOC]
+
 ## What a theme is
 
 A theme is a folder, `theme/`, next to `content/` and `assets/`. It needs
@@ -79,7 +81,7 @@ Two ways to change a theme and still take its next version as it is:
 
 - **Its words and settings**: set them in `content/site.toml` (or
   `site.<lang>.toml`), which has the last word over the theme's
-  `theme.toml` ([configuration](docs/guide/project)).
+  `theme.toml` ([configuration](docs/reference/configuration)).
 - **One file**: put a file of the same name in `assets/`. It wins over the
   theme's: `assets/style.css` replaces `theme/style.css`,
   `assets/layouts/doc.html` replaces the theme's layout of that name.

@@ -87,6 +87,8 @@ Les scripts d'un thème suivent les règles du contrat de tilder (son
 `AGENTS.md`, « Scripts »), que la Content-Security-Policy du serveur fait
 respecter :
 
+<!-- 1.2 -->
+
 - **Un fichier, jamais en ligne.** De l'ES5, sans dépendance, dans un
   fichier que sert le site : jamais un `<script>` avec du code dans la
   page, jamais un CDN. La politique du Caddyfile d'exemple n'autorise les
@@ -103,9 +105,6 @@ respecter :
   `labels.copy` pour le bouton de copie, le `[search]` d'un thème pour sa
   recherche.
 - **Ni stockage, ni cookie.**
-
-<!-- 1.2 -->
-
 - **Des requêtes vers la même origine seulement.** Un script peut
   récupérer les fichiers du site lui-même, un index de recherche par
   exemple, et rien d'autre : aucun autre hôte. La politique accorde

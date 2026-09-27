@@ -15,6 +15,8 @@ style, et tout ce qu'il choisit d'y ajouter : polices, scripts, aperçu de
 lien, types de contenu. tilder ne fournit aucun thème en dehors de celui du
 site de départ, un thème minimal à copier puis à faire grandir.
 
+[TOC]
+
 ## Ce qu'est un thème
 
 Un thème est un dossier, `theme/`, à côté de `content/` et `assets/`. Un
@@ -84,7 +86,7 @@ telle quelle :
 
 - **Ses mots et ses réglages** : définissez-les dans `content/site.toml`
   (ou `site.<lang>.toml`), qui a le dernier mot sur le `theme.toml` du
-  thème ([configuration](docs/guide/project)).
+  thème ([configuration](docs/reference/configuration)).
 - **Un fichier** : placez un fichier du même nom dans `assets/`. Il
   l'emporte sur celui du thème : `assets/style.css` remplace
   `theme/style.css`, `assets/layouts/doc.html` remplace le gabarit du

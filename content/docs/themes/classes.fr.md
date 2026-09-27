@@ -113,7 +113,7 @@ constructions, sa source et son rendu.
 | Classe | Sur | Rôle |
 |---|---|---|
 | `pre.code` | `<pre tabindex="0">` | un bloc de code, autour d'un `<code>` ; il peut recevoir le focus, pour que le clavier le fasse défiler |
-| `pre.code[data-lang]` | `<pre class="code">` | un bloc coloré : `data-lang` contient la langue telle qu'écrite, que le thème peut afficher (`content: attr(data-lang)`) ; le `<code>` intérieur est `language-<lang>` |
+| `pre.code[data-lang]` | `<pre class="code">` | un bloc coloré : `data-lang` contient la langue telle qu'écrite, en minuscules, que le thème peut afficher (`content: attr(data-lang)`) ; le `<code>` intérieur est `language-<lang>` |
 | `.hl-k` | `<span>` | un mot-clé |
 | `.hl-b` | `<span>` | une fonction intégrée, un type, un littéral |
 | `.hl-s` | `<span>` | une chaîne |
