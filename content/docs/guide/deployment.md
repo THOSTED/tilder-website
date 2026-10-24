@@ -64,11 +64,9 @@ volumes:
 
 This excerpt leaves out the healthcheck's timings and the environment.
 The image tag `1` follows the latest 1.x release; pin a full version,
-`1.4.1`, to choose when a site changes generator. A site with Mermaid
-diagrams uses the same tag with `-mermaid`, `1-mermaid`: the image that
-draws them, with the Mermaid CLI and a headless Chromium (about 1.1 GB,
-against 76 MB); the default image shows a diagram as its source. `caddy-data` keeps the
-certificates Caddy obtains, across restarts.
+`1.4.1`, to choose when a site changes generator. The image draws
+diagrams too: it carries D2. `caddy-data` keeps the certificates Caddy
+obtains, across restarts.
 
 The hosts come from the environment of `web`. Locally, the defaults serve
 the site at `site.localhost:8080` and its text at

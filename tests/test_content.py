@@ -97,6 +97,6 @@ class Content(unittest.TestCase):
     def test_code_blocks_name_a_language_tilder_knows(self):
         for p in pages():
             for _, lang in FENCE.findall(p.read_text(encoding="utf-8")):
-                if lang.strip().split(" ", 1)[0] == "mermaid":
+                if lang.strip().split(" ", 1)[0] == "d2":
                     continue    # a diagram: its description follows the word
                 self.assertIn(lang.strip().lower(), LANGS, f"{p.relative_to(REPO)}: {lang}")

@@ -122,7 +122,7 @@ as the first argument; an argument the build does not know is ignored
 | `BUILD_INTERVAL` | with `--watch`, the seconds between two looks at the sources; default `1` |
 | `TILDER_VERSION` | what `--version` prints; set by the Docker image |
 | `TILDER_CACHE` | a folder for the cache of diagram drawings, page cards and map tiles, to keep it between one-shot builds; default: a folder of the system's temporary directory |
-| `TILDER_MMDC` | the Mermaid CLI command that draws diagrams; default `mmdc` |
+| `TILDER_D2` | the D2 command that draws diagrams; default `d2` |
 | `TZ` | the time zone of the date and of the midnight rebuild |
 
 ## What the build prints

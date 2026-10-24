@@ -167,24 +167,32 @@ l'en-tête ([flux et images](docs/reference/feeds-and-images)).
 
 ## Diagrammes
 
-Un diagramme s'écrit en Mermaid, dans la page elle-même, et il est
-dessiné à chaque construction : aucun fichier source ni SVG à côté de la
-page. La clôture dit `mermaid`, puis la description, puis, facultative
-et entre guillemets droits, la légende : le texte alternatif et la
-légende d'une image.
+Un diagramme s'écrit en D2, dans la page elle-même, et il est dessiné à
+chaque construction : aucun fichier source ni SVG à côté de la page. La
+clôture dit `d2`, puis la description, puis, facultative et entre
+guillemets droits, la légende : le texte alternatif et la légende d'une
+image. Un bloc `text` juste après, facultatif, est le diagramme dessiné à
+la main pour le miroir en texte.
 
 ````markdown
-```mermaid curl interroge le résolveur, puis se connecte au proxy "Une requête, de bout en bout."
-sequenceDiagram
-  curl->>résolveur: example.org, type A ?
-  résolveur-->>curl: 192.0.2.10
-  curl->>proxy: GET / (HTTPS)
+```d2 curl interroge le résolveur, puis se connecte au proxy "Une requête, de bout en bout."
+shape: sequence_diagram
+curl -> resolveur: "example.org, type A ?"
+resolveur -> curl: "192.0.2.10"
+curl -> proxy: "GET / (HTTPS)"
+```
+
+```text
+  curl            resolveur         proxy
+   |-- type A ? --->|                 |
+   |<-- 192.0.2.10 -|                 |
+   |------------ GET / (HTTPS) ------>|
 ```
 ````
 
 - La description est obligatoire : c'est ce que lit un lecteur d'écran à
   la place du dessin. La construction avertit quand elle manque :
-  `warning: content/blog/2026-01-01-hello.md: a mermaid diagram without a description`.
+  `warning: content/blog/2026-01-01-hello.md: a d2 diagram without a description`.
 - Sur la page web, le diagramme est une `<figure>` comme une image : une
   `<img>` d'un fichier SVG que la construction écrit en
   `/diagrams/<key>.svg`, sa `width` et sa `height`, et la légende. La clé
@@ -192,35 +200,41 @@ sequenceDiagram
   sur deux pages est un seul fichier. Le SVG n'est jamais en ligne : la
   politique recommandée tient `<style>` hors des pages, et laisse un
   fichier SVG se mettre en forme.
-- Dans le miroir en texte : le mot `labels.diagram` et la description,
-  la légende, puis la source Mermaid dans un cadre de code.
+- Le dessin suit le thème, en mode clair comme en mode sombre, et dans sa
+  police ([les fichiers du thème](docs/themes/files#diagrammes)).
+
+Dans le miroir en texte, le diagramme est le mot `labels.diagram` et la
+description, la légende, puis :
+
+- le dessin en texte, quand un bloc `text` suit juste le bloc `d2` (des
+  lignes vides entre eux, rien d'autre) : imprimé tel quel, dans un cadre
+  sans étiquette, et jamais montré sur la page web. Il doit être en ASCII,
+  et large d'au plus **68 colonnes** dans une section, 64 dans une
+  entrée : les 75 colonnes du miroir, moins le retrait et le cadre. Une
+  ligne plus large, ou un autre caractère, donne un avertissement ;
+- sinon la source D2, dans un cadre de code : D2 s'écrit pour être lu.
 
 ```text
 [ diagram ] curl interroge le resolveur, puis se connecte au proxy
   Une requete, de bout en bout.
-.-- mermaid ---------------------------------------------------------.
-  sequenceDiagram
+.--------------------------------------------------------------------.
+    curl            resolveur         proxy
+     |-- type A ? --->|                 |
   ...
 ```
 
-Le dessin suit le thème, en mode clair comme en mode sombre : le
-`mermaid.json` du thème et ses jetons de couleur décident
-([les fichiers du thème](docs/themes/files#diagrammes)). Les coins sont
-carrés et les ombres retirées, sauf si le thème en décide autrement.
+Le dessin est l'œuvre de D2, `d2`, un seul programme, dans l'image de
+tilder ([déploiement](docs/guide/deployment)). Sans lui, la construction
+avertit une fois, et la page montre la source du diagramme en bloc de
+code, sa description en légende. Un diagramme que D2 ne sait pas
+dessiner, une erreur de syntaxe, arrête la construction avec le message
+de D2 et la ligne.
 
-Le dessin est l'œuvre de la CLI Mermaid, `mmdc`, qui a besoin d'un
-Chromium sans interface. L'image `-mermaid` de tilder contient les deux
-([déploiement](docs/guide/deployment)) ; l'image par défaut non, pour
-rester légère. Sans la CLI, la construction avertit une fois, et la page
-montre la source du diagramme en bloc de code, sa description en
-légende. Un diagramme que la CLI ne sait pas dessiner, une erreur de
-syntaxe, arrête la construction avec le message de la CLI.
-
-Un dessin prend environ une seconde. Il est mis en cache par sa clé : en
-mémoire tant que `--watch` tourne, dans `TILDER_CACHE` quand elle est
-définie ([la ligne de commande](docs/reference/cli)), et dans la sortie
-précédente : une reconstruction dans le même dossier ne dessine que ce
-qui a changé.
+Un dessin prend quelques dizaines de millisecondes. Il est mis en cache
+par sa clé : en mémoire tant que `--watch` tourne, dans `TILDER_CACHE`
+quand elle est définie ([la ligne de commande](docs/reference/cli)), et
+dans la sortie précédente : une reconstruction dans le même dossier ne
+dessine que ce qui a changé.
 
 ## Voir aussi
 
