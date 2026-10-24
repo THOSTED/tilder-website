@@ -68,7 +68,10 @@ volumes:
 Cet extrait laisse de côté les délais du contrôle de santé et
 l'environnement. Le tag d'image `1` suit la dernière version 1.x ; fixez
 une version complète, `1.4.1`, pour choisir le moment où le site change de
-générateur. `caddy-data` garde les certificats que Caddy obtient, d'un
+générateur. Un site avec des diagrammes Mermaid prend le même tag suivi de
+`-mermaid`, `1-mermaid` : l'image qui les dessine, avec la CLI Mermaid et
+un Chromium sans interface (environ 1,1 Go, contre 76 Mo) ; l'image par
+défaut montre un diagramme sous forme de source. `caddy-data` garde les certificats que Caddy obtient, d'un
 redémarrage à l'autre.
 
 Les hôtes viennent de l'environnement de `web`. En local, les valeurs par

@@ -124,6 +124,8 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
 | `BUILD_TODAY` | la date de la construction, `2026-05-16`, à la place de celle du jour : quels événements sont à venir et quels articles sont déjà publiés, pour un test ou un aperçu |
 | `BUILD_INTERVAL` | avec `--watch`, les secondes entre deux examens des sources ; par défaut `1` |
 | `TILDER_VERSION` | ce qu'affiche `--version` ; définie par l'image Docker |
+| `TILDER_CACHE` | un dossier pour le cache des dessins de diagrammes, à garder d'une construction ponctuelle à l'autre ; par défaut, un dossier du répertoire temporaire du système |
+| `TILDER_MMDC` | la commande de la CLI Mermaid qui dessine les diagrammes ; par défaut `mmdc` |
 | `TZ` | le fuseau horaire de la date et de la reconstruction de minuit |
 
 ## Ce qu'affiche la construction
