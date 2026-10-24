@@ -64,7 +64,7 @@ volumes:
 
 This excerpt leaves out the healthcheck's timings and the environment.
 The image tag `1` follows the latest 1.x release; pin a full version,
-`1.4.1`, to choose when a site changes generator. The image draws
+`1.5.0`, to choose when a site changes generator. The image draws
 diagrams too: it carries D2. `caddy-data` keeps the certificates Caddy
 obtains, across restarts.
 
