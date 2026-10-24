@@ -32,7 +32,7 @@ surveille `/site` et construit dans `/out` :
 ```sh
 docker run --rm -u "$(id -u):$(id -g)" \
   -v "$PWD:/site" -v "$PWD/public:/out" \
-  ghcr.io/thosted/tilder:1.4.1 \
+  ghcr.io/thosted/tilder:1.5.0 \
   python3 -B /tilder/build.py --root /site --out /out
 ```
 
@@ -108,7 +108,7 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
 ### --version
 
   Afficher la version de tilder et sortir : la version publiée de
-  l'image, `1.4.1`, tirée de sa variable `TILDER_VERSION` ; `dev` depuis
+  l'image, `1.5.0`, tirée de sa variable `TILDER_VERSION` ; `dev` depuis
   une copie du dépôt, où la variable n'est pas définie.
 
 ### -h, --help

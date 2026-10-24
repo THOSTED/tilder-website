@@ -67,7 +67,7 @@ volumes:
 
 Cet extrait laisse de côté les délais du contrôle de santé et
 l'environnement. Le tag d'image `1` suit la dernière version 1.x ; fixez
-une version complète, `1.4.1`, pour choisir le moment où le site change de
+une version complète, `1.5.0`, pour choisir le moment où le site change de
 générateur. L'image dessine aussi les diagrammes : elle contient D2.
 `caddy-data` garde les certificats que Caddy obtient, d'un redémarrage à
 l'autre.
