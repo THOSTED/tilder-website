@@ -30,6 +30,7 @@ chacune a sa valeur par défaut dans le module du type, `types/post.py`.
 | `feed` | `""` | le chemin du flux RSS depuis la racine du site, `"blog/feed.xml"` ; vide pour aucun |
 | `feed_title` | `"posts"` | le titre du flux |
 | `feed_description` | `"Posts."` | la description du flux |
+| `scheduled` | `true` | un article daté d'après la date de la construction attend cette date pour être publié ; `false` publie tous les articles tout de suite ([articles programmés](#articles-programmes)) |
 
 Le blog de ce site, par exemple :
 
@@ -69,6 +70,46 @@ pas de clé `date:`.
   `"2026-02-30" is not a date`.
 - `index.md` est la page du blog lui-même, et `_template.md` n'est jamais
   construit.
+
+## Articles programmés
+
+Un article daté d'après la date de la construction n'est pas encore
+publié. Validez `2026-11-01-launch.md` une semaine à l'avance, et il
+paraît le 1er novembre : en mode surveillance, tilder reconstruit à
+minuit, et c'est cette reconstruction qui le publie. Un article daté du
+jour est publié.
+
+Jusqu'à sa date, la construction n'écrit rien de l'article, dans aucune
+langue : ni page, ni miroir en texte, ni carte dans `{posts}`, ni entrée
+de flux, ni entrée du plan du site, ni aucun des fichiers de son
+dossier. Le résumé de la construction le compte :
+
+```text
+collections: blog (post, 4 items, 1 scheduled), ...
+```
+
+Un lien vers un article programmé, ou vers un fichier de son dossier,
+est cassé jusque-là. La construction publie quand même, et avertit une
+fois par page :
+
+```text
+warning: content/index.md: links to blog/2026-11-01-launch, scheduled for 2026-11-01: the link is broken until then. Remove the link, or publish the item earlier (its date, or scheduled = false under [collections.blog])
+```
+
+La date de la construction est celle du jour, ou `BUILD_TODAY` quand
+elle est définie ([la ligne de commande](docs/reference/cli)). Pour
+prévisualiser un article programmé, construisez comme ce jour-là dans un
+dossier à part :
+
+```console
+$ BUILD_TODAY=2026-11-01 python3 ../tilder/build.py --out /tmp/preview
+```
+
+Une collection qui fixe `scheduled = false` publie tous ses articles,
+quelle que soit leur date. Les événements ne sont jamais programmés : un
+événement à venir est simplement à venir
+([event](docs/content-types/event)), et fixer `scheduled` sur une
+collection `event` arrête la construction.
 
 ## En-tête
 

@@ -69,8 +69,11 @@ as the first argument; an argument the build does not know is ignored
 
   The watch also rebuilds at midnight, with no change at all: the date of
   the build decides which events are upcoming and which are past, so an
-  event moves to the past list the day after it. Midnight is the
-  machine's: in a container, UTC unless the `TZ` variable says otherwise.
+  event moves to the past list the day after it, and which posts are
+  published, so a
+  [scheduled post](docs/content-types/post#scheduled-posts) appears on
+  its day. Midnight is the machine's: in a container, UTC unless the `TZ`
+  variable says otherwise.
 
 ### --check
 
@@ -115,7 +118,7 @@ as the first argument; an argument the build does not know is ignored
 | Variable | Effect |
 |---|---|
 | `SITE_ROOT` | the project to build, as `--root`, which sets it |
-| `BUILD_TODAY` | the build's date, `2026-05-16`, instead of today's: which events are upcoming, for a test or a preview |
+| `BUILD_TODAY` | the build's date, `2026-05-16`, instead of today's: which events are upcoming and which posts are published yet, for a test or a preview |
 | `BUILD_INTERVAL` | with `--watch`, the seconds between two looks at the sources; default `1` |
 | `TILDER_VERSION` | what `--version` prints; set by the Docker image |
 | `TZ` | the time zone of the date and of the midnight rebuild |
@@ -138,7 +141,8 @@ collections: blog (post, 1 item), events (event, no folder), ...
 
 The `languages:` line appears only on a site with several languages;
 the `types:` line adds the types that come from the theme,
-`; from theme: talk`. With `--watch`, the build also says when it
+`; from theme: talk`; the `collections:` line counts the posts that wait
+for their date, `blog (post, 4 items, 1 scheduled)`. With `--watch`, the build also says when it
 waits after a failure or restarts on new code. Warnings and errors go to
 the error output.
 
