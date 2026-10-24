@@ -45,10 +45,12 @@ Tout le contenu de `theme/` est copié tel quel à la racine du site, sauf :
 - ce que lit la construction : `layout.html`, `layouts/`, `share.svg`, `share-*.svg`,
   `icons/`, `types/`, `mermaid.json`, `theme.toml` et chaque
   `theme.<lang>.toml` ;
-- ce qui appartient au dépôt du thème plutôt qu'au site : `.git`, et tout
-  fichier ou dossier dont le nom commence par `.git` (`.gitignore`,
-  `.gitmodules`), à n'importe quelle profondeur ; un `README.md`, et tout
-  fichier dont le nom commence par `LICENSE`, à la racine du dossier.
+- ce qui appartient au dépôt du thème plutôt qu'au site : `.git`,
+  `.gitignore` et tout autre fichier ou dossier dont le nom commence par
+  un point, à n'importe quelle profondeur, sauf `.well-known/` ; un
+  `README.md`, et tout fichier dont le nom commence par `LICENSE`, à la
+  racine du dossier ;
+- les restes d'éditeur : `*~`, `*.swp`, `*.swo`, `*.swx`, `#name#`.
 
 Ainsi, `theme/style.css` est servi en `/style.css`,
 `theme/fonts/mono.woff2` en `/fonts/mono.woff2`, et le gabarit, que la
