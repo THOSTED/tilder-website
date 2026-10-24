@@ -267,9 +267,15 @@ rempli avec les valeurs d'ici ([flux et images](docs/reference/feeds-and-images)
 | `share.title_columns` | `23` | les caractères par ligne de titre de la carte d'une page |
 | `share.title_lines` | `2` | les lignes de titre de la carte d'une page |
 | `share.title_line_height` | `68` | le pas de `{{ title_shift }}`, en pixels |
-| `share.detail_columns` | `48` | les caractères par ligne de détail, et du tag |
-| `share.tag_advance` | `14.4` | la largeur d'un caractère du tag, en pixels, pour `{{ tag_width }}` |
-| `share.tag_padding` | `16` | l'espace de chaque côté du tag, en pixels |
+| `share.detail_columns` | `48` | les caractères par ligne de détail |
+| `share.tag_advance` | `14.4` | la largeur d'un caractère d'un tag, en pixels |
+| `share.tag_padding` | `16` | l'espace dans un cadre, de chaque côté de son texte, en pixels |
+| `share.tag_height` | `48` | la hauteur d'un cadre, en pixels |
+| `share.tag_baseline` | `33` | du haut d'un cadre à la ligne de base de son texte, en pixels |
+| `share.tag_gap` | `14` | entre deux cadres, en pixels |
+| `share.tag_line_gap` | `12` | entre deux lignes de cadres, en pixels |
+| `share.tag_lines` | `2` | les lignes de cadres, au plus |
+| `share.tag_room` | `830` | la largeur d'une ligne de cadres, en pixels |
 
 Les cinq couleurs servent au `share.svg` du thème, qui les lit sous la
 forme `{{ share.text_color }}` et ainsi de suite ; un thème les règle

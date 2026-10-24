@@ -143,13 +143,30 @@ En plus des variables ci-dessus, le modèle lit celles de la page :
 | `{{ title_1 }}`, `{{ title_2 }}` | le `share_title` de la page, sinon son `title`, sur `share.title_lines` lignes de `share.title_columns` caractères |
 | `{{ title_shift }}` | de combien de pixels remonte ce qui suit le titre quand celui-ci laisse une ligne vide : un `translate` |
 | `{{ detail_1 }}` | le `tagline` de la page ; celui d'un article ou d'un événement est sa date en toutes lettres |
-| `{{ detail_2 }}` | le `place` d'un événement, sinon l'`author` d'un article |
-| `{{ tag }}`, `{{ tag_width }}`, `{{ tag_display }}` | le `tag` de la page ; la largeur d'un cadre autour ; `none` quand il n'y en a pas, pour `display=` |
+| `{{ detail_2 }}` | le `share_detail` de la page, sinon le `place` d'un événement, sinon l'`author` d'un article |
+| `{{ tags }}` | le `tag` de l'article, puis les `share_tags` de la page, chacun dans un cadre : du SVG dessiné depuis (0, 0) en `currentColor`, pour un groupe qui le place et lui donne sa police et sa `color` |
 
 Le texte est ajusté au nombre de caractères : le modèle convient à une
 police à chasse fixe. Un titre se coupe aux espaces ; ce qui ne tient
 pas sur sa dernière ligne est tronqué, terminé par `...`, trois points.
-Une ligne de détail, et le tag, sont tronqués à `share.detail_columns`.
+Une ligne de détail est tronquée à `share.detail_columns`. Les tags vont
+de gauche à droite, autant par ligne que `share.tag_room` pixels en
+contiennent, sur au plus `share.tag_lines` lignes ; la seconde seulement
+quand le titre laisse sa seconde ligne vide. Un tag plus long qu'une
+ligne est tronqué ; celui qui ne tient plus est laissé de côté, avec les
+suivants : une carte ne déborde jamais.
+
+Un événement donne des tags à sa carte avec `share_tags`, séparés par
+des virgules, et peut raccourcir son lieu pour la carte avec
+`share_detail` :
+
+```markdown
+share_tags: stand toute la journée, atelier entretien technique
+share_detail: I-Factory · la Doua · Villeurbanne
+```
+
+Ils ne servent qu'à la carte : la page les dit déjà dans son texte, et
+la carte d'un événement sur le site porte son tag à venir ou passé.
 L'`og:image:alt` est le texte de la carte,
 `~/my site/events - Meetup - samedi 21 novembre 2026 - Library`, sauf
 si la page règle `image_alt`. Comme les diagrammes, les cartes sont en

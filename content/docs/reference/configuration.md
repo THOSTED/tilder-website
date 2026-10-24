@@ -261,9 +261,15 @@ The icons are drawn at every build from `assets/logo.svg`, and
 | `share.title_columns` | `23` | characters per title line of a page's card |
 | `share.title_lines` | `2` | title lines of a page's card |
 | `share.title_line_height` | `68` | the step of `{{ title_shift }}`, in pixels |
-| `share.detail_columns` | `48` | characters per detail line, and of the tag |
-| `share.tag_advance` | `14.4` | the width of one character of the tag, in pixels, for `{{ tag_width }}` |
-| `share.tag_padding` | `16` | the room on each side of the tag, in pixels |
+| `share.detail_columns` | `48` | characters per detail line |
+| `share.tag_advance` | `14.4` | the width of one character of a tag, in pixels |
+| `share.tag_padding` | `16` | the room inside a box, on each side of its text, in pixels |
+| `share.tag_height` | `48` | the height of a box, in pixels |
+| `share.tag_baseline` | `33` | from a box's top to its text's baseline, in pixels |
+| `share.tag_gap` | `14` | between two boxes, in pixels |
+| `share.tag_line_gap` | `12` | between two lines of boxes, in pixels |
+| `share.tag_lines` | `2` | lines of boxes, at most |
+| `share.tag_room` | `830` | the width of a line of boxes, in pixels |
 
 The five colours are for the theme's `share.svg`, which reads them as
 `{{ share.text_color }}` and the like; a theme usually sets them in its

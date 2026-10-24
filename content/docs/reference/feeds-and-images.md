@@ -134,13 +134,28 @@ Besides the placeholders above, the template reads the page's own:
 | `{{ title_1 }}`, `{{ title_2 }}` | the page's `share_title`, else its `title`, on `share.title_lines` lines of `share.title_columns` characters |
 | `{{ title_shift }}` | how far up, in pixels, what follows the title moves when the title leaves a line empty: a `translate` |
 | `{{ detail_1 }}` | the page's `tagline`; a post's or an event's is its date in words |
-| `{{ detail_2 }}` | an event's `place`, else a post's `author` |
-| `{{ tag }}`, `{{ tag_width }}`, `{{ tag_display }}` | the page's `tag`; the width of a box around it; `none` when there is none, for `display=` |
+| `{{ detail_2 }}` | the page's `share_detail`, else an event's `place`, else a post's `author` |
+| `{{ tags }}` | the post's `tag`, then the page's `share_tags`, each in an outlined box: SVG drawn from (0, 0) in `currentColor`, for a group that places it and gives its font and `color` |
 
 The text is fitted by character count, so the template suits a
 monospace face. A title breaks at spaces; what does not fit on its last
-line is cut, ending with `...`, three dots. A detail line, and the tag,
-is cut at `share.detail_columns`. `og:image:alt` is the card's text,
+line is cut, ending with `...`, three dots. A detail line is cut at
+`share.detail_columns`. Tags go left to right, as many on a line as
+`share.tag_room` pixels hold, on up to `share.tag_lines` lines; the
+second only when the title leaves its second line empty. A tag longer
+than a line is cut; one that no longer fits is left out, with those
+after it: a card never overflows.
+
+An event gives its card tags with `share_tags`, comma-separated, and
+may shorten its place for the card with `share_detail`:
+
+```markdown
+share_tags: stand all day, technical interview workshop
+share_detail: Library · Downtown
+```
+
+They are for the card only: a page already says them in its text, and
+an event's card on the site has its upcoming or past tag. `og:image:alt` is the card's text,
 `~/my site/events - Meetup - Saturday 21 November 2026 - Library`,
 unless the page sets `image_alt`. Like diagrams, cards are cached: in
 memory while `--watch` runs, in `TILDER_CACHE`, and in the previous

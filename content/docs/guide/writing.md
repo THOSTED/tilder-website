@@ -82,6 +82,8 @@ for its items, which may leave them out.
 | `text` | `text: no` builds no text mirror for the page (the 404 page does this) |
 | `image` | the link preview, relative to the page's folder; default: the page's card, else `share.image`. A PNG or a JPEG, ideally 1200x630: social platforms mostly ignore SVG |
 | `image_alt` | the preview's alternative text; default: the text of the page's card, else `share.image_alt` |
+| `share_detail` | the card's second detail line, instead of an event's `place` or a post's `author` |
+| `share_tags` | tags for the card only, comma-separated: `share_tags: stand all day, workshop` |
 | `share_title` | a shorter title for the page's card ([the link preview](docs/reference/feeds-and-images#a-card-per-page)), when `title` would be cut there |
 | `updated` | a date, `2026-03-01`: the page's last change in the sitemap; default: an item's date, else `site.updated` |
 | `robots` | the page's `<meta name="robots">`; default `seo.robots`. With `noindex`, the page leaves the sitemaps and the build's SEO checks |
