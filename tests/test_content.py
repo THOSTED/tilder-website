@@ -11,6 +11,8 @@ CONTENT = REPO / "content"
 ENGLISH_ONLY = {"kitchen-sink.md"}          # the theme's test page (ledger Ruling)
 ALLOWED = re.compile(r"^https?://(tilder\.thosted\.fr|github\.com/THOSTED/tilder(?:\.git)?|github\.com/THOSTED/tilder-website(?:\.git)?"
                      r"|systeam\.sh"
+                     # tilder's own defaults for static maps ([maps] tiles, attribution_url)
+                     r"|tile\.openstreetmap\.org|www\.openstreetmap\.org/copyright"
                      r"|([\w-]+\.)*example\.(org|com|net)|[\w.-]+\.example|localhost)"
                      r"(?=[/:)\s`\"'>]|$)")
 # Anchored (^) so a disallowed host cannot smuggle an allowed-looking one

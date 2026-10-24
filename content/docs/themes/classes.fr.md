@@ -150,6 +150,7 @@ simple `<pre class="code">`, sans `data-lang` ni jetons. Un diff garde ses
 | `.task` | `<span role="img">` | la case d'une tâche, vide, nommée pour les lecteurs d'écran par `labels.task_done` ou `labels.task_todo` |
 | `.task--done`, `.task--todo` | `<span class="task">` | son état, `[x]` ou `[ ]` |
 | `.figure` | `<figure>` | une image seule sur sa ligne, avec sa `<figcaption>` quand elle a un titre |
+| `.map` | `<figure>`, avec `.figure` | le plan statique d'un événement : un `<a>` autour de son `<img>`, l'attribution dans sa `<figcaption>` ([event](docs/content-types/event#un-plan-statique)) |
 | `.toc` | `<nav>` | un `[TOC]` : un `<details>` qui contient une `<ol>` des sections de la page, fermé par défaut |
 | `.toc-label` | `<summary>` | le libellé du `[TOC]`, `labels.toc`, qui l'ouvre |
 | `.profiles` | `<p>` | les liens de profil d'un membre |

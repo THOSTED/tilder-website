@@ -113,6 +113,56 @@ clique pas. Le miroir en texte garde le site de l'événement et laisse le
 lien vers la carte de côté : l'adresse est déjà sur la carte, et l'URL de
 la carte ne tiendrait pas en 75 colonnes.
 
+## Un plan statique
+
+Avec `[maps] enabled = true` dans `site.toml`, un événement qui donne
+`lat` et `lon` montre aussi un plan sur sa page, dessiné à la
+construction du site : tilder va chercher les quelques tuiles de carte
+autour du point, une douzaine au plus, les assemble avec un repère, et
+écrit l'image avec le site, en `/maps/<key>.png`. Les lecteurs ne
+chargent rien depuis un autre site.
+
+```toml
+[maps]
+enabled = true
+
+[labels]
+map_alt = "Plan : {place}"
+map_attribution = "© les contributeurs d'OpenStreetMap"
+```
+
+- L'image mène à la même adresse OpenStreetMap que le lien vers la
+  carte, et son texte alternatif nomme le lieu, d'après
+  `labels.map_alt`.
+- L'attribution que demande la licence des tuiles s'affiche dessous,
+  `labels.map_attribution`, liée à `maps.attribution_url`.
+- Le miroir en texte ne change pas : l'adresse est sur la carte.
+- Sans `lat` ni `lon`, pas de plan : tilder ne cherche jamais de
+  coordonnées.
+
+C'est désactivé par défaut, car la construction interroge alors un
+serveur de tuiles, à ses conditions. Avec les tuiles d'OpenStreetMap,
+tilder suit leur politique d'usage : un User-Agent qui nomme tilder et
+le site, une poignée de tuiles par plan, et un cache qui survit à la
+construction, `TILDER_CACHE` ([la ligne de commande](docs/reference/cli)) :
+une tuile est demandée une fois, puis de nouveau seulement après
+`maps.max_age_days`. Un plan déjà présent dans la sortie précédente est
+réutilisé. `maps.tiles` désigne un autre fournisseur ; donnez son
+attribution dans `labels.map_attribution` et `maps.attribution_url`
+([configuration](docs/reference/configuration#plans)).
+
+Quand les tuiles ne peuvent pas être récupérées, hors ligne ou refusées,
+la construction avertit et continue, et la page garde son lien vers la
+carte :
+
+```text
+warning: content/events/2099-03-01-meetup.md: no map: the tiles cannot be fetched from tile.openstreetmap.org (URLError: ...). The page keeps its OpenStreetMap link
+```
+
+L'image est un PNG réduit à sa palette, environ 130 Ko au format par
+défaut de 720x360. Le thème dessine son cadre : la classe `.map`, avec
+`.figure` ([classes](docs/themes/classes)).
+
 ## À venir et passés
 
 Trois marqueurs listent une collection d'événements, tous selon la date
