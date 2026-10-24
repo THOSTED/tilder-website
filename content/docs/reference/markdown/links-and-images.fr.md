@@ -171,18 +171,20 @@ Un diagramme s'écrit en D2, dans la page elle-même, et il est dessiné à
 chaque construction : aucun fichier source ni SVG à côté de la page. La
 clôture dit `d2`, puis la description, puis, facultative et entre
 guillemets droits, la légende : le texte alternatif et la légende d'une
-image. Un bloc `text` juste après, facultatif, est le diagramme dessiné à
-la main pour le miroir en texte.
+image ; puis, facultatif, un marqueur d'affichage, `{html}` ou `{text}`
+([où un bloc s'affiche](docs/reference/markdown/blocks#ou-un-bloc-s-affiche)).
+Un bloc `{text}` juste après un diagramme `{html}` est le diagramme
+dessiné à la main pour le miroir en texte.
 
 ````markdown
-```d2 curl interroge le résolveur, puis se connecte au proxy "Une requête, de bout en bout."
+```d2 curl interroge le résolveur, puis se connecte au proxy "Une requête, de bout en bout." {html}
 shape: sequence_diagram
 curl -> resolveur: "example.org, type A ?"
 resolveur -> curl: "192.0.2.10"
 curl -> proxy: "GET / (HTTPS)"
 ```
 
-```text
+```text {text}
   curl            resolveur         proxy
    |-- type A ? --->|                 |
    |<-- 192.0.2.10 -|                 |
@@ -190,8 +192,8 @@ curl -> proxy: "GET / (HTTPS)"
 ```
 ````
 
-- La description est obligatoire : c'est ce que lit un lecteur d'écran à
-  la place du dessin. La construction avertit quand elle manque :
+- La description est obligatoire partout où la page montre le dessin :
+  c'est ce que lit un lecteur d'écran à sa place. La construction avertit quand elle manque :
   `warning: content/blog/2026-01-01-hello.md: a d2 diagram without a description`.
 - Sur la page web, le diagramme est une `<figure>` comme une image : une
   `<img>` d'un fichier SVG que la construction écrit en
@@ -203,16 +205,23 @@ curl -> proxy: "GET / (HTTPS)"
 - Le dessin suit le thème, en mode clair comme en mode sombre, et dans sa
   police ([les fichiers du thème](docs/themes/files#diagrammes)).
 
-Dans le miroir en texte, le diagramme est le mot `labels.diagram` et la
-description, la légende, puis :
+Où le diagramme s'affiche dépend de son marqueur :
 
-- le dessin en texte, quand un bloc `text` suit juste le bloc `d2` (des
-  lignes vides entre eux, rien d'autre) : imprimé tel quel, dans un cadre
-  sans étiquette, et jamais montré sur la page web. Il doit être en ASCII,
-  et large d'au plus **68 colonnes** dans une section, 64 dans une
-  entrée : les 75 colonnes du miroir, moins le retrait et le cadre. Une
-  ligne plus large, ou un autre caractère, donne un avertissement ;
-- sinon la source D2, dans un cadre de code : D2 s'écrit pour être lu.
+| Clôture | Page web | Miroir en texte |
+|---|---|---|
+| `d2 ...` | le dessin | le mot `labels.diagram` et la description, la légende, la source D2 dans un cadre de code |
+| `d2 ... {html}` | le dessin | rien, ou son dessin en texte |
+| `d2 ... {text}` | rien | la description, la légende, la source D2 |
+
+Le dessin en texte est un bloc `{text}` juste après un diagramme
+`{html}` (des lignes vides entre eux, rien d'autre) : le miroir imprime
+la description, la légende, puis le dessin tel quel, dans un cadre sans
+étiquette ; la page web ne le montre jamais. Il doit être en ASCII, et
+large d'au plus **68 colonnes** dans une section, 64 dans une entrée :
+les 75 colonnes du miroir, moins le retrait et le cadre. Une ligne plus
+large, ou un autre caractère, donne un avertissement. Un bloc `{text}`
+ailleurs n'est qu'un bloc du miroir, et un bloc `text` sans marqueur
+après un diagramme est un bloc ordinaire, dans les deux rendus.
 
 ```text
 [ diagram ] curl interroge le resolveur, puis se connecte au proxy

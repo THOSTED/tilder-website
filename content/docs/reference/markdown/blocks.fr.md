@@ -374,6 +374,40 @@ que le HTML ; `txt/` reste brut dans tous les cas
 '------------------------------------------------------------------'
 ```
 
+## Où un bloc s'affiche
+
+La ligne d'ouverture d'un bloc de code peut finir par un marqueur, comme
+le titre d'une section : `{html}` montre le bloc sur la page web
+seulement, `{text}` dans le miroir en texte seulement, `txt/` et
+`ansi/` ; sans marqueur, le bloc est dans les deux. Cela vaut pour tout
+langage, un langage inconnu, ou aucun.
+
+````markdown
+```console {html}
+$ curl -sI https://example.org/ | grep -i content-security-policy
+```
+
+```{text}
+La commande est sur la page web : elle est plus large que le miroir.
+```
+````
+
+- Seuls les derniers éléments de la ligne comptent, et seulement
+  `{html}` et `{text}` exactement. Des accolades ailleurs sont du texte :
+  la description d'un diagramme peut contenir `{x}`, et un `{autre}`
+  final reste dans la ligne (comme un langage que tilder ne connaît pas,
+  un avertissement).
+- Le marqueur vient en dernier, après le langage, et après la
+  description et la légende d'un diagramme.
+- `{html}` et `{text}` sur un même bloc ne le montreraient nulle part :
+  la construction s'arrête. Le même marqueur deux fois compte une fois.
+- La page ne charge `code.js` que quand elle montre un bloc de code : un
+  bloc `{text}` ne compte pas.
+
+Un diagramme prend les mêmes marqueurs, et un bloc `{text}` juste après
+un diagramme `{html}` est son dessin pour le miroir
+([diagrammes](docs/reference/markdown/links-and-images#diagrammes)).
+
 ## Tableau
 
 Des barres verticales séparent les cellules ; la deuxième ligne, de
