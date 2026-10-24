@@ -121,7 +121,7 @@ as the first argument; an argument the build does not know is ignored
 | `BUILD_TODAY` | the build's date, `2026-05-16`, instead of today's: which events are upcoming and which posts are published yet, for a test or a preview |
 | `BUILD_INTERVAL` | with `--watch`, the seconds between two looks at the sources; default `1` |
 | `TILDER_VERSION` | what `--version` prints; set by the Docker image |
-| `TILDER_CACHE` | a folder for the cache of diagram drawings, to keep it between one-shot builds; default: a folder of the system's temporary directory |
+| `TILDER_CACHE` | a folder for the cache of diagram drawings, page cards and map tiles, to keep it between one-shot builds; default: a folder of the system's temporary directory |
 | `TILDER_MMDC` | the Mermaid CLI command that draws diagrams; default `mmdc` |
 | `TZ` | the time zone of the date and of the midnight rebuild |
 

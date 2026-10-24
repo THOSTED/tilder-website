@@ -107,6 +107,51 @@ browser calls another site unless they click it. The text mirror keeps
 the event's site and leaves the map link out: the address is on the card
 already, and the map's URL would not fit in 75 columns.
 
+## A static map
+
+With `[maps] enabled = true` in `site.toml`, an event that gives `lat`
+and `lon` also shows a map on its page, drawn when the site is built:
+tilder fetches the few map tiles around the point, a dozen at most,
+composes them with a marker, and writes the image with the site, at
+`/maps/<key>.png`. Readers load nothing from another site.
+
+```toml
+[maps]
+enabled = true
+
+[labels]
+map_alt = "Map of {place}"
+map_attribution = "© OpenStreetMap contributors"
+```
+
+- The image links to the same OpenStreetMap address as the map link,
+  and its alternative text names the place, from `labels.map_alt`.
+- The attribution the tiles' licence asks for is shown under it,
+  `labels.map_attribution`, linking to `maps.attribution_url`.
+- The text mirror is unchanged: the address is on the card.
+- Without `lat` and `lon`, no map: tilder never looks coordinates up.
+
+It is off by default, because building then asks a tile server, on its
+terms. With OpenStreetMap's tiles, tilder follows their usage policy: a
+User-Agent naming tilder and the site, a handful of tiles per map, and a
+cache that outlives the build, `TILDER_CACHE`
+([command line](docs/reference/cli)): a tile is fetched once, and again
+only after `maps.max_age_days`. A map already in the previous output is
+reused. `maps.tiles` points to another provider; give its attribution in
+`labels.map_attribution` and `maps.attribution_url`
+([configuration](docs/reference/configuration#maps)).
+
+When the tiles cannot be fetched, offline or refused, the build warns
+and goes on, and the page keeps its map link:
+
+```text
+warning: content/events/2099-03-01-meetup.md: no map: the tiles cannot be fetched from tile.openstreetmap.org (URLError: ...). The page keeps its OpenStreetMap link
+```
+
+The image is a PNG reduced to its palette, about 130 KB at the default
+720x360. The theme draws its frame: the class `.map`, with `.figure`
+([classes](docs/themes/classes)).
+
 ## Upcoming and past
 
 Three markers list a collection of events, all by the date of the build:

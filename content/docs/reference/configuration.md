@@ -110,6 +110,8 @@ through a screen reader. Translate them in `site.<lang>.toml`.
 | `labels.error` | `"ERROR"` | the label of an error callout |
 | `labels.image` | `"image"` | the text mirror's line for an image: `[ image ] alt text` |
 | `labels.diagram` | `"diagram"` | the text mirror's line for a diagram: `[ diagram ] description` |
+| `labels.map_alt` | `"Map of {place}"` | the alternative text of an event's static map; `{place}` is its place |
+| `labels.map_attribution` | `"© OpenStreetMap contributors"` | the attribution under a static map, linking to `maps.attribution_url` |
 | `labels.task_done` | `"done"` | a done item of a task list, read by screen readers |
 | `labels.task_todo` | `"to do"` | an open item of a task list, read by screen readers |
 | `labels.to_top` | `"↑ back to top"` | the link back to the top of the page (a layout placeholder) |
@@ -435,6 +437,22 @@ the theme leaves unstyled on purpose (default `[]`); `contrast`, the pairs of
 colours to check (default `[]`, nothing checked); `contrast_min`, the
 least ratio of every pair (default `4.5`). Every key is described in
 [checking a theme](docs/themes/checking).
+
+## Maps
+
+The `[maps]` table: the static map of an event with `lat` and `lon`,
+drawn at build time from map tiles ([event](docs/content-types/event#a-static-map)).
+
+| Key | Default | Meaning |
+|---|---|---|
+| `maps.enabled` | `false` | draw the maps; the build then fetches tiles |
+| `maps.tiles` | `"https://tile.openstreetmap.org/{z}/{x}/{y}.png"` | the tile URL, with `{z}`, `{x}` and `{y}` |
+| `maps.attribution_url` | `"https://www.openstreetmap.org/copyright"` | where the attribution links |
+| `maps.zoom` | `16` | the zoom level of the tiles |
+| `maps.width` | `720` | the map's width, in pixels |
+| `maps.height` | `360` | the map's height, in pixels |
+| `maps.marker` | `""` | the marker's colour; empty for `share.theme_color` |
+| `maps.max_age_days` | `30` | a cached tile is fetched again after this many days |
 
 ## Diagrams
 

@@ -112,6 +112,8 @@ s'entendent qu'à travers un lecteur d'écran. Traduisez-les dans
 | `labels.error` | `"ERROR"` | le libellé d'un encadré d'erreur |
 | `labels.image` | `"image"` | la ligne d'une image dans le miroir en texte : `[ image ] texte alternatif` |
 | `labels.diagram` | `"diagram"` | la ligne d'un diagramme dans le miroir en texte : `[ diagram ] description` |
+| `labels.map_alt` | `"Map of {place}"` | le texte alternatif du plan statique d'un événement ; `{place}` est son lieu |
+| `labels.map_attribution` | `"© OpenStreetMap contributors"` | l'attribution sous un plan statique, liée à `maps.attribution_url` |
 | `labels.task_done` | `"done"` | un élément fait d'une liste de tâches, lu par les lecteurs d'écran |
 | `labels.task_todo` | `"to do"` | un élément à faire d'une liste de tâches, lu par les lecteurs d'écran |
 | `labels.to_top` | `"↑ back to top"` | le lien qui remonte en haut de la page (une variable du gabarit) |
@@ -450,6 +452,23 @@ dessein (défaut `[]`) ;
 vérifié) ; `contrast_min`, le contraste minimal de chaque paire (défaut
 `4.5`). Chaque clé est décrite dans
 [vérifier un thème](docs/themes/checking).
+
+## Plans
+
+La table `[maps]` : le plan statique d'un événement qui a `lat` et `lon`,
+dessiné à la construction à partir de tuiles
+([event](docs/content-types/event#un-plan-statique)).
+
+| Clé | Défaut | Rôle |
+|---|---|---|
+| `maps.enabled` | `false` | dessiner les plans ; la construction va alors chercher des tuiles |
+| `maps.tiles` | `"https://tile.openstreetmap.org/{z}/{x}/{y}.png"` | l'URL des tuiles, avec `{z}`, `{x}` et `{y}` |
+| `maps.attribution_url` | `"https://www.openstreetmap.org/copyright"` | la cible du lien de l'attribution |
+| `maps.zoom` | `16` | le niveau de zoom des tuiles |
+| `maps.width` | `720` | la largeur du plan, en pixels |
+| `maps.height` | `360` | la hauteur du plan, en pixels |
+| `maps.marker` | `""` | la couleur du repère ; vide pour `share.theme_color` |
+| `maps.max_age_days` | `30` | une tuile en cache est redemandée après ce nombre de jours |
 
 ## Diagrammes
 

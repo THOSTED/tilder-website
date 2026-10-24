@@ -147,6 +147,7 @@ its `+` and `-`: colour is never the only sign.
 | `.task` | `<span role="img">` | the box of a task, empty, named for screen readers by `labels.task_done` or `labels.task_todo` |
 | `.task--done`, `.task--todo` | `<span class="task">` | its state, `[x]` or `[ ]` |
 | `.figure` | `<figure>` | an image alone on its line, with its `<figcaption>` when it has a title |
+| `.map` | `<figure>`, with `.figure` | an event's static map: an `<a>` around its `<img>`, the attribution in its `<figcaption>` ([event](docs/content-types/event#a-static-map)) |
 | `.toc` | `<nav>` | a `[TOC]`: a `<details>` holding an `<ol>` of the page's sections, closed by default |
 | `.toc-label` | `<summary>` | the `[TOC]`'s label, `labels.toc`, which opens it |
 | `.profiles` | `<p>` | a member's profile links |
