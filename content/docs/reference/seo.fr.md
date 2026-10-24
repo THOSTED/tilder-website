@@ -112,8 +112,9 @@ Chaque page porte un `<script type="application/ld+json">` : des données
 inertes, jamais exécutées, que la politique de sécurité du site laisse
 passer. C'est un graphe d'au plus quatre nœuds.
 
-- `Organization` : `seo.organization`, l'adresse du site, et le logo,
-  `share.logo`.
+- `Organization` : `seo.organization`, l'adresse du site, le logo,
+  `share.logo`, et les profils de `seo.same_as` comme `sameAs`, quand
+  cette liste n'est pas vide.
 - `WebSite` : `site.name`, l'adresse du site, sa langue, et
   l'organisation comme éditeur.
 - Le nœud propre à la page, donné par son type, avec l'adresse et la

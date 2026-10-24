@@ -106,8 +106,9 @@ Every page carries one `<script type="application/ld+json">`: inert
 data, never run, which the site's security policy lets through. It is a
 graph of up to four nodes.
 
-- `Organization`: `seo.organization`, the site's address, and the logo,
-  `share.logo`.
+- `Organization`: `seo.organization`, the site's address, the logo,
+  `share.logo`, and the profiles of `seo.same_as` as `sameAs`, when it
+  lists any.
 - `WebSite`: `site.name`, the site's address, its language, and the
   organization as publisher.
 - The page's own node, given by its type, with the page's address and
