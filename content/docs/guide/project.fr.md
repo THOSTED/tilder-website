@@ -43,7 +43,11 @@ my-site/
   articles, événements, membres, ou un type ajouté par le thème
   ([types de contenu](docs/content-types)). Tout autre fichier, une image
   ou un PDF, est copié sur le site au même chemin : une image vit à côté
-  de la page qui la montre.
+  de la page qui la montre. Les fichiers cachés et les restes d'éditeur
+  sont laissés de côté, jamais lus ni surveillés : un nom qui commence
+  par un point (`.index.md.swp`, `.DS_Store`), sauf `.well-known/` ;
+  `*~`, `*.swp`, `*.swo`, `*.swx` ; `#name#`. De même dans `theme/` et
+  `assets/`.
 
 ### theme/
 

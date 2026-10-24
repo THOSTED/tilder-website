@@ -42,7 +42,11 @@ my-site/
   collection in `site.toml` holds items of one type: posts, events,
   members, or a type the theme adds ([content types](docs/content-types)).
   Any other file, an image or a PDF, is copied to the site at the same
-  path, so an image lives next to the page that shows it.
+  path, so an image lives next to the page that shows it. Hidden files
+  and editors' leftovers are left out, and never read or watched: a name
+  that starts with a dot (`.index.md.swp`, `.DS_Store`), except
+  `.well-known/`; `*~`, `*.swp`, `*.swo`, `*.swx`; `#name#`. The same
+  goes for `theme/` and `assets/`.
 
 ### theme/
 

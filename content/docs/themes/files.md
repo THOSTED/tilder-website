@@ -43,9 +43,10 @@ Everything in `theme/` is copied to the root of the site as it is, but:
 - what the build reads: `layout.html`, `layouts/`, `share.svg`, `share-*.svg`, `icons/`,
   `types/`, `mermaid.json`, `theme.toml` and every `theme.<lang>.toml`;
 - what belongs to the theme's own repository rather than to the site:
-  `.git`, and every file or folder whose name starts with `.git`
-  (`.gitignore`, `.gitmodules`), at any depth; a `README.md`, and any file
-  whose name starts with `LICENSE`, at the top of the folder.
+  `.git`, `.gitignore` and every other file or folder whose name starts
+  with a dot, at any depth, except `.well-known/`; a `README.md`, and any
+  file whose name starts with `LICENSE`, at the top of the folder;
+- editors' leftovers: `*~`, `*.swp`, `*.swo`, `*.swx`, `#name#`.
 
 So `theme/style.css` is served at `/style.css`, `theme/fonts/mono.woff2`
 at `/fonts/mono.woff2`, and the layout, which the build has already
