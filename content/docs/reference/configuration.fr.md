@@ -473,14 +473,18 @@ dessiné à la construction à partir de tuiles
 ## Diagrammes
 
 La table `[diagrams]` appartient au thème, réglée dans `theme/theme.toml`
-comme `[check]` : comment un diagramme Mermaid est ajusté aux couleurs du
-thème ([les fichiers du thème](docs/themes/files#diagrammes)).
+comme `[check]` : comment D2 dessine un diagramme
+([les fichiers du thème](docs/themes/files#diagrammes)).
 
 | Clé | Défaut | Rôle |
 |---|---|---|
-| `diagrams.fold` | `{}` | les couleurs que Mermaid choisit lui-même, associées à des jetons de `style.css` : `{ "#ECECFF" = "--bg" }` |
-| `diagrams.sharp` | `true` | des coins carrés : chaque `rx` et `ry` du dessin à 0 |
-| `diagrams.shadow` | `false` | `true` garde les ombres portées de Mermaid ; `false` les retire |
+| `diagrams.layout` | `"dagre"` | le moteur de mise en page de D2 : `dagre`, ou `elk` pour des liens à angle droit et le titre d'un conteneur à l'intérieur |
+| `diagrams.pad` | `16` | la marge autour d'un dessin, en pixels |
+| `diagrams.font_regular` | `""` | un fichier de `theme/fonts/` pour les libellés ; vide pour la police de D2 |
+| `diagrams.font_italic` | `""` | l'italique ; vide pour `font_regular` |
+| `diagrams.font_bold` | `""` | le gras |
+| `diagrams.font_semibold` | `""` | le demi-gras ; vide pour `font_bold` |
+| `diagrams.d2` | `{}` | les codes de couleur de D2 associés à des jetons de `style.css` : `N1 = "--fg"`, en clair et en sombre |
 
 ## Voir aussi
 

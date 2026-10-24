@@ -125,7 +125,7 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
 | `BUILD_INTERVAL` | avec `--watch`, les secondes entre deux examens des sources ; par défaut `1` |
 | `TILDER_VERSION` | ce qu'affiche `--version` ; définie par l'image Docker |
 | `TILDER_CACHE` | un dossier pour le cache des dessins de diagrammes, des cartes de page et des tuiles de plan, à garder d'une construction ponctuelle à l'autre ; par défaut, un dossier du répertoire temporaire du système |
-| `TILDER_MMDC` | la commande de la CLI Mermaid qui dessine les diagrammes ; par défaut `mmdc` |
+| `TILDER_D2` | la commande D2 qui dessine les diagrammes ; par défaut `d2` |
 | `TZ` | le fuseau horaire de la date et de la reconstruction de minuit |
 
 ## Ce qu'affiche la construction

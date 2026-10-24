@@ -457,14 +457,17 @@ drawn at build time from map tiles ([event](docs/content-types/event#a-static-ma
 ## Diagrams
 
 The `[diagrams]` table is the theme's, set in `theme/theme.toml`, like
-`[check]`: how a Mermaid diagram is fitted to the theme's colours
-([theme files](docs/themes/files#diagrams)).
+`[check]`: how D2 draws a diagram ([theme files](docs/themes/files#diagrams)).
 
 | Key | Default | Meaning |
 |---|---|---|
-| `diagrams.fold` | `{}` | colours Mermaid picks itself, mapped to tokens of `style.css`: `{ "#ECECFF" = "--bg" }` |
-| `diagrams.sharp` | `true` | square corners: every `rx` and `ry` of the drawing set to 0 |
-| `diagrams.shadow` | `false` | `true` keeps Mermaid's drop shadows; `false` removes them |
+| `diagrams.layout` | `"dagre"` | D2's layout engine: `dagre`, or `elk` for orthogonal edges and container labels inside their container |
+| `diagrams.pad` | `16` | the margin around a drawing, in pixels |
+| `diagrams.font_regular` | `""` | a file of `theme/fonts/` for the labels; empty for D2's own font |
+| `diagrams.font_italic` | `""` | the italic; empty for `font_regular` |
+| `diagrams.font_bold` | `""` | the bold |
+| `diagrams.font_semibold` | `""` | the semibold; empty for `font_bold` |
+| `diagrams.d2` | `{}` | D2's colour codes mapped to tokens of `style.css`: `N1 = "--fg"`, light and dark |
 
 ## See also
 

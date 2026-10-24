@@ -30,7 +30,6 @@ même nom dans le dossier `assets/` du site l'emporte sur celui du thème.
 | `share-page.svg`, `share-<type>.svg` | facultatif | la carte de chaque autre page, dessinée avec ses champs ([l'aperçu de lien](docs/reference/feeds-and-images#une-carte-par-page)) |
 | `layouts/<name>.html` | facultatif | un gabarit pour les pages d'un type, ou demandé par `layout:` dans l'en-tête d'une page ; les mêmes variables que `layout.html` |
 | `types/<name>.py` | facultatif | un type de contenu que le thème ajoute, ou un type intégré qu'il remplace ([types personnalisés](docs/content-types/custom-types)) |
-| `mermaid.json` | facultatif | la configuration de Mermaid pour les diagrammes, ses couleurs écrites en jetons de `style.css` ([diagrammes](#diagrammes)) |
 | `theme.toml` | facultatif | les valeurs de configuration du thème, sous le `site.toml` du site : les couleurs de `[share]`, les mots propres au thème, et `[check]` pour `build.py --check` |
 | `theme.<lang>.toml` | facultatif | le jumeau de `theme.toml` pour une langue, entre lui et le `site.toml` du site |
 
@@ -43,7 +42,7 @@ chemin.
 Tout le contenu de `theme/` est copié tel quel à la racine du site, sauf :
 
 - ce que lit la construction : `layout.html`, `layouts/`, `share.svg`, `share-*.svg`,
-  `icons/`, `types/`, `mermaid.json`, `theme.toml` et chaque
+  `icons/`, `types/`, `theme.toml` et chaque
   `theme.<lang>.toml` ;
 - ce qui appartient au dépôt du thème plutôt qu'au site : `.git`,
   `.gitignore` et tout autre fichier ou dossier dont le nom commence par
@@ -145,43 +144,46 @@ rabat sur les polices du système.
 
 ## Diagrammes
 
-Un diagramme Mermaid ([diagrammes](docs/reference/markdown/links-and-images#diagrammes))
-est dessiné dans les couleurs du thème, en clair et en sombre, à partir de
-trois sources :
-
-- `mermaid.json`, la configuration de Mermaid : `theme`, `look`,
-  `themeVariables`, les réglages de chaque sorte de diagramme. Une couleur
-  s'écrit `var(--token)`, une propriété personnalisée de `style.css` dont
-  la valeur est une couleur `#hex` ; la construction donne à Mermaid la
-  valeur claire du jeton, car Mermaid calcule avec de vraies couleurs. Un
-  jeton absent de `style.css` arrête la construction. Sans ce fichier, les
-  réglages par défaut de Mermaid.
-- `style.css`, la palette : chaque couleur du dessin qui est la valeur
-  claire d'un jeton redevient `var(--token)`, et le SVG définit ces
-  jetons, avec leurs valeurs sombres sous
-  `@media (prefers-color-scheme: dark)`. Le dessin suit le mode du
-  lecteur dans son `<img>`, comme la page. Quand deux jetons partagent une
-  valeur claire, le premier de `style.css` l'emporte.
-- `[diagrams]` dans `theme.toml` ([configuration](docs/reference/configuration#diagrammes)) :
-  `fold` associe à des jetons les couleurs que Mermaid choisit encore
-  lui-même, `sharp` rend les coins carrés, `shadow` garde ou retire les
-  ombres.
+Un diagramme D2 ([diagrammes](docs/reference/markdown/links-and-images#diagrammes))
+est dessiné dans les couleurs du thème, en clair et en sombre, et dans sa
+police. Le thème le dit dans `theme.toml` :
 
 ```toml
-[diagrams.fold]
-"#ECECFF" = "--bg"
-"#333333" = "--fg"
-"#999999" = "--rule"
+[diagrams]
+layout = "elk"
+font_regular = "mono-regular.woff2"
+font_bold = "mono-bold.woff2"
+
+[diagrams.d2]
+N1 = "--fg"
+N2 = "--fg-muted"
+N4 = "--rule"
+N7 = "--bg"
+B1 = "--fg"
+B5 = "--bg"
+AA2 = "--accent"
 ```
 
-Une couleur qui n'est ni celle d'un jeton ni associée reste telle quelle,
-et la construction avertit une fois, en la nommant :
-`warning: theme/mermaid.json: diagram colours left as they are: #0C0C0C`.
-Associez-la. Les libellés sont mesurés avec les `fonts/` du thème, si bien
-qu'une boîte épouse son texte dans la police du thème ; un SVG dans une
-`<img>` ne peut pas charger les polices web de la page, aussi le
-`fontFamily` de `mermaid.json` doit-il nommer une police de repli. Le
-thème de départ de tilder fournit un `mermaid.json` complet.
+- `[diagrams.d2]` associe les codes de couleur de D2 à des propriétés
+  personnalisées de `style.css` dont la valeur est une couleur `#hex`.
+  `N1` à `N7` sont les neutres, du texte au fond ; `B1` à `B6` les
+  formes, de leurs bordures à leurs remplissages ; `AA2`, `AA4`, `AA5`,
+  `AB4`, `AB5` les accents. Chaque code prend la valeur claire du jeton,
+  et sa valeur sombre, celle du bloc `@media (prefers-color-scheme: dark)` :
+  D2 écrit les deux modes dans le SVG, qui suit le mode du lecteur dans
+  son `<img>`, comme la page. Un jeton absent de `style.css` arrête la
+  construction.
+- Les polices sont des fichiers de `fonts/` ; un `.woff2` est d'abord
+  décompressé en TTF, comme pour `share.png`. D2 les intègre au SVG : les
+  libellés gardent la police du thème, alors qu'une `<img>` ne peut pas
+  charger les polices web de la page. L'italique se replie sur le
+  regular, le demi-gras sur le gras.
+- `layout` : `dagre`, celui de D2 par défaut, ou `elk`, qui trace les
+  liens à angle droit et garde le titre d'un conteneur à l'intérieur :
+  mieux pour des groupes de machines ou des réseaux.
+
+Le thème de départ de tilder associe chaque code de couleur de sa
+palette.
 
 ## icons/
 

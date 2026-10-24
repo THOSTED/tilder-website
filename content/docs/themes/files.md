@@ -29,7 +29,6 @@ and a file of the same name in the site's `assets/` wins over the theme's.
 | `share-page.svg`, `share-<type>.svg` | optional | the card of every other page, drawn with its fields ([the link preview](docs/reference/feeds-and-images#a-card-per-page)) |
 | `layouts/<name>.html` | optional | a layout for the pages of a type, or asked for by `layout:` in a page's front matter; the same placeholders as `layout.html` |
 | `types/<name>.py` | optional | a content type the theme adds, or a built-in one it replaces ([custom types](docs/content-types/custom-types)) |
-| `mermaid.json` | optional | Mermaid's configuration for diagrams, its colours written as tokens of `style.css` ([diagrams](#diagrams)) |
 | `theme.toml` | optional | the theme's configuration values, under the site's `site.toml`: the `[share]` colours, the theme's own words, and `[check]` for `build.py --check` |
 | `theme.<lang>.toml` | optional | the per-language twin of `theme.toml`, between it and the site's `site.toml` |
 
@@ -41,7 +40,7 @@ Any other file, a second script, an image the stylesheet uses, a
 Everything in `theme/` is copied to the root of the site as it is, but:
 
 - what the build reads: `layout.html`, `layouts/`, `share.svg`, `share-*.svg`, `icons/`,
-  `types/`, `mermaid.json`, `theme.toml` and every `theme.<lang>.toml`;
+  `types/`, `theme.toml` and every `theme.<lang>.toml`;
 - what belongs to the theme's own repository rather than to the site:
   `.git`, `.gitignore` and every other file or folder whose name starts
   with a dot, at any depth, except `.well-known/`; a `README.md`, and any
@@ -139,39 +138,44 @@ to the fonts of the system.
 
 ## Diagrams
 
-A Mermaid diagram ([diagrams](docs/reference/markdown/links-and-images#diagrams))
-is drawn in the theme's colours, light and dark, from three places:
-
-- `mermaid.json`, Mermaid's configuration: `theme`, `look`,
-  `themeVariables`, the settings of each kind of diagram. A colour is
-  written `var(--token)`, a custom property of `style.css` whose value is
-  a `#hex` colour; the build gives Mermaid the token's light value, since
-  Mermaid computes with real colours. A token `style.css` lacks stops the
-  build. Without the file, Mermaid's own defaults.
-- `style.css`, the palette: each colour of the drawing that is a token's
-  light value becomes `var(--token)` again, and the SVG defines those
-  tokens, with their dark values under
-  `@media (prefers-color-scheme: dark)`. The drawing follows the reader's
-  scheme inside its `<img>`, as the page does. When two tokens share a
-  light value, the first in `style.css` wins.
-- `[diagrams]` in `theme.toml` ([configuration](docs/reference/configuration#diagrams)):
-  `fold` maps the colours Mermaid still picks itself to tokens, `sharp`
-  squares the corners, `shadow` keeps or drops the shadows.
+A D2 diagram ([diagrams](docs/reference/markdown/links-and-images#diagrams))
+is drawn in the theme's colours, light and dark, and in its font. The
+theme says how in `theme.toml`:
 
 ```toml
-[diagrams.fold]
-"#ECECFF" = "--bg"
-"#333333" = "--fg"
-"#999999" = "--rule"
+[diagrams]
+layout = "elk"
+font_regular = "mono-regular.woff2"
+font_bold = "mono-bold.woff2"
+
+[diagrams.d2]
+N1 = "--fg"
+N2 = "--fg-muted"
+N4 = "--rule"
+N7 = "--bg"
+B1 = "--fg"
+B5 = "--bg"
+AA2 = "--accent"
 ```
 
-A colour that is neither a token's nor folded stays as it is, and the
-build warns once, naming it:
-`warning: theme/mermaid.json: diagram colours left as they are: #0C0C0C`.
-Fold it. Labels are measured with the theme's `fonts/`, so a box fits
-its text in the theme's typeface; an SVG inside an `<img>` cannot load
-the page's web fonts, so `fontFamily` in `mermaid.json` should name a
-fallback. tilder's starter theme ships a complete `mermaid.json`.
+- `[diagrams.d2]` maps D2's colour codes to custom properties of
+  `style.css` whose value is a `#hex` colour. `N1` to `N7` are the
+  neutrals, from the text to the background; `B1` to `B6` the shapes,
+  from their borders to their fills; `AA2`, `AA4`, `AA5`, `AB4`, `AB5`
+  the accents. Each code takes the token's light value, and its dark
+  value from the `@media (prefers-color-scheme: dark)` block: D2 writes
+  both schemes into the SVG, which follows the reader's scheme inside its
+  `<img>`, as the page does. A token `style.css` lacks stops the build.
+- The fonts are files of `fonts/`; a `.woff2` is decompressed to TTF
+  first, as for `share.png`. D2 embeds them in the SVG, so the labels
+  show the theme's typeface even though an `<img>` cannot load the
+  page's web fonts. The italic falls back to the regular, the semibold
+  to the bold.
+- `layout`: `dagre`, D2's default, or `elk`, which draws edges at right
+  angles and keeps a container's label inside it: better for groups of
+  machines or networks.
+
+tilder's starter theme maps every colour code of its palette.
 
 ## icons/
 
