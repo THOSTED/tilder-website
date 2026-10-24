@@ -218,6 +218,7 @@ limits of the build's checks ([SEO](docs/reference/seo)).
 | Key | Default | Meaning |
 |---|---|---|
 | `seo.organization` | `"My Site"` | the publisher: the `Organization` node of every page's structured data |
+| `seo.same_as` | `[]` | the publisher's official profiles on other sites, absolute `http(s)` URLs: the `sameAs` of the `Organization` node; none when empty |
 | `seo.robots` | `"index, follow, max-image-preview:large"` | `<meta name="robots">` of a page that sets no `robots:` |
 | `seo.title_max` | `60` | a `<title>` longer than this, suffix included, is a warning |
 | `seo.description_min` | `50` | a description shorter than this is a warning |
@@ -226,8 +227,14 @@ limits of the build's checks ([SEO](docs/reference/seo)).
 ```toml
 [seo]
 organization = "Example Group"
+same_as = ["https://social.example.org/example-group"]
 title_max = 65
 ```
+
+Each entry of `seo.same_as` is an absolute `http://` or `https://` URL;
+anything else, or a value that is not a list, stops the build, with one
+error per bad entry. A `site.<lang>.toml` may set its own list for that
+language.
 
 ## Sharing
 

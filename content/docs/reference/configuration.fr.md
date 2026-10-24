@@ -224,6 +224,7 @@ les robots, et les limites des vérifications de la construction
 | Clé | Défaut | Rôle |
 |---|---|---|
 | `seo.organization` | `"My Site"` | l'éditeur : le nœud `Organization` des données structurées de chaque page |
+| `seo.same_as` | `[]` | les profils officiels de l'éditeur sur d'autres sites, en adresses `http(s)` absolues : le `sameAs` du nœud `Organization` ; aucun quand la liste est vide |
 | `seo.robots` | `"index, follow, max-image-preview:large"` | le `<meta name="robots">` d'une page qui ne règle pas `robots:` |
 | `seo.title_max` | `60` | un `<title>` plus long, suffixe compris, donne un avertissement |
 | `seo.description_min` | `50` | une description plus courte donne un avertissement |
@@ -232,8 +233,14 @@ les robots, et les limites des vérifications de la construction
 ```toml
 [seo]
 organization = "Example Group"
+same_as = ["https://social.example.org/example-group"]
 title_max = 65
 ```
+
+Chaque entrée de `seo.same_as` est une adresse absolue `http://` ou
+`https://` ; toute autre valeur, ou une valeur qui n'est pas une liste,
+arrête la construction, avec une erreur par entrée fautive. Un
+`site.<lang>.toml` peut régler sa propre liste pour cette langue.
 
 ## Partage
 
