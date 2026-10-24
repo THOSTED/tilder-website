@@ -29,6 +29,7 @@ each has its default in the type's module, `types/post.py`.
 | `feed` | `""` | the RSS feed's path from the site root, `"blog/feed.xml"`; empty for none |
 | `feed_title` | `"posts"` | the feed's title |
 | `feed_description` | `"Posts."` | the feed's description |
+| `scheduled` | `true` | a post dated after the build's date waits for that date to be published; `false` publishes every post at once ([scheduled posts](#scheduled-posts)) |
 
 This site's blog, for instance:
 
@@ -66,6 +67,41 @@ address, and its date is the post's date; there is no `date:` key.
 - A name whose date does not exist stops the build:
   `"2026-02-30" is not a date`.
 - `index.md` is the blog's own page, and `_template.md` is never built.
+
+## Scheduled posts
+
+A post dated after the date of the build is not published yet. Commit
+`2026-11-01-launch.md` a week early, and it appears on 1 November: in
+watch mode tilder rebuilds at midnight, and that rebuild publishes it. A
+post dated today is published.
+
+Until its date, the build writes nothing of the post, in any language:
+no page, no text mirror, no card in `{posts}`, no feed item, no sitemap
+entry, none of the files of its folder. The build's summary counts it:
+
+```text
+collections: blog (post, 4 items, 1 scheduled), ...
+```
+
+A link to a scheduled post, or to a file of its folder, is broken until
+then. The build still publishes, and warns once per page:
+
+```text
+warning: content/index.md: links to blog/2026-11-01-launch, scheduled for 2026-11-01: the link is broken until then. Remove the link, or publish the item earlier (its date, or scheduled = false under [collections.blog])
+```
+
+The date of the build is the day's, or `BUILD_TODAY` when it is set
+([command line](docs/reference/cli)). To preview a scheduled post, build
+as that day into a scratch folder:
+
+```console
+$ BUILD_TODAY=2026-11-01 python3 ../tilder/build.py --out /tmp/preview
+```
+
+A collection that sets `scheduled = false` publishes every post whatever
+its date. Events are never scheduled: an event in the future is an
+upcoming one ([event](docs/content-types/event)), and setting `scheduled`
+on an `event` collection stops the build.
 
 ## Front matter
 

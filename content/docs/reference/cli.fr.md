@@ -72,8 +72,10 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
   La surveillance reconstruit aussi à minuit, sans aucun changement : la
   date de la construction décide quels événements sont à venir et
   lesquels sont passés, si bien qu'un événement passe dans la liste des
-  événements passés le lendemain. Minuit est celui de la machine : dans
-  un conteneur, UTC sauf si la variable `TZ` dit autre chose.
+  événements passés le lendemain, et quels articles sont publiés, si bien
+  qu'un [article programmé](docs/content-types/post#articles-programmes)
+  paraît le jour dit. Minuit est celui de la machine : dans un conteneur,
+  UTC sauf si la variable `TZ` dit autre chose.
 
 ### --check
 
@@ -119,7 +121,7 @@ ne connaît pas est ignoré ([premiers pas](docs/guide/getting-started)).
 | Variable | Effet |
 |---|---|
 | `SITE_ROOT` | le projet à construire, comme `--root`, qui la définit |
-| `BUILD_TODAY` | la date de la construction, `2026-05-16`, à la place de celle du jour : quels événements sont à venir, pour un test ou un aperçu |
+| `BUILD_TODAY` | la date de la construction, `2026-05-16`, à la place de celle du jour : quels événements sont à venir et quels articles sont déjà publiés, pour un test ou un aperçu |
 | `BUILD_INTERVAL` | avec `--watch`, les secondes entre deux examens des sources ; par défaut `1` |
 | `TILDER_VERSION` | ce qu'affiche `--version` ; définie par l'image Docker |
 | `TZ` | le fuseau horaire de la date et de la reconstruction de minuit |
@@ -142,7 +144,8 @@ collections: blog (post, 1 item), events (event, no folder), ...
 
 La ligne `languages:` n'apparaît que sur un site en plusieurs langues ;
 la ligne `types:` ajoute les types qui viennent du thème,
-`; from theme: talk`. Avec `--watch`, la construction dit aussi quand
+`; from theme: talk` ; la ligne `collections:` compte les articles qui
+attendent leur date, `blog (post, 4 items, 1 scheduled)`. Avec `--watch`, la construction dit aussi quand
 elle attend après un échec ou redémarre sur du nouveau code. Les
 avertissements et les erreurs vont sur la sortie d'erreur.
 
