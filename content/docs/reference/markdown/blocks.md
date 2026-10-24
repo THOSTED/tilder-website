@@ -358,6 +358,38 @@ colour, the same rules as the HTML; `txt/` stays plain either way
 '------------------------------------------------------------------'
 ```
 
+## Where a block shows
+
+A code block's opening line may end with a marker, as a section's title
+does: `{html}` shows the block on the web page only, `{text}` in the
+text mirror only, `txt/` and `ansi/`; without one, the block is in both.
+It works for every language, an unknown one, or none.
+
+````markdown
+```console {html}
+$ curl -sI https://example.org/ | grep -i content-security-policy
+```
+
+```{text}
+The command is on the web page: it is wider than the mirror.
+```
+````
+
+- Only the last tokens of the line count, and only `{html}` and
+  `{text}` exactly. Braces anywhere else are text: a diagram's
+  description may hold `{x}`, and a trailing `{other}` stays part of the
+  line (as a language tilder does not know, a warning).
+- The marker comes last, after the language, and after a diagram's
+  description and caption.
+- `{html}` and `{text}` on one block would show it nowhere: the build
+  stops. The same marker twice counts once.
+- The page loads `code.js` only when it shows a code block: a `{text}`
+  block does not count.
+
+A diagram uses the same markers, and a `{text}` block right after a
+`{html}` diagram is its drawing for the mirror
+([diagrams](docs/reference/markdown/links-and-images#diagrams)).
+
 ## Table
 
 Pipes separate the cells; the second line, of dashes, separates the

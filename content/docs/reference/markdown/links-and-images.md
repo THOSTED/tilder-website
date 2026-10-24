@@ -161,18 +161,20 @@ link previews are a separate matter, set in the front matter
 A diagram is written in D2, in the page itself, and drawn at every build:
 no source file and no SVG sit next to the page. The fence says `d2`, then
 the description, then, optional and in double quotes, the caption: the
-alternative text and the caption of an image. A `text` block right after
-it, optional, is the diagram drawn by hand for the text mirror.
+alternative text and the caption of an image; then, optional, a display
+marker, `{html}` or `{text}` ([where a block shows](docs/reference/markdown/blocks#where-a-block-shows)).
+A `{text}` block right after a `{html}` diagram is the diagram drawn by
+hand for the text mirror.
 
 ````markdown
-```d2 curl asks the resolver, then connects to the proxy "One request, end to end."
+```d2 curl asks the resolver, then connects to the proxy "One request, end to end." {html}
 shape: sequence_diagram
 curl -> resolver: "example.org, type A?"
 resolver -> curl: "192.0.2.10"
 curl -> proxy: "GET / (HTTPS)"
 ```
 
-```text
+```text {text}
   curl            resolver          proxy
    |-- type A? ---->|                 |
    |<-- 192.0.2.10 -|                 |
@@ -180,8 +182,8 @@ curl -> proxy: "GET / (HTTPS)"
 ```
 ````
 
-- The description is required: it is what a screen reader says instead
-  of the drawing. The build warns when it is missing:
+- The description is required wherever the page shows the drawing: it
+  is what a screen reader says instead of it. The build warns when it is missing:
   `warning: content/blog/2026-01-01-hello.md: a d2 diagram without a description`.
 - On the web page, the diagram is a `<figure>` like an image: an `<img>`
   of an SVG file the build writes at `/diagrams/<key>.svg`, its `width`
@@ -192,16 +194,23 @@ curl -> proxy: "GET / (HTTPS)"
 - The drawing follows the theme, in the light and the dark scheme and in
   its font ([theme files](docs/themes/files#diagrams)).
 
-In the text mirror, the diagram is the `labels.diagram` word and the
-description, the caption, then:
+Where the diagram shows depends on its marker:
 
-- the text drawing, when a `text` block comes right after the `d2` one
-  (blank lines between them, nothing else): printed as it is, in a frame
-  without a label, and never shown on the web page. It must be ASCII,
-  and at most **68 columns** wide in a section, 64 in an entry: the
-  mirror's 75 columns, less the indent and the frame. A wider line, or
-  another character, is a warning;
-- else the D2 source, in a code frame: D2 is written to be read.
+| Fence | Web page | Text mirror |
+|---|---|---|
+| `d2 ...` | the drawing | the `labels.diagram` word and the description, the caption, the D2 source in a code frame |
+| `d2 ... {html}` | the drawing | nothing, or its text drawing |
+| `d2 ... {text}` | nothing | the description, the caption, the D2 source |
+
+The text drawing is a `{text}` block right after a `{html}` diagram
+(blank lines between them, nothing else): the mirror prints the
+description, the caption, then the drawing as it is, in a frame without
+a label; the web page never shows it. It must be ASCII, and at most
+**68 columns** wide in a section, 64 in an entry: the mirror's 75
+columns, less the indent and the frame. A wider line, or another
+character, is a warning. A `{text}` block anywhere else is just a block
+of the mirror's, and a `text` block without a marker after a diagram is
+an ordinary block, in both renderings.
 
 ```text
 [ diagram ] curl asks the resolver, then connects to the proxy
