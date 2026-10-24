@@ -109,6 +109,7 @@ through a screen reader. Translate them in `site.<lang>.toml`.
 | `labels.warning` | `"WARNING"` | the label of a warning callout |
 | `labels.error` | `"ERROR"` | the label of an error callout |
 | `labels.image` | `"image"` | the text mirror's line for an image: `[ image ] alt text` |
+| `labels.diagram` | `"diagram"` | the text mirror's line for a diagram: `[ diagram ] description` |
 | `labels.task_done` | `"done"` | a done item of a task list, read by screen readers |
 | `labels.task_todo` | `"to do"` | an open item of a task list, read by screen readers |
 | `labels.to_top` | `"↑ back to top"` | the link back to the top of the page (a layout placeholder) |
@@ -421,6 +422,18 @@ the theme leaves unstyled on purpose (default `[]`); `contrast`, the pairs of
 colours to check (default `[]`, nothing checked); `contrast_min`, the
 least ratio of every pair (default `4.5`). Every key is described in
 [checking a theme](docs/themes/checking).
+
+## Diagrams
+
+The `[diagrams]` table is the theme's, set in `theme/theme.toml`, like
+`[check]`: how a Mermaid diagram is fitted to the theme's colours
+([theme files](docs/themes/files#diagrams)).
+
+| Key | Default | Meaning |
+|---|---|---|
+| `diagrams.fold` | `{}` | colours Mermaid picks itself, mapped to tokens of `style.css`: `{ "#ECECFF" = "--bg" }` |
+| `diagrams.sharp` | `true` | square corners: every `rx` and `ry` of the drawing set to 0 |
+| `diagrams.shadow` | `false` | `true` keeps Mermaid's drop shadows; `false` removes them |
 
 ## See also
 

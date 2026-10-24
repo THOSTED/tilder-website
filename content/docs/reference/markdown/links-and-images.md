@@ -156,6 +156,60 @@ policy lets an SVG file style itself, never run a script. The images of
 link previews are a separate matter, set in the front matter
 ([feeds and images](docs/reference/feeds-and-images)).
 
+## Diagrams
+
+A diagram is written in Mermaid, in the page itself, and drawn at every
+build: no source file and no SVG sit next to the page. The fence says
+`mermaid`, then the description, then, optional and in double quotes,
+the caption: the alternative text and the caption of an image.
+
+````markdown
+```mermaid curl asks the resolver, then connects to the proxy "One request, end to end."
+sequenceDiagram
+  curl->>resolver: example.org, type A?
+  resolver-->>curl: 192.0.2.10
+  curl->>proxy: GET / (HTTPS)
+```
+````
+
+- The description is required: it is what a screen reader says instead
+  of the drawing. The build warns when it is missing:
+  `warning: content/blog/2026-01-01-hello.md: a mermaid diagram without a description`.
+- On the web page, the diagram is a `<figure>` like an image: an `<img>`
+  of an SVG file the build writes at `/diagrams/<key>.svg`, its `width`
+  and `height`, and the caption. The key is a hash of everything the
+  drawing depends on, so one diagram on two pages is one file. The SVG is
+  never inline: the recommended policy keeps `<style>` out of pages, and
+  lets an SVG file style itself.
+- In the text mirror: the `labels.diagram` word and the description,
+  the caption, then the Mermaid source in a code frame.
+
+```text
+[ diagram ] curl asks the resolver, then connects to the proxy
+  One request, end to end.
+.-- mermaid ---------------------------------------------------------.
+  sequenceDiagram
+  ...
+```
+
+The drawing follows the theme, in the light and the dark scheme: the
+theme's `mermaid.json` and its colour tokens decide
+([theme files](docs/themes/files#diagrams)). Corners are square and
+shadows dropped, unless the theme says otherwise.
+
+The drawing is made by the Mermaid CLI, `mmdc`, which needs a headless
+Chromium. tilder's `-mermaid` image has both
+([deployment](docs/guide/deployment)); the default image does not, to
+stay small. Without the CLI the build warns once, and the page shows the
+diagram's source as a code block, its description as the caption. A
+diagram the CLI cannot draw, a syntax error, stops the build with the
+CLI's message.
+
+A drawing takes about a second. It is cached by its key: in memory while
+`--watch` runs, in `TILDER_CACHE` when it is set
+([command line](docs/reference/cli)), and in the previous output, so a
+rebuild into the same folder draws only what changed.
+
 ## See also
 
 - [writing pages](docs/guide/writing)

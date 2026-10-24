@@ -111,6 +111,7 @@ s'entendent qu'à travers un lecteur d'écran. Traduisez-les dans
 | `labels.warning` | `"WARNING"` | le libellé d'un encadré d'avertissement |
 | `labels.error` | `"ERROR"` | le libellé d'un encadré d'erreur |
 | `labels.image` | `"image"` | la ligne d'une image dans le miroir en texte : `[ image ] texte alternatif` |
+| `labels.diagram` | `"diagram"` | la ligne d'un diagramme dans le miroir en texte : `[ diagram ] description` |
 | `labels.task_done` | `"done"` | un élément fait d'une liste de tâches, lu par les lecteurs d'écran |
 | `labels.task_todo` | `"to do"` | un élément à faire d'une liste de tâches, lu par les lecteurs d'écran |
 | `labels.to_top` | `"↑ back to top"` | le lien qui remonte en haut de la page (une variable du gabarit) |
@@ -436,6 +437,18 @@ dessein (défaut `[]`) ;
 vérifié) ; `contrast_min`, le contraste minimal de chaque paire (défaut
 `4.5`). Chaque clé est décrite dans
 [vérifier un thème](docs/themes/checking).
+
+## Diagrammes
+
+La table `[diagrams]` appartient au thème, réglée dans `theme/theme.toml`
+comme `[check]` : comment un diagramme Mermaid est ajusté aux couleurs du
+thème ([les fichiers du thème](docs/themes/files#diagrammes)).
+
+| Clé | Défaut | Rôle |
+|---|---|---|
+| `diagrams.fold` | `{}` | les couleurs que Mermaid choisit lui-même, associées à des jetons de `style.css` : `{ "#ECECFF" = "--bg" }` |
+| `diagrams.sharp` | `true` | des coins carrés : chaque `rx` et `ry` du dessin à 0 |
+| `diagrams.shadow` | `false` | `true` garde les ombres portées de Mermaid ; `false` les retire |
 
 ## Voir aussi
 

@@ -28,6 +28,7 @@ and a file of the same name in the site's `assets/` wins over the theme's.
 | `share.svg` | optional | the link preview, drawn to `share.png` (1200x630); without it, `og:image` is the icon |
 | `layouts/<name>.html` | optional | a layout for the pages of a type, or asked for by `layout:` in a page's front matter; the same placeholders as `layout.html` |
 | `types/<name>.py` | optional | a content type the theme adds, or a built-in one it replaces ([custom types](docs/content-types/custom-types)) |
+| `mermaid.json` | optional | Mermaid's configuration for diagrams, its colours written as tokens of `style.css` ([diagrams](#diagrams)) |
 | `theme.toml` | optional | the theme's configuration values, under the site's `site.toml`: the `[share]` colours, the theme's own words, and `[check]` for `build.py --check` |
 | `theme.<lang>.toml` | optional | the per-language twin of `theme.toml`, between it and the site's `site.toml` |
 
@@ -39,7 +40,7 @@ Any other file, a second script, an image the stylesheet uses, a
 Everything in `theme/` is copied to the root of the site as it is, but:
 
 - what the build reads: `layout.html`, `layouts/`, `share.svg`, `icons/`,
-  `types/`, `theme.toml` and every `theme.<lang>.toml`;
+  `types/`, `mermaid.json`, `theme.toml` and every `theme.<lang>.toml`;
 - what belongs to the theme's own repository rather than to the site:
   `.git`, and every file or folder whose name starts with `.git`
   (`.gitignore`, `.gitmodules`), at any depth; a `README.md`, and any file
@@ -133,6 +134,42 @@ The text of `share.png` is drawn with the theme's own fonts: every
 `fonts/*.woff2`, converted for the renderer when `woff2_decompress` is
 installed (the Docker image has it). Without it, the renderer falls back
 to the fonts of the system.
+
+## Diagrams
+
+A Mermaid diagram ([diagrams](docs/reference/markdown/links-and-images#diagrams))
+is drawn in the theme's colours, light and dark, from three places:
+
+- `mermaid.json`, Mermaid's configuration: `theme`, `look`,
+  `themeVariables`, the settings of each kind of diagram. A colour is
+  written `var(--token)`, a custom property of `style.css` whose value is
+  a `#hex` colour; the build gives Mermaid the token's light value, since
+  Mermaid computes with real colours. A token `style.css` lacks stops the
+  build. Without the file, Mermaid's own defaults.
+- `style.css`, the palette: each colour of the drawing that is a token's
+  light value becomes `var(--token)` again, and the SVG defines those
+  tokens, with their dark values under
+  `@media (prefers-color-scheme: dark)`. The drawing follows the reader's
+  scheme inside its `<img>`, as the page does. When two tokens share a
+  light value, the first in `style.css` wins.
+- `[diagrams]` in `theme.toml` ([configuration](docs/reference/configuration#diagrams)):
+  `fold` maps the colours Mermaid still picks itself to tokens, `sharp`
+  squares the corners, `shadow` keeps or drops the shadows.
+
+```toml
+[diagrams.fold]
+"#ECECFF" = "--bg"
+"#333333" = "--fg"
+"#999999" = "--rule"
+```
+
+A colour that is neither a token's nor folded stays as it is, and the
+build warns once, naming it:
+`warning: theme/mermaid.json: diagram colours left as they are: #0C0C0C`.
+Fold it. Labels are measured with the theme's `fonts/`, so a box fits
+its text in the theme's typeface; an SVG inside an `<img>` cannot load
+the page's web fonts, so `fontFamily` in `mermaid.json` should name a
+fallback. tilder's starter theme ships a complete `mermaid.json`.
 
 ## icons/
 
