@@ -26,6 +26,7 @@ and a file of the same name in the site's `assets/` wins over the theme's.
 | `fonts/` | optional | web fonts; its `*.woff2` files also draw the text of `share.png` |
 | `icons/<network>.svg` | optional | the logo of a member's profile link; without it, the network's name is shown |
 | `share.svg` | optional | the link preview, drawn to `share.png` (1200x630); without it, `og:image` is the icon |
+| `share-page.svg`, `share-<type>.svg` | optional | the card of every other page, drawn with its fields ([the link preview](docs/reference/feeds-and-images#a-card-per-page)) |
 | `layouts/<name>.html` | optional | a layout for the pages of a type, or asked for by `layout:` in a page's front matter; the same placeholders as `layout.html` |
 | `types/<name>.py` | optional | a content type the theme adds, or a built-in one it replaces ([custom types](docs/content-types/custom-types)) |
 | `mermaid.json` | optional | Mermaid's configuration for diagrams, its colours written as tokens of `style.css` ([diagrams](#diagrams)) |
@@ -39,7 +40,7 @@ Any other file, a second script, an image the stylesheet uses, a
 
 Everything in `theme/` is copied to the root of the site as it is, but:
 
-- what the build reads: `layout.html`, `layouts/`, `share.svg`, `icons/`,
+- what the build reads: `layout.html`, `layouts/`, `share.svg`, `share-*.svg`, `icons/`,
   `types/`, `mermaid.json`, `theme.toml` and every `theme.<lang>.toml`;
 - what belongs to the theme's own repository rather than to the site:
   `.git`, and every file or folder whose name starts with `.git`

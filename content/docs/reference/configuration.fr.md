@@ -263,6 +263,13 @@ rempli avec les valeurs d'ici ([flux et images](docs/reference/feeds-and-images)
 | `share.muted_color` | `"#506C75"` | le texte secondaire de l'aperçu |
 | `share.rule_color` | `"#DED7C3"` | les filets de l'aperçu |
 | `share.short_name` | `"site"` | le `short_name` du manifeste, le nom sous une icône sur l'écran d'accueil d'un téléphone |
+| `share.pages` | `true` | une carte par page, quand le thème a un `share-page.svg` ; `false` montre `share.png` partout |
+| `share.title_columns` | `23` | les caractères par ligne de titre de la carte d'une page |
+| `share.title_lines` | `2` | les lignes de titre de la carte d'une page |
+| `share.title_line_height` | `68` | le pas de `{{ title_shift }}`, en pixels |
+| `share.detail_columns` | `48` | les caractères par ligne de détail, et du tag |
+| `share.tag_advance` | `14.4` | la largeur d'un caractère du tag, en pixels, pour `{{ tag_width }}` |
+| `share.tag_padding` | `16` | l'espace de chaque côté du tag, en pixels |
 
 Les cinq couleurs servent au `share.svg` du thème, qui les lit sous la
 forme `{{ share.text_color }}` et ainsi de suite ; un thème les règle

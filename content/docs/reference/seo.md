@@ -24,7 +24,8 @@ penalise. There is nothing to install and nothing to fill in by hand.
 | `name` | the page's name in the `<h1>` path, and in `og:title` instead of the title |
 | `description` | `<meta name="description">`, `og:description`, `twitter:description`, the structured data, the feeds |
 | `image` | the preview image, `og:image` and `twitter:image`, relative to the page's folder |
-| `image_alt` | `og:image:alt`; default `share.image_alt` |
+| `image_alt` | `og:image:alt`; default: the text of the page's card, else `share.image_alt` |
+| `share_title` | the title on the page's card, when `title` would be cut there |
 | `updated` | `<lastmod>` in `sitemap.xml`, and a post's `dateModified` |
 | `robots` | `<meta name="robots">`; default `seo.robots`. With `noindex`, the page leaves the sitemaps and the checks |
 
@@ -83,8 +84,8 @@ What a link preview reads, on social networks and in chat apps:
 | `og:title` | the page's `name`, else its title without the suffix |
 | `og:description` | the description |
 | `og:url` | the canonical URL |
-| `og:image` | the page's `image`; else `share.png`, when the theme has a `share.svg`; else the icon, `share.logo` |
-| `og:image:alt` | the page's `image_alt`, else `share.image_alt` |
+| `og:image` | the page's `image`; else its card, `/previews/<key>.png`, when the theme has a `share-page.svg`; else `share.png`, when it has a `share.svg`; else the icon, `share.logo` |
+| `og:image:alt` | the page's `image_alt`, else its card's text, else `share.image_alt` |
 | `og:image:width`, `og:image:height` | the image's size, read from the file, when it is known |
 
 An `image` is a PNG or a JPEG of 1200x630 at best: social platforms

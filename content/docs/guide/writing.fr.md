@@ -85,8 +85,9 @@ viennent de la collection pour ses éléments, qui peuvent s'en passer.
 | `nav` | l'entrée de `[[nav]]` marquée comme courante, par son `href` : `about`, `blog/`, rien pour la page d'accueil, `-` pour aucune |
 | `feed` | le nom d'une collection, ou `all` : ajoute le `<link rel="alternate">` du flux RSS de cette collection |
 | `text` | `text: no` ne construit pas de miroir en texte pour la page (c'est le cas de la page 404) |
-| `image` | l'aperçu de lien, relatif au dossier de la page ; par défaut `share.image`. Un PNG ou un JPEG, idéalement en 1200x630 : les réseaux sociaux ignorent le plus souvent le SVG |
-| `image_alt` | le texte alternatif de l'aperçu ; par défaut `share.image_alt` |
+| `image` | l'aperçu de lien, relatif au dossier de la page ; par défaut la carte de la page, sinon `share.image`. Un PNG ou un JPEG, idéalement en 1200x630 : les réseaux sociaux ignorent le plus souvent le SVG |
+| `image_alt` | le texte alternatif de l'aperçu ; par défaut le texte de la carte de la page, sinon `share.image_alt` |
+| `share_title` | un titre plus court pour la carte de la page ([l'aperçu de lien](docs/reference/feeds-and-images#une-carte-par-page)), quand `title` y serait tronqué |
 | `updated` | une date, `2026-03-01` : la dernière modification de la page dans le plan du site ; par défaut, la date d'un élément, sinon `site.updated` |
 | `robots` | le `<meta name="robots">` de la page ; par défaut `seo.robots`. Avec `noindex`, la page sort des plans du site et des vérifications de référencement de la construction |
 | `layout` | `layout: home` rend la page avec le gabarit `layouts/home.html` du thème, qui doit exister |

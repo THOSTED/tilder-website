@@ -27,6 +27,7 @@ même nom dans le dossier `assets/` du site l'emporte sur celui du thème.
 | `fonts/` | facultatif | les polices web ; ses fichiers `*.woff2` servent aussi à dessiner le texte de `share.png` |
 | `icons/<network>.svg` | facultatif | le logo d'un lien de profil d'un membre ; sans lui, le nom du réseau s'affiche |
 | `share.svg` | facultatif | l'aperçu de lien, dessiné en `share.png` (1200x630) ; sans lui, `og:image` est l'icône |
+| `share-page.svg`, `share-<type>.svg` | facultatif | la carte de chaque autre page, dessinée avec ses champs ([l'aperçu de lien](docs/reference/feeds-and-images#une-carte-par-page)) |
 | `layouts/<name>.html` | facultatif | un gabarit pour les pages d'un type, ou demandé par `layout:` dans l'en-tête d'une page ; les mêmes variables que `layout.html` |
 | `types/<name>.py` | facultatif | un type de contenu que le thème ajoute, ou un type intégré qu'il remplace ([types personnalisés](docs/content-types/custom-types)) |
 | `mermaid.json` | facultatif | la configuration de Mermaid pour les diagrammes, ses couleurs écrites en jetons de `style.css` ([diagrammes](#diagrammes)) |
@@ -41,7 +42,7 @@ chemin.
 
 Tout le contenu de `theme/` est copié tel quel à la racine du site, sauf :
 
-- ce que lit la construction : `layout.html`, `layouts/`, `share.svg`,
+- ce que lit la construction : `layout.html`, `layouts/`, `share.svg`, `share-*.svg`,
   `icons/`, `types/`, `mermaid.json`, `theme.toml` et chaque
   `theme.<lang>.toml` ;
 - ce qui appartient au dépôt du thème plutôt qu'au site : `.git`, et tout
