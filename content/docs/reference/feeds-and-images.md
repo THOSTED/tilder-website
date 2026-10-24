@@ -107,10 +107,44 @@ theme's fonts, from its `fonts/` folder: the renderer reads TrueType,
 not WOFF2, so each `*.woff2` is first decompressed with
 `woff2_decompress`, when it is installed ([the files of a theme](docs/themes/files)).
 
-Every page's `og:image` is `share.png`, unless the page sets `image:`.
+Every page's `og:image` is `share.png`, unless the page sets `image:` or the theme draws a card per page (below).
 The file is named by `share.image`. Without a `share.svg`, no preview is
 drawn, and `og:image` is the icon, `icon-512.png`, with the small
 `summary` card ([SEO](docs/reference/seo)).
+
+## A card per page
+
+With a `share-page.svg` in the theme, every other page gets its own
+card: drawn at every build from the page's fields, written at
+`/previews/<key>.png`, and named by `og:image`, `twitter:image` and the
+`image` of a post's or an event's structured data. The key is a hash of
+the filled template and the fonts: a page that does not change keeps its
+file and its address. `share-<type>.svg`, `share-event.svg` for
+instance, wins for the pages of that type. The landing page keeps
+`share.png`; so does a page marked `noindex`, the 404. A page that sets
+`image:` shows that image.
+
+Besides the placeholders above, the template reads the page's own:
+
+| Placeholder | Value |
+|---|---|
+| `{{ man }}` | the page's `man`, else `footer.right` |
+| `{{ path }}` | the page's place, after `~/<site>`: `/events` for an event, `/mentoring` for a page, `/blog` for the blog's page |
+| `{{ url }}` | the address of that place, without the scheme: `example.org/events` |
+| `{{ title_1 }}`, `{{ title_2 }}` | the page's `share_title`, else its `title`, on `share.title_lines` lines of `share.title_columns` characters |
+| `{{ title_shift }}` | how far up, in pixels, what follows the title moves when the title leaves a line empty: a `translate` |
+| `{{ detail_1 }}` | the page's `tagline`; a post's or an event's is its date in words |
+| `{{ detail_2 }}` | an event's `place`, else a post's `author` |
+| `{{ tag }}`, `{{ tag_width }}`, `{{ tag_display }}` | the page's `tag`; the width of a box around it; `none` when there is none, for `display=` |
+
+The text is fitted by character count, so the template suits a
+monospace face. A title breaks at spaces; what does not fit on its last
+line is cut, ending with `...`, three dots. A detail line, and the tag,
+is cut at `share.detail_columns`. `og:image:alt` is the card's text,
+`~/my site/events - Meetup - Saturday 21 November 2026 - Library`,
+unless the page sets `image_alt`. Like diagrams, cards are cached: in
+memory while `--watch` runs, in `TILDER_CACHE`, and in the previous
+output. tilder's starter theme ships a `share-page.svg`.
 
 ## Tools and fallbacks
 

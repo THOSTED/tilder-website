@@ -257,6 +257,13 @@ The icons are drawn at every build from `assets/logo.svg`, and
 | `share.muted_color` | `"#506C75"` | the preview's secondary text |
 | `share.rule_color` | `"#DED7C3"` | the preview's rules |
 | `share.short_name` | `"site"` | the manifest's `short_name`, the name under an icon on a home screen |
+| `share.pages` | `true` | a card per page, when the theme has `share-page.svg`; `false` shows `share.png` everywhere |
+| `share.title_columns` | `23` | characters per title line of a page's card |
+| `share.title_lines` | `2` | title lines of a page's card |
+| `share.title_line_height` | `68` | the step of `{{ title_shift }}`, in pixels |
+| `share.detail_columns` | `48` | characters per detail line, and of the tag |
+| `share.tag_advance` | `14.4` | the width of one character of the tag, in pixels, for `{{ tag_width }}` |
+| `share.tag_padding` | `16` | the room on each side of the tag, in pixels |
 
 The five colours are for the theme's `share.svg`, which reads them as
 `{{ share.text_color }}` and the like; a theme usually sets them in its

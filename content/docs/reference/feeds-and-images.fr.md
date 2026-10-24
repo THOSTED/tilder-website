@@ -117,9 +117,45 @@ décompressé avec `woff2_decompress`, quand il est installé
 ([les fichiers d'un thème](docs/themes/files)).
 
 L'`og:image` de chaque page est `share.png`, sauf si la page règle
-`image:`. Le fichier est nommé par `share.image`. Sans `share.svg`, aucun
+`image:` ou si le thème dessine une carte par page (plus bas). Le fichier est nommé par `share.image`. Sans `share.svg`, aucun
 aperçu n'est dessiné, et `og:image` est l'icône, `icon-512.png`, avec la
 petite carte `summary` ([SEO](docs/reference/seo)).
+
+## Une carte par page
+
+Avec un `share-page.svg` dans le thème, chaque autre page a sa propre
+carte : dessinée à chaque construction à partir des champs de la page,
+écrite en `/previews/<key>.png`, et nommée par `og:image`,
+`twitter:image` et l'`image` des données structurées d'un article ou
+d'un événement. La clé est une empreinte du modèle rempli et des polices :
+une page qui ne change pas garde son fichier et son adresse.
+`share-<type>.svg`, `share-event.svg` par exemple, l'emporte pour les
+pages de ce type. La page d'accueil garde `share.png` ; une page marquée
+`noindex`, la 404, aussi. Une page qui règle `image:` montre cette image.
+
+En plus des variables ci-dessus, le modèle lit celles de la page :
+
+| Variable | Valeur |
+|---|---|
+| `{{ man }}` | le `man` de la page, sinon `footer.right` |
+| `{{ path }}` | la place de la page, après `~/<site>` : `/events` pour un événement, `/mentorat` pour une page, `/blog` pour la page du blog |
+| `{{ url }}` | l'adresse de cette place, sans le schéma : `example.org/events` |
+| `{{ title_1 }}`, `{{ title_2 }}` | le `share_title` de la page, sinon son `title`, sur `share.title_lines` lignes de `share.title_columns` caractères |
+| `{{ title_shift }}` | de combien de pixels remonte ce qui suit le titre quand celui-ci laisse une ligne vide : un `translate` |
+| `{{ detail_1 }}` | le `tagline` de la page ; celui d'un article ou d'un événement est sa date en toutes lettres |
+| `{{ detail_2 }}` | le `place` d'un événement, sinon l'`author` d'un article |
+| `{{ tag }}`, `{{ tag_width }}`, `{{ tag_display }}` | le `tag` de la page ; la largeur d'un cadre autour ; `none` quand il n'y en a pas, pour `display=` |
+
+Le texte est ajusté au nombre de caractères : le modèle convient à une
+police à chasse fixe. Un titre se coupe aux espaces ; ce qui ne tient
+pas sur sa dernière ligne est tronqué, terminé par `...`, trois points.
+Une ligne de détail, et le tag, sont tronqués à `share.detail_columns`.
+L'`og:image:alt` est le texte de la carte,
+`~/my site/events - Meetup - samedi 21 novembre 2026 - Library`, sauf
+si la page règle `image_alt`. Comme les diagrammes, les cartes sont en
+cache : en mémoire tant que `--watch` tourne, dans `TILDER_CACHE`, et
+dans la sortie précédente. Le thème de départ de tilder fournit un
+`share-page.svg`.
 
 ## Outils et solutions de repli
 

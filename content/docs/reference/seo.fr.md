@@ -25,7 +25,8 @@ remplir à la main.
 | `name` | le nom de la page dans le chemin du `<h1>`, et dans `og:title` à la place du titre |
 | `description` | `<meta name="description">`, `og:description`, `twitter:description`, les données structurées, les flux |
 | `image` | l'image de l'aperçu, `og:image` et `twitter:image`, relative au dossier de la page |
-| `image_alt` | `og:image:alt` ; par défaut `share.image_alt` |
+| `image_alt` | `og:image:alt` ; par défaut le texte de la carte de la page, sinon `share.image_alt` |
+| `share_title` | le titre sur la carte de la page, quand `title` y serait tronqué |
 | `updated` | `<lastmod>` dans `sitemap.xml`, et le `dateModified` d'un article |
 | `robots` | `<meta name="robots">` ; par défaut `seo.robots`. Avec `noindex`, la page sort des plans du site et des vérifications |
 
@@ -89,8 +90,8 @@ messageries :
 | `og:title` | le `name` de la page, sinon son titre sans le suffixe |
 | `og:description` | la description |
 | `og:url` | l'URL canonique |
-| `og:image` | l'`image` de la page ; sinon `share.png`, quand le thème a un `share.svg` ; sinon l'icône, `share.logo` |
-| `og:image:alt` | l'`image_alt` de la page, sinon `share.image_alt` |
+| `og:image` | l'`image` de la page ; sinon sa carte, `/previews/<key>.png`, quand le thème a un `share-page.svg` ; sinon `share.png`, quand il a un `share.svg` ; sinon l'icône, `share.logo` |
+| `og:image:alt` | l'`image_alt` de la page, sinon le texte de sa carte, sinon `share.image_alt` |
 | `og:image:width`, `og:image:height` | la taille de l'image, lue dans le fichier, quand elle est connue |
 
 Une `image` est au mieux un PNG ou un JPEG de 1200x630 : les réseaux
