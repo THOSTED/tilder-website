@@ -247,17 +247,25 @@ plain either way.
 
 ## Cards
 
-A card has a bar down its left side, `|` on each line and `'` on the
-last, so the cards of a list read apart: a blank line also parts a card's
-title from its body. Tags sit at the right of the title, or on their own
-lines under it when they do not fit; a tag is never cut.
+A card is framed down its left side, `,` above, `|` on each line, `'`
+below, so the cards of a list read apart: a blank line also parts a
+card's title from its body. Tags sit at the right of the title, or on
+their own lines under it when they do not fit; a tag is never cut. A
+linked card shows its URL under its title.
 
 ```text
+     ,
      | Ada Lovelace                                   [ admin ] [ mentor ]
+     | /members/ada-lovelace
      | Analytical Engines
      |
-     '     GitHub: https://github.com/ada
+     |     GitHub: https://github.com/ada
+     '
 ```
+
+Every link shows where it goes, in parentheses: an absolute URL as
+written, an internal one as its path from the root - `all the posts
+(/blog/)` - the next thing to curl. A bare `#id` shows nothing.
 
 ## Leaving a page out
 

@@ -259,18 +259,27 @@ d'accent, et `txt/` reste brut dans tous les cas.
 
 ## Les cartes
 
-Une carte porte une barre sur sa gauche, `|` à chaque ligne et `'` à la
-dernière, pour que les cartes d'une liste se lisent séparées : une ligne
-vide sépare aussi le titre d'une carte de son corps. Les étiquettes se
-placent à droite du titre, ou sur leurs propres lignes dessous quand elles
-ne tiennent pas ; une étiquette n'est jamais coupée.
+Une carte est encadrée sur sa gauche, `,` au-dessus, `|` à chaque ligne,
+`'` en dessous, pour que les cartes d'une liste se lisent séparées : une
+ligne vide sépare aussi le titre d'une carte de son corps. Les étiquettes
+se placent à droite du titre, ou sur leurs propres lignes dessous quand
+elles ne tiennent pas ; une étiquette n'est jamais coupée. Une carte liée
+montre son URL sous son titre.
 
 ```text
+     ,
      | Ada Lovelace                                   [ admin ] [ mentor ]
+     | /members/ada-lovelace
      | Analytical Engines
      |
-     '     GitHub: https://github.com/ada
+     |     GitHub: https://github.com/ada
+     '
 ```
+
+Chaque lien montre où il mène, entre parenthèses : une URL absolue telle
+qu'écrite, une interne par son chemin depuis la racine - `tous les
+articles (/blog/)` - la prochaine chose à curler. Un `#id` seul ne montre
+rien.
 
 ## Écarter une page
 
