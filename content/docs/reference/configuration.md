@@ -418,17 +418,22 @@ The `[text]` table: the coloured text mirror's colours.
 | Key | Default | Meaning |
 |---|---|---|
 | `text.commands` | `["curl"]` | the words that start a command line worth highlighting, in a code block of the coloured mirror |
-| `text.accent` | `"cyan"` | the one accent colour of `ansi/`: links, `[ tags ]`, list markers, inline `code`, command lines, the INFO box, and (in a highlighted code block) keywords and builtins |
+| `text.accent` | `"cyan"` | what `ansi/` puts forward: `[ tags ]`, list markers, inline `code`, command lines, the INFO box, and (in a highlighted code block) keywords and builtins |
+| `text.link` | `""` | URLs and internal paths, underlined; empty: the accent |
+| `text.muted` | `""` | the header and footer rules, code and card frames; empty: `dim` |
 
 A code-block line that starts with one of `text.commands`, alone or after a
 prompt, `$` or `#` and a space, is coloured in the accent in `ansi/`; `txt/` has no
 colour at all ([the text mirror](docs/reference/text-mirror)).
 
-`text.accent` is one of the eight colour names `black`, `red`, `green`,
-`yellow`, `blue`, `magenta`, `cyan` (the default), `white`, or a
+Each colour is one of the eight colour names `black`, `red`, `green`,
+`yellow`, `blue`, `magenta`, `cyan` (the accent's default), `white`, its
+bright twin (`bright-cyan`, the terminal's brighter shade), `dim`, or a
 256-colour index from 16 to 255, such as `208` for orange. Anything else
-stops the build. A `site.<lang>.toml` may set its own accent for that
-language.
+stops the build. Three levels keep links a step quieter than what
+matters: `accent = "bright-cyan"`, `link = "cyan"`, `muted = "dim"`. A
+card's title is bold. A `site.<lang>.toml` may set its own colours for
+that language.
 
 ```toml
 [text]

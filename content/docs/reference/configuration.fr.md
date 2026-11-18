@@ -430,18 +430,24 @@ La table `[text]` : les couleurs du miroir en texte coloré.
 | Clé | Défaut | Rôle |
 |---|---|---|
 | `text.commands` | `["curl"]` | les mots qui commencent une ligne de commande à mettre en valeur, dans un bloc de code du miroir en couleur |
-| `text.accent` | `"cyan"` | la couleur d'accent unique d'`ansi/` : les liens, les `[ tags ]`, les puces de liste, le `code` en ligne, les lignes de commande, l'encadré INFO, et (dans un bloc de code coloré) les mots-clés et les identifiants natifs |
+| `text.accent` | `"cyan"` | ce qu'`ansi/` met en avant : les `[ tags ]`, les puces de liste, le `code` en ligne, les lignes de commande, l'encadré INFO, et (dans un bloc de code coloré) les mots-clés et les identifiants natifs |
+| `text.link` | `""` | les URL et les chemins internes, soulignés ; vide : l'accent |
+| `text.muted` | `""` | les filets d'en-tête et de pied, les cadres du code et des cartes ; vide : `dim` |
 
 Une ligne de bloc de code qui commence par l'un des mots de
 `text.commands`, seul ou après une invite, `$` ou `#` suivi d'une
 espace, prend la couleur d'accent dans `ansi/` ; `txt/` n'a aucune
 couleur ([le miroir en texte](docs/reference/text-mirror)).
 
-`text.accent` vaut l'un des huit noms de couleur `black`, `red`,
-`green`, `yellow`, `blue`, `magenta`, `cyan` (le défaut), `white`, ou un
-index de 256 couleurs de 16 à 255, tel que `208` pour l'orange. Toute
-autre valeur arrête la construction. Un `site.<lang>.toml` peut régler
-son propre accent pour cette langue.
+Chaque couleur vaut l'un des huit noms de couleur `black`, `red`,
+`green`, `yellow`, `blue`, `magenta`, `cyan` (le défaut de l'accent),
+`white`, sa version vive (`bright-cyan`, la teinte plus claire du
+terminal), `dim`, ou un index de 256 couleurs de 16 à 255, tel que `208`
+pour l'orange. Toute autre valeur arrête la construction. Trois niveaux
+gardent les liens un cran en dessous de ce qui compte :
+`accent = "bright-cyan"`, `link = "cyan"`, `muted = "dim"`. Le titre
+d'une carte est en gras. Un `site.<lang>.toml` peut régler ses propres
+couleurs pour cette langue.
 
 ```toml
 [text]
