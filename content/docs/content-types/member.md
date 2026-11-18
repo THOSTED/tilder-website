@@ -140,6 +140,14 @@ ASCII), and the section carries the collection's six words as
 `data-search_label`, `data-search_placeholder`, `data-all`, `data-one`,
 `data-many` and `data-none`, so the script speaks the page's language.
 
+## Several categories
+
+`category` takes one or several categories, separated by spaces
+(`category: admin mentor`): a tag each on the card, a button each in the
+filter. With `default_category = ""`, a member who sets none gets no tag:
+the category every member has goes without saying. A new one (`sponsor`)
+is one more entry in `categories`.
+
 ## Search engines
 
 A member's page is a `ProfilePage` whose `mainEntity` is a `Person`: its

@@ -245,6 +245,20 @@ blocks](docs/reference/markdown/blocks). A block with no language, in
 its command lines (`text.commands`) are in the accent, and `txt/` stays
 plain either way.
 
+## Cards
+
+A card has a bar down its left side, `|` on each line and `'` on the
+last, so the cards of a list read apart: a blank line also parts a card's
+title from its body. Tags sit at the right of the title, or on their own
+lines under it when they do not fit; a tag is never cut.
+
+```text
+     | Ada Lovelace                                   [ admin ] [ mentor ]
+     | Analytical Engines
+     |
+     '     GitHub: https://github.com/ada
+```
+
 ## Leaving a page out
 
 `text: no` in a page's front matter writes no text for it, in `txt/` or

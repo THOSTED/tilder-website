@@ -235,6 +235,30 @@ son `location` comme `Place` nommé par `place` (avec `geo` d'après `lat`
 et `lon`), l'organisation du site comme `organizer`, et l'`image`
 d'aperçu. Son `og:type` vaut `website`.
 
+## Horaires et sessions
+
+`time: 14:00-15:00` (ou `14:00`) donne ses horaires à un événement, sur
+24 heures, dans `calendar.timezone` ; sans lui, l'événement dure des
+journées entières. Avec `end`, le début est le premier jour et la fin le
+dernier. La carte montre les horaires, les données structurées les
+portent avec leur décalage, et l'iCalendar écrit un `VEVENT` horodaté, en
+UTC.
+
+`session-1`, `session-2`... donnent à un événement plusieurs entrées dans
+l'iCalendar, à la place de la sienne : `[AAAA-MM-JJ] [HH:MM[-HH:MM]]
+titre`. Sans jour : le premier jour de l'événement ; sans horaire : la
+journée entière, ou tout l'événement si aucun jour n'est donné non plus.
+
+```markdown
+session-1: Stand
+session-2: 14:00-15:00 Atelier
+session-3: 2026-05-17 10:00 Conférence
+```
+
+Un `time` ou une session mal écrits arrêtent le build, en disant comment
+les écrire. `{past}` est paginé comme `{posts}` quand la collection règle
+`per_page` ; les événements à venir ne le sont jamais.
+
 ## Voir aussi
 
 - [les collections](docs/content-types)

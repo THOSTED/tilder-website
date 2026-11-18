@@ -205,6 +205,19 @@ dire :
 La [référence du référencement](docs/reference/seo) montre le `<head>` en
 entier.
 
+## Tags et pages
+
+`tag` est la première étiquette de la carte ; `tags` en ajoute d'autres,
+séparées par des virgules (`tags: dns, tls`). Toutes s'affichent sur la
+carte, sur l'aperçu de partage et en `article:tag`.
+
+Avec `per_page = 10` sur la collection, `{posts}` montre dix cartes par
+page : la page 1 à l'URL de la liste, la page n à `/blog/n`, avec une
+ligne `précédente · page n sur m · suivante` sous les cartes. Ajoutez
+`item_prefix = "-"` pour que les articles soient à `/blog/-/<slug>` et ne
+croisent jamais un numéro de page
+([configuration](docs/reference/configuration)).
+
 ## Voir aussi
 
 - [les collections](docs/content-types)

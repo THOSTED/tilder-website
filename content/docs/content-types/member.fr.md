@@ -146,6 +146,14 @@ minuscule), et la section porte les six mots de la collection en
 `data-many` et `data-none`, si bien que le script parle la langue de la
 page.
 
+## Plusieurs catégories
+
+`category` prend une ou plusieurs catégories, séparées par des espaces
+(`category: admin mentor`) : une étiquette chacune sur la carte, un bouton
+chacune dans le filtre. Avec `default_category = ""`, un membre qui n'en
+donne aucune n'a pas d'étiquette : la catégorie que tous ont va sans dire.
+Une nouvelle (`sponsor`) est une entrée de plus dans `categories`.
+
 ## Moteurs de recherche
 
 La page d'un membre est une `ProfilePage` dont la `mainEntity` est une

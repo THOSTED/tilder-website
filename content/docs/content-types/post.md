@@ -194,6 +194,18 @@ A post is an article, in every sense the page can say it:
 
 The [SEO reference](docs/reference/seo) shows the whole `<head>`.
 
+## Tags and pages
+
+`tag` is the card's first tag; `tags` adds more, separated by commas
+(`tags: dns, tls`). All show on the card, on the share preview and as
+`article:tag`.
+
+With `per_page = 10` on the collection, `{posts}` shows ten cards a page:
+page 1 at the list's URL, page n at `/blog/n`, with a `previous · page n
+of m · next` line under the cards. Add `item_prefix = "-"` so that posts
+live at `/blog/-/<slug>` and never meet a page number
+([configuration](docs/reference/configuration)).
+
 ## See also
 
 - [collections](docs/content-types)

@@ -126,6 +126,8 @@ through a screen reader. Translate them in `site.<lang>.toml`.
 | `labels.collection_nav` | `"In this section"` | the name of the `{{ collection_nav }}` sidebar; a collection may set its own `nav_label` |
 | `labels.prev` | `"previous"` | the label of `{{ prev }}`, and of the text mirror's line of a sequential type |
 | `labels.next` | `"next"` | the label of `{{ next }}`, and of that line |
+| `labels.page_of` | `"page {n} of {total}"` | the line under a paged list, between its links to the previous and next pages |
+| `labels.page_title` | `"{title} - page {n}"` | the `<title>` and description of page n of a list, n > 1: each page is indexed apart |
 
 The three callout labels also pick the colour of the callout's box in the
 coloured mirror: the box whose top rule carries `labels.info` follows
@@ -296,6 +298,9 @@ type's settings, each listed on the type's page, plus these:
 |---|---|---|
 | `type` | `"post"` | the type: `page`, `post`, `event`, `member`, or one the theme adds |
 | `dir` | the collection's name | the folder, under `content/` |
+| `item_prefix` | `""` | a folder between the collection and its items: `"-"` serves them at `<dir>/-/<slug>`, so `<dir>/2` can be page 2 of the list; the RSS `guid` keeps the URL without it |
+| `per_page` | `0` | the cards each page of a paged list shows (`{posts}`, `{past}`); `0`: one page |
+| `search_name` | the collection's name | the collection's name on the `{search}` page: its button, and its cards' `data-category` |
 
 From tilder 1.2, `recursive = true` makes the subfolders of `dir`
 sections of the collection, and their files its items, in the sidebar's
@@ -335,6 +340,27 @@ calendar = "talks.ics"
 The settings of each built-in type are on its page:
 [post](docs/content-types/post), [event](docs/content-types/event),
 [member](docs/content-types/member), [page](docs/content-types/page).
+
+## Search
+
+The `[search]` table: the words of a `{search}` page, which lists every
+item of every collection, and the script that searches them.
+
+| Key | Default | Meaning |
+|---|---|---|
+| `search.script` | `"members.js"` | the theme's script the page loads |
+| `search.search_label` | `"search"` | the search field's label |
+| `search.search_placeholder` | `"words"` | the search field's placeholder |
+| `search.all` | `"all"` | the button that shows every collection |
+| `search.one` | `"result"` | the count's noun, singular |
+| `search.many` | `"results"` | the count's noun, plural |
+| `search.none` | `"Nothing matches."` | a search that finds nothing |
+| `search.shown` | `"shown"` | "12 results, 10 shown" |
+| `search.limit` | `10` | the results shown at once |
+| `search.empty` | `"Nothing to search yet."` | a site with no item |
+
+The index is the page: no request leaves it, and without JavaScript every
+card is shown. In the text mirror the page is the whole index, for `grep`.
 
 ## Dates
 

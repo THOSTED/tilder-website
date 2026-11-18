@@ -173,6 +173,15 @@ clickable as a whole:
 A theme's type brings its own markers, as this site's `{docs}` and
 `{showcase}` do.
 
+## Pages and search
+
+A collection with `per_page` pages its `{posts}` and `{past}` lists:
+page n at `<list>/n`, each with its own title, description, canonical URL
+and place in the sitemap. `/blog/1` is the list itself: have the server
+redirect it. A section marked `{search}` lists every item of every
+collection, for the theme's script to search, without a request
+([configuration](docs/reference/configuration)).
+
 ## Feeds and calendars
 
 Each collection may write two files, both named by a path from the site

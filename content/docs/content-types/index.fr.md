@@ -182,6 +182,16 @@ d'un événement est cliquable en entier :
 Le type d'un thème apporte ses propres marqueurs, comme les `{docs}` et
 `{showcase}` de ce site.
 
+## Pages et recherche
+
+Une collection qui règle `per_page` pagine ses listes `{posts}` et
+`{past}` : la page n à `<liste>/n`, chacune avec son titre, sa
+description, son URL canonique et sa place dans le sitemap. `/blog/1` est
+la liste elle-même : faites-la rediriger par le serveur. Une section
+marquée `{search}` liste chaque élément de chaque collection, que le
+script du thème cherche, sans requête
+([configuration](docs/reference/configuration)).
+
 ## Flux et calendriers
 
 Chaque collection peut écrire deux fichiers, chacun désigné dans ses
