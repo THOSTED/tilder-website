@@ -128,6 +128,8 @@ s'entendent qu'à travers un lecteur d'écran. Traduisez-les dans
 | `labels.collection_nav` | `"In this section"` | le nom de la barre latérale `{{ collection_nav }}` ; une collection peut régler son propre `nav_label` |
 | `labels.prev` | `"previous"` | le libellé de `{{ prev }}`, et de la ligne d'un type séquentiel dans le miroir en texte |
 | `labels.next` | `"next"` | le libellé de `{{ next }}`, et de cette même ligne |
+| `labels.page_of` | `"page {n} of {total}"` | la ligne sous une liste paginée, entre ses liens vers les pages précédente et suivante |
+| `labels.page_title` | `"{title} - page {n}"` | le `<title>` et la description de la page n d'une liste, n > 1 : chaque page est indexée à part |
 
 Les trois libellés d'encadré choisissent aussi la couleur de la boîte
 dans le miroir en couleur : la boîte dont le filet du haut porte
@@ -303,6 +305,9 @@ plus celles-ci :
 |---|---|---|
 | `type` | `"post"` | le type : `page`, `post`, `event`, `member`, ou un type ajouté par le thème |
 | `dir` | le nom de la collection | le dossier, sous `content/` |
+| `item_prefix` | `""` | un dossier entre la collection et ses éléments : `"-"` les sert à `<dir>/-/<slug>`, et `<dir>/2` peut être la page 2 de la liste ; le `guid` RSS garde l'URL sans lui |
+| `per_page` | `0` | les cartes de chaque page d'une liste paginée (`{posts}`, `{past}`) ; `0` : une seule page |
+| `search_name` | le nom de la collection | le nom de la collection sur la page `{search}` : son bouton, et le `data-category` de ses cartes |
 
 Depuis tilder 1.2, `recursive = true` fait des sous-dossiers de `dir`
 des sections de la collection, et de leurs fichiers ses éléments, dans
@@ -344,6 +349,28 @@ calendar = "talks.ics"
 Les réglages de chaque type intégré sont sur sa page :
 [post](docs/content-types/post), [event](docs/content-types/event),
 [member](docs/content-types/member), [page](docs/content-types/page).
+
+## Recherche
+
+La table `[search]` : les mots d'une page `{search}`, qui liste chaque
+élément de chaque collection, et le script qui les cherche.
+
+| Clé | Défaut | Sens |
+|---|---|---|
+| `search.script` | `"members.js"` | le script du thème que la page charge |
+| `search.search_label` | `"search"` | le libellé du champ de recherche |
+| `search.search_placeholder` | `"words"` | le texte indicatif du champ |
+| `search.all` | `"all"` | le bouton qui montre toutes les collections |
+| `search.one` | `"result"` | le nom du compte, au singulier |
+| `search.many` | `"results"` | le nom du compte, au pluriel |
+| `search.none` | `"Nothing matches."` | une recherche qui ne trouve rien |
+| `search.shown` | `"shown"` | « 12 résultats, 10 affichés » |
+| `search.limit` | `10` | les résultats affichés à la fois |
+| `search.empty` | `"Nothing to search yet."` | un site sans élément |
+
+L'index, c'est la page : aucune requête n'en part, et sans JavaScript
+toutes les cartes s'affichent. En texte, la page est l'index entier, à
+passer à `grep`.
 
 ## Dates
 

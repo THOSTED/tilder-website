@@ -257,6 +257,21 @@ code](docs/reference/markdown/blocks). Un bloc sans langage, en
 seules ses lignes de commande (`text.commands`) prennent la couleur
 d'accent, et `txt/` reste brut dans tous les cas.
 
+## Les cartes
+
+Une carte porte une barre sur sa gauche, `|` à chaque ligne et `'` à la
+dernière, pour que les cartes d'une liste se lisent séparées : une ligne
+vide sépare aussi le titre d'une carte de son corps. Les étiquettes se
+placent à droite du titre, ou sur leurs propres lignes dessous quand elles
+ne tiennent pas ; une étiquette n'est jamais coupée.
+
+```text
+     | Ada Lovelace                                   [ admin ] [ mentor ]
+     | Analytical Engines
+     |
+     '     GitHub: https://github.com/ada
+```
+
 ## Écarter une page
 
 `text: no` dans l'en-tête d'une page n'écrit aucun texte pour elle, ni

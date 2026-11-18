@@ -219,6 +219,29 @@ else the date), a scheduled, in-person event, its `location` as a
 organisation as `organizer`, and the preview `image`. Its `og:type` is
 `website`.
 
+## Hours and sessions
+
+`time: 14:00-15:00` (or `14:00`) gives an event its hours, on a 24-hour
+clock, in `calendar.timezone`; without it, the event lasts whole days.
+With `end`, the start is on the first day and the end on the last. The
+card shows the hours, structured data carries them with their offset,
+and the iCalendar writes a timed `VEVENT`, in UTC.
+
+`session-1`, `session-2`... give one event several entries in the
+iCalendar, instead of its own: `[YYYY-MM-DD] [HH:MM[-HH:MM]] title`. No
+day: the event's first day; no hours: the whole day, or the whole event
+when no day is given either.
+
+```markdown
+session-1: Stand
+session-2: 14:00-15:00 Workshop
+session-3: 2026-05-17 10:00 Talk
+```
+
+A malformed `time` or session stops the build, saying how to write it.
+`{past}` is paged like `{posts}` when the collection sets `per_page`;
+upcoming events never are.
+
 ## See also
 
 - [collections](docs/content-types)
