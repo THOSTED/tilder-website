@@ -305,7 +305,7 @@ plus celles-ci :
 |---|---|---|
 | `type` | `"post"` | le type : `page`, `post`, `event`, `member`, ou un type ajouté par le thème |
 | `dir` | le nom de la collection | le dossier, sous `content/` |
-| `item_prefix` | `""` | un dossier entre la collection et ses éléments : `"-"` les sert à `<dir>/-/<slug>`, et `<dir>/2` peut être la page 2 de la liste ; le `guid` RSS garde l'URL sans lui |
+| `item_prefix` | `""` | un dossier entre la collection et ses éléments : `"-"` les sert à `<dir>/-/<slug>`, et les fichiers du dossier d'un élément à `<dir>/-/<slug>/...` ; `<dir>/2` peut être la page 2 de la liste ; le `guid` RSS garde l'URL sans lui |
 | `per_page` | `0` | les cartes de chaque page d'une liste paginée (`{posts}`, `{past}`) ; `0` : une seule page |
 | `search_name` | le nom de la collection | le nom de la collection sur la page `{search}` : son bouton, et le `data-category` de ses cartes |
 

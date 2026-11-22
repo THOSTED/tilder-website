@@ -298,7 +298,7 @@ type's settings, each listed on the type's page, plus these:
 |---|---|---|
 | `type` | `"post"` | the type: `page`, `post`, `event`, `member`, or one the theme adds |
 | `dir` | the collection's name | the folder, under `content/` |
-| `item_prefix` | `""` | a folder between the collection and its items: `"-"` serves them at `<dir>/-/<slug>`, so `<dir>/2` can be page 2 of the list; the RSS `guid` keeps the URL without it |
+| `item_prefix` | `""` | a folder between the collection and its items: `"-"` serves them at `<dir>/-/<slug>`, and the files of an item's folder at `<dir>/-/<slug>/...`, so `<dir>/2` can be page 2 of the list; the RSS `guid` keeps the URL without it |
 | `per_page` | `0` | the cards each page of a paged list shows (`{posts}`, `{past}`); `0`: one page |
 | `search_name` | the collection's name | the collection's name on the `{search}` page: its button, and its cards' `data-category` |
 

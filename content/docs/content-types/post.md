@@ -203,7 +203,8 @@ The [SEO reference](docs/reference/seo) shows the whole `<head>`.
 With `per_page = 10` on the collection, `{posts}` shows ten cards a page:
 page 1 at the list's URL, page n at `/blog/n`, with a `previous · page n
 of m · next` line under the cards. Add `item_prefix = "-"` so that posts
-live at `/blog/-/<slug>` and never meet a page number
+live at `/blog/-/<slug>` and never meet a page number; the files of a
+post's folder follow it, at `/blog/-/<slug>/...`
 ([configuration](docs/reference/configuration)).
 
 ## See also

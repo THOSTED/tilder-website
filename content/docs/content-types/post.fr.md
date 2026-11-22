@@ -215,7 +215,8 @@ Avec `per_page = 10` sur la collection, `{posts}` montre dix cartes par
 page : la page 1 à l'URL de la liste, la page n à `/blog/n`, avec une
 ligne `précédente · page n sur m · suivante` sous les cartes. Ajoutez
 `item_prefix = "-"` pour que les articles soient à `/blog/-/<slug>` et ne
-croisent jamais un numéro de page
+croisent jamais un numéro de page ; les fichiers du dossier d'un article
+le suivent, à `/blog/-/<slug>/...`
 ([configuration](docs/reference/configuration)).
 
 ## Voir aussi
